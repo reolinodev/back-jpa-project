@@ -1,0 +1,20 @@
+# name   : /api/user/{userId}
+# method : PUT
+# param  : userNm - 사용자명 / 필수 / 최소 2자에서 10자사이로 입력
+#        : email - 이메일 / 필수 / 이메일형식 제한
+#        : userPw - 비밀번호 / 필수 / 최대 20자, 비밀번호형식(영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자
+#        : telNo - 휴대폰 / 필수 / 휴대폰번호형식 제한
+#        : birth - 생년월일 / 선택
+
+PUT http://localhost:8080/api/user/26
+Content-Type: application/json
+
+{
+  "userNm": "reolino",
+  "email":"reolino31@gmail.com",
+  "userPw": "a123123!",
+  "telNo": "01011115557",
+  "birth": "19830102"
+}
+
+

@@ -1,6 +1,9 @@
 package com.back.domain;
 
+import com.back.domain.common.ValidationGroups.UserCreateGroup;
+import com.back.domain.common.ValidationGroups.UserUpdateGroup;
 import java.time.LocalDateTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,31 +30,36 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    @Column(name="user_id")
+    public Long userId;
 
-    @NotBlank(message = "이름은 필수 입력 값입니다.")
-    @Size(min = 2, max = 10, message = "최소 2자에서 10자사이로 입력해주세요")
-    private String user_nm;
+    @NotBlank(groups = { UserCreateGroup.class, UserUpdateGroup.class}, message = "이름은 필수 입력값입니다.")
+    @Size(groups = { UserCreateGroup.class, UserUpdateGroup.class}, min = 2, max = 10, message = "최소 2자에서 10자사이로 입력해주세요")
+    @Column(name="user_nm")
+    public String userNm;
 
-    @NotBlank(message = "이메일은 필수 입력 값입니다.")
-    @Email(message = "이메일 형식이 올바르지 않습니다.")
-    private String email;
+    @NotBlank(groups = { UserCreateGroup.class, UserUpdateGroup.class}, message = "이메일은 필수 입력 값입니다.")
+    @Email(groups = { UserCreateGroup.class, UserUpdateGroup.class}, message = "이메일 형식이 올바르지 않습니다.")
+    public String email;
 
+    public String birth;
 
-    private String birth;
+    @NotBlank(groups = { UserCreateGroup.class, UserUpdateGroup.class}, message = "비밀번호는 필수 입력 값입니다.")
+    @Size(groups = { UserCreateGroup.class, UserUpdateGroup.class}, max = 20, message = "최대 20자를 넘길수 없습니다,")
+    @Pattern(groups = { UserCreateGroup.class, UserUpdateGroup.class}, regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}",
+        message = "비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야 합니다.")
+    @Column(name="user_pw")
+    public String userPw;
 
-    @NotBlank(message = "비밀번호는 필수 입력 값입니다.")
-    @Size(max = 20, message = "최대 20자를 넘길수 없습니다,")
-//    @Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}",
-//        message = "비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야 합니다.")
-    private String user_pw;
+    @NotBlank(groups = { UserCreateGroup.class, UserUpdateGroup.class}, message = "휴대폰 번호는 필수 입력 값입니다.")
+    @Pattern(groups = { UserCreateGroup.class, UserUpdateGroup.class}, regexp = "^\\d{2,3}\\d{3,4}\\d{4}$", message = "올바른 휴대폰번호 형식이 아닙니다. ex) 01011112222")
+    @Column(name="tel_no")
+    public String telNo;
 
-    @NotBlank(message = "휴대폰 번호는 필수 입력 값입니다.")
-    @Pattern(regexp = "^\\d{2,3}\\d{3,4}\\d{4}$", message = "올바른 휴대폰번호 형식이 아닙니다. ex) 01011112222")
-    private String tel_no;
+    @Column(name="created_dt")
+    public LocalDateTime createdAt;
 
-    private LocalDateTime createdAt;
-
-    private LocalDateTime updatedAt;
+    @Column(name="updated_dt")
+    public LocalDateTime updatedAt;
 
 }
