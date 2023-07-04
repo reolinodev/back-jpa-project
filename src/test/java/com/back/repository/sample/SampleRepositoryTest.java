@@ -1,9 +1,9 @@
-package com.back.repository;
+package com.back.repository.sample;
 
 import static java.time.LocalDateTime.now;
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
 
-import com.back.domain.User;
+import com.back.domain.sample.User;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.assertj.core.util.Lists;
@@ -14,6 +14,8 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 
 @SpringBootTest
 class SampleRepositoryTest {
@@ -46,7 +48,7 @@ class SampleRepositoryTest {
     //입력 후 바로 커밋
     void basic2() {
 
-        User user = new User(null,"jack5", "jack4@gmail.com", "19830904", "5555", "01011116666", now(), now());
+        User user = new User(null,"jack25", "jack25@gmail.com", "19830904", "5555", "01011116666", now(), now());
 
         sampleRepository.save(user);
 
@@ -117,8 +119,8 @@ class SampleRepositoryTest {
     // update 예제
     void basic8() {
 
-        User user = sampleRepository.findById(1L).orElseThrow(RuntimeException::new);
-        user.setEmail("jacka1@gmail.com");
+        User user = sampleRepository.findById(5L).orElseThrow(RuntimeException::new);
+        user.setEmail("jacka112222443@gmail.com");
 
         sampleRepository.save(user);
     }
@@ -182,10 +184,32 @@ class SampleRepositoryTest {
         System.out.println("findByUserIdIsNotNull : " + sampleRepository.findByUserIdIsNotNull());
 
         System.out.println("findByNameIn : " + sampleRepository.findByUserNmIn(Lists.newArrayList("jack10", "jack11")));
+   }
 
-//        System.out.println("findByUserIdAfter : " + sampleRepository.findByUserIdAfter(7L));
+
+
+    @Test
+    void sortingTest1() {
+        System.out.println("findTop1ByUserNm : " + sampleRepository.findTop1ByUserNm("reolino"));
+        System.out.println("findLast1ByUserNm : " + sampleRepository.findLast1ByUserNm("reolino"));
+        System.out.println("findTopByUserNmOrderByUserIdDesc : " + sampleRepository.findTopByUserNmOrderByUserIdDesc("reolino"));
+        System.out.println("findFirstByUserNmOrderByUserIdDescEmailAsc : " + sampleRepository.findFirstByUserNmOrderByUserIdDescEmailAsc("reolino"));
+        System.out.println("findFirstByUserNmWithSortParam : " + sampleRepository.findFirstByUserNm("reolino", Sort.by(Order.desc("userId"), Order.asc("email"))));
+    }
+
+
+    @Test
+    void pagingTest1() {
+
+        System.out.println("findByEmailWithPaging : " + sampleRepository.findByEmail("jack7@gmail.com", PageRequest.of(1,1, Sort.by(Order.desc("userId")))));
 
     }
 
+
+    @Test
+    void queryTest() {
+        System.out.println(sampleRepository.findRowRecord().get("user_id"));
+
+    }
 
 }

@@ -1,9 +1,9 @@
-package com.back.controller;
+package com.back.controller.sample;
 
-import com.back.domain.User;
+import com.back.domain.sample.User;
 import com.back.domain.common.Header;
 import com.back.domain.common.ValidationGroups;
-import com.back.service.UserService;
+import com.back.service.sample.UserService;
 import com.back.support.ResponseUtils;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/sample/user")
 public class UserControllerAPI implements Serializable {
 
     @Autowired

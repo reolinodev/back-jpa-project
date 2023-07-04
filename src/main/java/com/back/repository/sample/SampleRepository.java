@@ -1,9 +1,14 @@
-package com.back.repository;
+package com.back.repository.sample;
 
-import com.back.domain.User;
+import com.back.domain.sample.User;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface SampleRepository extends JpaRepository <User, Long> {
 
@@ -27,8 +32,6 @@ public interface SampleRepository extends JpaRepository <User, Long> {
 
     List<User> findTop2ByUserNm(String userNm);
 
-    List<User> findLast1ByUserNm(String userNm);
-
     List<User> findByEmailAndUserNm(String email, String userNm);
 
     List<User> findByEmailOrUserNm(String email, String userNm);
@@ -50,6 +53,21 @@ public interface SampleRepository extends JpaRepository <User, Long> {
     List<User> findByUserIdIsNotNull();
 
     List<User> findByUserNmIn(List<String> names);
+
+    List<User> findTop1ByUserNm(String userNm);
+
+    List<User> findLast1ByUserNm(String userNm);
+
+    List<User> findTopByUserNmOrderByUserIdDesc(String userNm);
+
+    List<User> findFirstByUserNmOrderByUserIdDescEmailAsc(String userNm);
+
+    List<User> findFirstByUserNm(String userNm, Sort sort);
+
+    Page<User> findByEmail(String userNm, Pageable pageable);
+
+    @Query(value="select * from tb_user limit 1;", nativeQuery = true )
+    Map<String, Object> findRowRecord();
 
 }
 

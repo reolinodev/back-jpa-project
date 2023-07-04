@@ -1,4 +1,4 @@
-# name   : /api/user/{userId}
+# name   : /api/user
 # method : PUT
 # param  : userNm - 사용자명 / 필수 / 최소 2자에서 10자사이로 입력
 #        : email - 이메일 / 필수 / 이메일형식 제한
@@ -6,14 +6,14 @@
 #        : telNo - 휴대폰 / 필수 / 휴대폰번호형식 제한
 #        : birth - 생년월일 / 선택
 
-PUT http://localhost:8080/api/user/26
+PUT http://localhost:8080/api/sample/user
 Content-Type: application/json
 
 {
-  "userNm": "reolino",
-  "email":"reolino31@gmail.com",
+  "userNm": "reolino26",
+  "email":"reolino26@gmail.com",
   "userPw": "a123123!",
-  "telNo": "01011115557",
+  "telNo": "01011115555",
   "birth": "19830102"
 }
 

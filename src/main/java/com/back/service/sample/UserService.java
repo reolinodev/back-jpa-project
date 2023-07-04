@@ -1,9 +1,7 @@
-package com.back.service;
+package com.back.service.sample;
 
-import com.back.domain.User;
-import com.back.repository.UserRepository;
-import java.time.LocalDateTime;
-import java.util.List;
+import com.back.domain.sample.User;
+import com.back.repository.sample.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +30,6 @@ public class UserService {
      * 사용자를 생성합니다.
      */
     public User createUser(User params) {
-        params.createdAt = LocalDateTime.now();
-        params.updatedAt = LocalDateTime.now();
         return userRepository.save(params);
     }
 
@@ -43,7 +39,6 @@ public class UserService {
      */
     public User updateUser(User params, Long userId) {
         params.userId = userId;
-        params.updatedAt = LocalDateTime.now();
         return userRepository.save(params);
     }
 

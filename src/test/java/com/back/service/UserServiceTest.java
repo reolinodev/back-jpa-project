@@ -1,6 +1,7 @@
 package com.back.service;
 
-import com.back.domain.User;
+import com.back.domain.sample.User;
+import com.back.service.sample.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

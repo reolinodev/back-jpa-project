@@ -1,6 +1,8 @@
 # name   : /api/user/{userId}
-# method : GET
+# method : DELETE
 # param  : userId - 사용자식별키 / 필수
 
-GET http://localhost:8080/api/user/4
+
+DELETE http://localhost:8080/api/sample/user/24
 Content-Type: application/json
+

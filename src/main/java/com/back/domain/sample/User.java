@@ -1,10 +1,14 @@
-package com.back.domain;
+package com.back.domain.sample;
 
+import com.back.domain.common.entityListener.Auditable;
+import com.back.domain.common.entityListener.UpdateDateEntityListener;
 import com.back.domain.common.ValidationGroups.UserCreateGroup;
 import com.back.domain.common.ValidationGroups.UserUpdateGroup;
+import com.back.domain.common.entityListener.UserEntityListener;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +30,8 @@ import lombok.ToString;
 @AllArgsConstructor
 @Table(name="TB_USER", schema = "test")
 @Entity
-public class User {
+@EntityListeners({UpdateDateEntityListener.class, UserEntityListener.class})
+public class User implements Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,7 +61,7 @@ public class User {
     @Column(name="tel_no")
     public String telNo;
 
-    @Column(name="created_dt")
+    @Column(name="created_dt", updatable = false)
     public LocalDateTime createdAt;
 
     @Column(name="updated_dt")
