@@ -15,10 +15,10 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(value = AuditingEntityListener.class)
 public class BaseEntity implements Auditable {
     @CreatedDate
-    @Column(name="created_at", columnDefinition = "comment '생성시간", nullable = false, updatable = false)
+    @Column(name="created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(name="updated_at", columnDefinition = "comment '수정시간", nullable = false)
+    @Column(name="updated_at", nullable = false)
     private LocalDateTime updatedAt;
 }

@@ -31,13 +31,12 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @EntityListeners({UserHistoryEntityListener.class})
-@Table(name="TB_USER", schema = "test")
+@Table(name="TB_USER", schema = "sample")
 public class User extends BaseEntity implements Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="user_id")
-    public Long userId;
+    public Long id;
 
     @NotBlank(groups = { UserCreateGroup.class, UserUpdateGroup.class}, message = "이름은 필수 입력값입니다.")
     @Size(groups = { UserCreateGroup.class, UserUpdateGroup.class}, min = 2, max = 10, message = "최소 2자에서 10자사이로 입력해주세요")
@@ -61,4 +60,12 @@ public class User extends BaseEntity implements Auditable {
     @Pattern(groups = { UserCreateGroup.class, UserUpdateGroup.class}, regexp = "^\\d{2,3}\\d{3,4}\\d{4}$", message = "올바른 휴대폰번호 형식이 아닙니다. ex) 01011112222")
     @Column(name="tel_no")
     public String telNo;
+
+    @Column(name="use_yn")
+    public String useYn;
+
+    @Column(name="dept_id")
+    public Long deptId;
+
+
 }

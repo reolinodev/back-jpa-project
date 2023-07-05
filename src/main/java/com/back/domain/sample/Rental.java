@@ -17,21 +17,19 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name="TB_BOOK", schema = "sample")
-public class Book extends BaseEntity {
+@Table(name="TB_RENTAL", schema = "sample")
+public class Rental extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    @Column(name="book_nm")
-    public String bookNm;
+    @Column(name="book_id", updatable = false)
+    public Long bookId;
 
-    public String author;
+    @Column(name="user_id", updatable = false)
+    public Long userId;
 
-    @Column(name="store_dt")
-    public String storeDt;
-
-    @Column(name="use_yn")
-    public String useYn;
+    @Column(name="return_yn")
+    public String returnYn;
 }

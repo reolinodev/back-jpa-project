@@ -1,4 +1,4 @@
-# name   : /api/user/{userId}
+# name   : /api/user/{id}
 # method : PUT
 # param  : userNm - 사용자명 / 필수 / 최소 2자에서 10자사이로 입력
 #        : email - 이메일 / 필수 / 이메일형식 제한

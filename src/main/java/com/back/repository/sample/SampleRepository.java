@@ -38,7 +38,7 @@ public interface SampleRepository extends JpaRepository <User, Long> {
 
     List<User> findByCreatedAtAfter(LocalDateTime yesterday);
 
-    List<User> findByUserIdAfter(Long id);
+    List<User> findByIdAfter(Long id);
 
     List<User> findByCreatedAtGreaterThan(LocalDateTime yesterday);
 
@@ -46,11 +46,11 @@ public interface SampleRepository extends JpaRepository <User, Long> {
 
     List<User> findByCreatedAtBetween(LocalDateTime yesterday, LocalDateTime tomorrow);
 
-    List<User> findByUserIdBetween(Long id, Long id2);
+    List<User> findByIdBetween(Long id, Long id2);
 
-    List<User> findByUserIdGreaterThanEqualAndUserIdLessThanEqual(Long id, Long id2);
+    List<User> findByIdGreaterThanEqualAndIdLessThanEqual(Long id, Long id2);
 
-    List<User> findByUserIdIsNotNull();
+    List<User> findByIdIsNotNull();
 
     List<User> findByUserNmIn(List<String> names);
 
@@ -58,9 +58,9 @@ public interface SampleRepository extends JpaRepository <User, Long> {
 
     List<User> findLast1ByUserNm(String userNm);
 
-    List<User> findTopByUserNmOrderByUserIdDesc(String userNm);
+    List<User> findTopByUserNmOrderByIdDesc(String userNm);
 
-    List<User> findFirstByUserNmOrderByUserIdDescEmailAsc(String userNm);
+    List<User> findFirstByUserNmOrderByIdDescEmailAsc(String userNm);
 
     List<User> findFirstByUserNm(String userNm, Sort sort);
 

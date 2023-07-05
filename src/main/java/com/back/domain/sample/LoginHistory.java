@@ -17,8 +17,8 @@ import org.springframework.data.annotation.CreatedDate;
 @NoArgsConstructor
 @ToString(callSuper = true)
 @Entity
-@Table(name="TB_USER_HISTORY", schema = "sample")
-public class UserHistory {
+@Table(name="TB_LOGIN_HISTORY", schema = "sample")
+public class LoginHistory {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,8 +27,7 @@ public class UserHistory {
     @Column(name="user_id")
     public Long userId;
 
-    @Column(name="call_url")
-    public String callUrl;
+    public String device;
 
     @Column(name="created_at", updatable = false)
     @CreatedDate

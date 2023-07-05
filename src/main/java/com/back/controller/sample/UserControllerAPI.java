@@ -48,10 +48,10 @@ public class UserControllerAPI implements Serializable {
 
 
 
-    @GetMapping("/{userId}")
-    public ResponseEntity <Map<String,Object>> getUserData(@PathVariable Long userId, HttpServletRequest httpServletRequest) {
+    @GetMapping("/{id}")
+    public ResponseEntity <Map<String,Object>> getUserData(@PathVariable Long id, HttpServletRequest httpServletRequest) {
         Map <String,Object> responseMap = new HashMap<>();
-        User data = userService.getUserData(userId);
+        User data = userService.getUserData(id);
 
         String message = "1건이 조회되었습니다.";
         String code = "ok";
@@ -84,17 +84,17 @@ public class UserControllerAPI implements Serializable {
         return new ResponseEntity<>(responseMap, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{userId}")
-    public ResponseEntity<Map<String,Object>> updateUser(@PathVariable Long userId,
+    @PutMapping("/{id}")
+    public ResponseEntity<Map<String,Object>> updateUser(@PathVariable Long id,
         @Validated(ValidationGroups.UserUpdateGroup.class) @RequestBody User params, HttpServletRequest httpServletRequest) {
         Map <String,Object> responseMap = new HashMap<>();
 
-        User result = userService.updateUser(params, userId);
+        User result = userService.updateUser(params, id);
 
         String message = "사용자 정보가 수정이 되었습니다.";
         String code = "ok";
 
-        if(!params.userId.equals(result.userId)){
+        if(!params.id.equals(result.id)){
             message ="정상적으로 수정이 되지 않았습니다.";
             code = "fail";
         }
@@ -105,11 +105,11 @@ public class UserControllerAPI implements Serializable {
         return new ResponseEntity<>(responseMap, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<Map<String,Object>> deleteUser(@PathVariable Long userId, HttpServletRequest httpServletRequest) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String,Object>> deleteUser(@PathVariable Long id, HttpServletRequest httpServletRequest) {
         Map <String,Object> responseMap = new HashMap<>();
 
-        Boolean result = userService.deleteUser(userId);
+        Boolean result = userService.deleteUser(id);
         String message = "사용자가 삭제 되었습니다.";
         String code = "ok";
         if(result){

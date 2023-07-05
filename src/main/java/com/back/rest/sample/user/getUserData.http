@@ -1,6 +1,6 @@
-# name   : /api/user/{userId}
+# name   : /api/user/{id}
 # method : GET
-# param  : userId - 사용자식별키 / 필수
+# param  : id - 사용자아이디 / 필수
 
 GET http://localhost:8080/api/sample/user/4
 Content-Type: application/json

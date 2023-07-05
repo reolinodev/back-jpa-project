@@ -11,15 +11,13 @@ public class UserHistoryEntityListener {
 
     @PreUpdate
     public void preUpdate(Object o){
-        // 추후에 세션 아이디로 받게끔 수정
         User user = (User) o;
 
         UserHistoryRepository userHistoryRepository = BeanUtils.getBean(UserHistoryRepository.class);
 
         UserHistory userHistory = new UserHistory();
         userHistory.userId = 2L;
-        userHistory.action = "update";
-        userHistory.menuNm = "user";
+        userHistory.callUrl = "user/update";
 
         userHistoryRepository.save(userHistory);
     }

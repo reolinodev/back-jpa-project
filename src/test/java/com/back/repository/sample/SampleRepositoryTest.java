@@ -25,23 +25,21 @@ class SampleRepositoryTest {
    // --> JPA Basic
 
     // 입력 예제 1
-//    @Test
-//   void basic1() {
-//
-//       User user1 = new User(null,"jack30", "jack15@gmail.com", "19830903", "3333", "01011115555");
-//       User user2 = new User(null,"jack31", "jack16@gmail.com", "19830904", "4444", "01011116666");
-//       User user3 = new User(null,"jack32", "jack17@gmail.com", "19830904", "4444", "01011116666");
-//       User user4 = new User(null,"jack33", "jack18@gmail.com", "19830904", "4444", "01011116666");
-//       User user5 = new User(null,"jack34", "jack19@gmail.com", "19830904", "4444", "01011116666");
-//       User user6 = new User(null,"jack35", "jack20@gmail.com", "19830904", "4444", "01011116666");
-//       User user7 = new User(null,"jack36", "jack21@gmail.com", "19830904", "4444", "01011116666");
-//
-//       sampleRepository.saveAll(Lists.newArrayList(user1, user2, user3, user4, user5, user6, user7));
-//
-//       List<User> users = sampleRepository.findAll();
-//
-//       users.forEach(System.out::println);
-//   }
+   @Test
+   void basic1() {
+
+       User user1 = new User(null,"test6", "test6@gmail.com", "19010101", "1234", "01011115555", "Y", null);
+       User user2 = new User(null,"test7", "test7@gmail.com", "19010101", "1234", "01011116666", "Y", null);
+       User user3 = new User(null,"test8", "test8@gmail.com", "19010101", "1234", "01011116666", "Y", null);
+       User user4 = new User(null,"test9", "test9@gmail.com", "19010101", "1234", "01011116666", "Y", null);
+       User user5 = new User(null,"test10", "test10@gmail.com", "19010101", "1234", "01011116666", "Y", null);
+
+       sampleRepository.saveAll(Lists.newArrayList(user1, user2, user3, user4, user5));
+
+       List<User> users = sampleRepository.findAll();
+
+       users.forEach(System.out::println);
+   }
 
     @Test
     //입력 후 바로 커밋
@@ -127,8 +125,8 @@ class SampleRepositoryTest {
     // update 예제
     void basic8() {
 
-        User user = sampleRepository.findById(5L).orElseThrow(RuntimeException::new);
-        user.setEmail("jacka1122223423443@gmail.com");
+        User user = sampleRepository.findById(1L).orElseThrow(RuntimeException::new);
+        user.setEmail("test@hanmail.com");
 
         sampleRepository.save(user);
     }
@@ -174,7 +172,7 @@ class SampleRepositoryTest {
         System.out.println("findByCreatedAtAfter : " + sampleRepository.findByCreatedAtAfter(
             LocalDateTime.now().minusDays(1L)));
 
-        System.out.println("findByUserIdAfter : " + sampleRepository.findByUserIdAfter(7L));
+        System.out.println("findByIdAfter : " + sampleRepository.findByIdAfter(7L));
 
         System.out.println("findByCreatedAtGreaterThan : " + sampleRepository.findByCreatedAtGreaterThan(LocalDateTime.now().minusDays(1L)));
 
@@ -182,14 +180,14 @@ class SampleRepositoryTest {
 
         System.out.println("findByCreatedAtBetween : " + sampleRepository.findByCreatedAtBetween(LocalDateTime.now().minusDays(1L), LocalDateTime.now().plusDays(1L)));
 
-        System.out.println("findByUserIdBetween : " + sampleRepository.findByUserIdBetween(5L, 12L));
+        System.out.println("findByIdBetween : " + sampleRepository.findByIdBetween(5L, 12L));
 
-        System.out.println("findByUserIdGreaterThanEqualAndUserIdLessThanEqual : " + sampleRepository.findByUserIdGreaterThanEqualAndUserIdLessThanEqual(3L, 10L));
+        System.out.println("findByIdGreaterThanEqualAndIdLessThanEqual : " + sampleRepository.findByIdGreaterThanEqualAndIdLessThanEqual(3L, 10L));
     }
 
     @Test
     void query6() {
-        System.out.println("findByUserIdIsNotNull : " + sampleRepository.findByUserIdIsNotNull());
+        System.out.println("findByIdIsNotNull : " + sampleRepository.findByIdIsNotNull());
 
         System.out.println("findByNameIn : " + sampleRepository.findByUserNmIn(Lists.newArrayList("jack10", "jack11")));
    }
@@ -200,16 +198,16 @@ class SampleRepositoryTest {
     void sortingTest1() {
         System.out.println("findTop1ByUserNm : " + sampleRepository.findTop1ByUserNm("reolino"));
         System.out.println("findLast1ByUserNm : " + sampleRepository.findLast1ByUserNm("reolino"));
-        System.out.println("findTopByUserNmOrderByUserIdDesc : " + sampleRepository.findTopByUserNmOrderByUserIdDesc("reolino"));
-        System.out.println("findFirstByUserNmOrderByUserIdDescEmailAsc : " + sampleRepository.findFirstByUserNmOrderByUserIdDescEmailAsc("reolino"));
-        System.out.println("findFirstByUserNmWithSortParam : " + sampleRepository.findFirstByUserNm("reolino", Sort.by(Order.desc("userId"), Order.asc("email"))));
+        System.out.println("findTopByUserNmOrderByIdDesc : " + sampleRepository.findTopByUserNmOrderByIdDesc("reolino"));
+        System.out.println("findFirstByUserNmOrderByIdDescEmailAsc : " + sampleRepository.findFirstByUserNmOrderByIdDescEmailAsc("reolino"));
+        System.out.println("findFirstByUserNmWithSortParam : " + sampleRepository.findFirstByUserNm("reolino", Sort.by(Order.desc("Id"), Order.asc("email"))));
     }
 
 
     @Test
     void pagingTest1() {
 
-        System.out.println("findByEmailWithPaging : " + sampleRepository.findByEmail("jack7@gmail.com", PageRequest.of(1,1, Sort.by(Order.desc("userId")))));
+        System.out.println("findByEmailWithPaging : " + sampleRepository.findByEmail("jack7@gmail.com", PageRequest.of(1,1, Sort.by(Order.desc("Id")))));
 
     }
 
