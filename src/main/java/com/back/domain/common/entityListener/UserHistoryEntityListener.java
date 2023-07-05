@@ -5,9 +5,9 @@ import com.back.domain.sample.UserHistory;
 import com.back.repository.sample.UserHistoryRepository;
 import com.back.support.BeanUtils;
 import javax.persistence.PreUpdate;
-import org.springframework.beans.factory.annotation.Autowired;
 
-public class UserEntityListener {
+//todo 토큰을 통해 정보 처리
+public class UserHistoryEntityListener {
 
     @PreUpdate
     public void preUpdate(Object o){

@@ -14,8 +14,8 @@ class BookRepositoryTest {
     @Test
     void bookTest() {
         Book book = new Book();
-        book.bookNm = "과학동아2";
-        book.author = "홍길동2";
+        book.bookNm = "과학동아6";
+        book.author = "홍길동6";
 
         bookRepository.save(book);
 

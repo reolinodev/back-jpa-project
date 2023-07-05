@@ -1,6 +1,5 @@
 package com.back.domain.sample;
 
-import com.back.domain.common.entityListener.Auditable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,11 +10,13 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
 
-@Entity
-@NoArgsConstructor
 @Data
-
+@NoArgsConstructor
+@ToString(callSuper = true)
+@Entity
 @Table(name="TB_USER_HISTORY", schema = "test")
 public class UserHistory {
 
@@ -33,6 +34,7 @@ public class UserHistory {
     public String action;
 
     @Column(name="created_dt", updatable = false)
+    @CreatedDate
     public LocalDateTime createdAt;
 
     @PrePersist

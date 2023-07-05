@@ -1,11 +1,10 @@
 package com.back.domain.sample;
 
-import com.back.domain.common.entityListener.Auditable;
-import com.back.domain.common.entityListener.UpdateDateEntityListener;
+import com.back.domain.common.BaseEntity;
 import com.back.domain.common.ValidationGroups.UserCreateGroup;
 import com.back.domain.common.ValidationGroups.UserUpdateGroup;
-import com.back.domain.common.entityListener.UserEntityListener;
-import java.time.LocalDateTime;
+import com.back.domain.common.entityListener.Auditable;
+import com.back.domain.common.entityListener.UserHistoryEntityListener;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -20,18 +19,20 @@ import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@ToString
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="TB_USER", schema = "test")
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Entity
-@EntityListeners({UpdateDateEntityListener.class, UserEntityListener.class})
-public class User implements Auditable {
+@EntityListeners({UserHistoryEntityListener.class})
+@Table(name="TB_USER", schema = "test")
+public class User extends BaseEntity implements Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,11 +61,4 @@ public class User implements Auditable {
     @Pattern(groups = { UserCreateGroup.class, UserUpdateGroup.class}, regexp = "^\\d{2,3}\\d{3,4}\\d{4}$", message = "올바른 휴대폰번호 형식이 아닙니다. ex) 01011112222")
     @Column(name="tel_no")
     public String telNo;
-
-    @Column(name="created_dt", updatable = false)
-    public LocalDateTime createdAt;
-
-    @Column(name="updated_dt")
-    public LocalDateTime updatedAt;
-
 }

@@ -1,6 +1,5 @@
 package com.back.repository.sample;
 
-import static java.time.LocalDateTime.now;
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.contains;
 
 import com.back.domain.sample.User;
@@ -25,37 +24,46 @@ class SampleRepositoryTest {
 
    // --> JPA Basic
 
-   @Test
-   // 입력 예제 1
-   void basic1() {
-
-       User user1 = new User(null,"jack15", "jack15@gmail.com", "19830903", "3333", "01011115555", now(), now());
-       User user2 = new User(null,"jack16", "jack16@gmail.com", "19830904", "4444", "01011116666", now(), now());
-       User user3 = new User(null,"jack17", "jack17@gmail.com", "19830904", "4444", "01011116666", now(), now());
-       User user4 = new User(null,"jack18", "jack18@gmail.com", "19830904", "4444", "01011116666", now(), now());
-       User user5 = new User(null,"jack19", "jack19@gmail.com", "19830904", "4444", "01011116666", now(), now());
-       User user6 = new User(null,"jack20", "jack20@gmail.com", "19830904", "4444", "01011116666", now(), now());
-       User user7 = new User(null,"jack21", "jack21@gmail.com", "19830904", "4444", "01011116666", now(), now());
-
-       sampleRepository.saveAll(Lists.newArrayList(user1, user2, user3, user4, user5, user6, user7));
-
-       List<User> users = sampleRepository.findAll();
-
-       users.forEach(System.out::println);
-   }
+    // 입력 예제 1
+//    @Test
+//   void basic1() {
+//
+//       User user1 = new User(null,"jack30", "jack15@gmail.com", "19830903", "3333", "01011115555");
+//       User user2 = new User(null,"jack31", "jack16@gmail.com", "19830904", "4444", "01011116666");
+//       User user3 = new User(null,"jack32", "jack17@gmail.com", "19830904", "4444", "01011116666");
+//       User user4 = new User(null,"jack33", "jack18@gmail.com", "19830904", "4444", "01011116666");
+//       User user5 = new User(null,"jack34", "jack19@gmail.com", "19830904", "4444", "01011116666");
+//       User user6 = new User(null,"jack35", "jack20@gmail.com", "19830904", "4444", "01011116666");
+//       User user7 = new User(null,"jack36", "jack21@gmail.com", "19830904", "4444", "01011116666");
+//
+//       sampleRepository.saveAll(Lists.newArrayList(user1, user2, user3, user4, user5, user6, user7));
+//
+//       List<User> users = sampleRepository.findAll();
+//
+//       users.forEach(System.out::println);
+//   }
 
     @Test
     //입력 후 바로 커밋
     void basic2() {
 
-        User user = new User(null,"jack25", "jack25@gmail.com", "19830904", "5555", "01011116666", now(), now());
+//        User user = new User(null,"jack39", "jack39@gmail.com", "19830904", "5555", "01011116666");
+        User user = new User();
+        user.userNm = "jack42";
+        user.email="jack42@gmail.com";
+        user.userPw ="123456!!A";
+        user.birth ="19000101";
+        user.telNo = "01011112222";
 
         sampleRepository.save(user);
 
         sampleRepository.flush();;
 
-        sampleRepository.findAll().forEach(System.out::println);
+//        sampleRepository.findAll().forEach(System.out::println);
     }
+
+
+
 
     @Test
     // 카운트 및 존재 여부 조회 예제
@@ -120,7 +128,7 @@ class SampleRepositoryTest {
     void basic8() {
 
         User user = sampleRepository.findById(5L).orElseThrow(RuntimeException::new);
-        user.setEmail("jacka112222443@gmail.com");
+        user.setEmail("jacka1122223423443@gmail.com");
 
         sampleRepository.save(user);
     }
