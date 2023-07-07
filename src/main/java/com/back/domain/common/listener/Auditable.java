@@ -1,4 +1,4 @@
-package com.back.domain.common.entityListener;
+package com.back.domain.common.listener;
 
 import java.time.LocalDateTime;
 

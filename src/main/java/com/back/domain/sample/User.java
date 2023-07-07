@@ -3,14 +3,19 @@ package com.back.domain.sample;
 import com.back.domain.common.BaseEntity;
 import com.back.domain.common.ValidationGroups.UserCreateGroup;
 import com.back.domain.common.ValidationGroups.UserUpdateGroup;
-import com.back.domain.common.entityListener.Auditable;
-import com.back.domain.common.entityListener.UserHistoryEntityListener;
-import javax.persistence.Column;
+import com.back.domain.common.listener.Auditable;
+import com.back.domain.common.listener.UserHistoryListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -30,7 +35,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@EntityListeners({UserHistoryEntityListener.class})
+@EntityListeners({UserHistoryListener.class})
 @Table(name="TB_USER", schema = "sample")
 public class User extends BaseEntity implements Auditable {
 
@@ -40,7 +45,6 @@ public class User extends BaseEntity implements Auditable {
 
     @NotBlank(groups = { UserCreateGroup.class, UserUpdateGroup.class}, message = "이름은 필수 입력값입니다.")
     @Size(groups = { UserCreateGroup.class, UserUpdateGroup.class}, min = 2, max = 10, message = "최소 2자에서 10자사이로 입력해주세요")
-    @Column(name="user_nm")
     public String userNm;
 
     @NotBlank(groups = { UserCreateGroup.class, UserUpdateGroup.class}, message = "이메일은 필수 입력 값입니다.")
@@ -53,19 +57,21 @@ public class User extends BaseEntity implements Auditable {
     @Size(groups = { UserCreateGroup.class, UserUpdateGroup.class}, max = 20, message = "최대 20자를 넘길수 없습니다,")
     @Pattern(groups = { UserCreateGroup.class, UserUpdateGroup.class}, regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}",
         message = "비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야 합니다.")
-    @Column(name="user_pw")
+    @ToString.Exclude
     public String userPw;
 
     @NotBlank(groups = { UserCreateGroup.class, UserUpdateGroup.class}, message = "휴대폰 번호는 필수 입력 값입니다.")
     @Pattern(groups = { UserCreateGroup.class, UserUpdateGroup.class}, regexp = "^\\d{2,3}\\d{3,4}\\d{4}$", message = "올바른 휴대폰번호 형식이 아닙니다. ex) 01011112222")
-    @Column(name="tel_no")
     public String telNo;
 
-    @Column(name="use_yn")
     public String useYn;
 
-    @Column(name="dept_id")
-    public Long deptId;
+    public String deptCd;
 
+//    @OneToOne
+//    private Dept dept;
 
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private List<UserHistory> userHistories = new ArrayList<>();
 }

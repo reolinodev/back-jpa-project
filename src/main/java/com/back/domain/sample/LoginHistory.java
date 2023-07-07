@@ -24,12 +24,11 @@ public class LoginHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    @Column(name="user_id")
     public Long userId;
 
     public String device;
 
-    @Column(name="created_at", updatable = false)
+    @Column(updatable = false)
     @CreatedDate
     public LocalDateTime createdAt;
 

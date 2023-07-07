@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import lombok.Data;
@@ -24,13 +25,11 @@ public class UserHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    @Column(name="user_id")
-    public Long userId;
+//    public Long userId;
 
-    @Column(name="call_url")
     public String callUrl;
 
-    @Column(name="created_at", updatable = false)
+    @Column(updatable = false)
     @CreatedDate
     public LocalDateTime createdAt;
 
@@ -38,4 +37,8 @@ public class UserHistory {
     public void prePersist(){
         this.createdAt = LocalDateTime.now();
     }
+
+    @ManyToOne
+    @ToString.Exclude
+    private User user;
 }

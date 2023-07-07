@@ -24,12 +24,11 @@ public class Rental extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    @Column(name="book_id", updatable = false)
+    @Column(updatable = false)
     public Long bookId;
 
-    @Column(name="user_id", updatable = false)
+    @Column(updatable = false)
     public Long userId;
 
-    @Column(name="return_yn")
     public String returnYn;
 }

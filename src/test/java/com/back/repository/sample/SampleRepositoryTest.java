@@ -28,13 +28,13 @@ class SampleRepositoryTest {
    @Test
    void basic1() {
 
-       User user1 = new User(null,"test6", "test6@gmail.com", "19010101", "1234", "01011115555", "Y", null);
-       User user2 = new User(null,"test7", "test7@gmail.com", "19010101", "1234", "01011116666", "Y", null);
-       User user3 = new User(null,"test8", "test8@gmail.com", "19010101", "1234", "01011116666", "Y", null);
-       User user4 = new User(null,"test9", "test9@gmail.com", "19010101", "1234", "01011116666", "Y", null);
-       User user5 = new User(null,"test10", "test10@gmail.com", "19010101", "1234", "01011116666", "Y", null);
+//       User user1 = new User(null,"test1", "test1@gmail.com", "19010101", "1234", "01011115555", "Y", null);
+//       User user2 = new User(null,"test2", "test2@gmail.com", "19010101", "1234", "01011116666", "Y", null);
+//       User user3 = new User(null,"test3", "test3@gmail.com", "19010101", "1234", "01011116666", "Y", null);
+//       User user4 = new User(null,"test4", "test4@gmail.com", "19010101", "1234", "01011116666", "Y", null);
+//       User user5 = new User(null,"test5", "test5@gmail.com", "19010101", "1234", "01011116666", "Y", null);
 
-       sampleRepository.saveAll(Lists.newArrayList(user1, user2, user3, user4, user5));
+//       sampleRepository.saveAll(Lists.newArrayList(user1, user2, user3, user4, user5));
 
        List<User> users = sampleRepository.findAll();
 
@@ -47,11 +47,13 @@ class SampleRepositoryTest {
 
 //        User user = new User(null,"jack39", "jack39@gmail.com", "19830904", "5555", "01011116666");
         User user = new User();
-        user.userNm = "jack42";
-        user.email="jack42@gmail.com";
+        user.userNm = "jack43";
+        user.email="jack43@gmail.com";
         user.userPw ="123456!!A";
         user.birth ="19000101";
         user.telNo = "01011112222";
+        user.useYn = "Y";
+//        user.se;
 
         sampleRepository.save(user);
 
@@ -125,8 +127,8 @@ class SampleRepositoryTest {
     // update 예제
     void basic8() {
 
-        User user = sampleRepository.findById(1L).orElseThrow(RuntimeException::new);
-        user.setEmail("test@hanmail.com");
+        User user = sampleRepository.findById(2L).orElseThrow(RuntimeException::new);
+        user.setEmail("test13@hanmail.com");
 
         sampleRepository.save(user);
     }
@@ -137,7 +139,7 @@ class SampleRepositoryTest {
     @Test
     // 쿼리 메소드 사용 예제
     void query1() {
-        System.out.println(sampleRepository.findByUserNm("jack7"));
+        System.out.println(sampleRepository.findByUserNm("test"));
     }
 
     @Test

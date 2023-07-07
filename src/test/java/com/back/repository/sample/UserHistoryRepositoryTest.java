@@ -15,7 +15,7 @@ class UserHistoryRepositoryTest {
     void userHistoryTest() {
 
         UserHistory userHistory = new UserHistory();
-        userHistory.userId = 2L;
+//        userHistory.userId = 2L;
         userHistory.callUrl = "user/update";
 
         userHistoryRepository.save(userHistory);

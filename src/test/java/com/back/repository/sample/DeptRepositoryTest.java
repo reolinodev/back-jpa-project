@@ -14,11 +14,19 @@ class DeptRepositoryTest {
     @Test
     void deptTest() {
         Dept dept = new Dept();
-        dept.deptNm = "개발팀";
+        dept.deptNm = "경영팀";
         dept.useYn = "Y";
 
         deptRepository.save(dept);
 
         System.out.println(deptRepository.findAll());
     }
+
+    @Test
+    void deptTest2() {
+        System.out.println(deptRepository.findTop1ByUseYn("Y"));
+    }
+
+
+
 }

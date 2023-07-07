@@ -14,8 +14,8 @@ class RentalRepositoryTest {
     @Test
     void rentalTest() {
         Rental rental = new Rental();
-        rental.userId = 6L;
-        rental.bookId = 7L;
+        rental.userId = 2L;
+        rental.bookId = 3L;
         rental.returnYn = "N";
 
         rentalRepository.save(rental);
