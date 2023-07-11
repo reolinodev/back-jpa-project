@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface  BookReviewInfoRepository extends JpaRepository<BookReviewInfo, Long> {
 
+    BookReviewInfo findByBookId(Long bookId);
+
 }

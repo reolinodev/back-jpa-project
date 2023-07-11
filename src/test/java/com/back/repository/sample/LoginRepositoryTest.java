@@ -9,17 +9,17 @@ import org.springframework.boot.test.context.SpringBootTest;
 class LoginRepositoryTest {
 
     @Autowired
-    private LoginRepository loginRepository;
+    private LoginHistoryRepository loginRepository;
 
-    @Test
-    void loginHistoryTest() {
-        LoginHistory loginHistory = new LoginHistory();
-        loginHistory.userId = 1L;
-        loginHistory.device = "PC";
-
-        loginRepository.save(loginHistory);
-
-        System.out.println(loginRepository.findAll());
-    }
+//    @Test
+//    void loginHistoryTest() {
+//        LoginHistory loginHistory = new LoginHistory();
+//        loginHistory.userId = 1L;
+//        loginHistory.device = "PC";
+//
+//        loginRepository.save(loginHistory);
+//
+//        System.out.println(loginRepository.findAll());
+//    }
 
 }

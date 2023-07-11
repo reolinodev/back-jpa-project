@@ -57,4 +57,14 @@ class BookReviewInfoRepositoryTest {
     }
 
 
+    @Test
+    void crudTest3() {
+        BookReviewInfo result = bookReviewInfoRepository.findByBookId(2L);
+
+        System.out.println(">>> " + result);
+
+    }
+
+
+
 }

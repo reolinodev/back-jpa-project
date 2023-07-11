@@ -25,8 +25,6 @@ public class UserHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-//    public Long userId;
-
     public String callUrl;
 
     @Column(updatable = false)

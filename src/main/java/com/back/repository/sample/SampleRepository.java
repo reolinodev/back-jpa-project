@@ -12,62 +12,62 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface SampleRepository extends JpaRepository <User, Long> {
 
-    User findByUserNm(String userNm);
-
-    User findByEmail(String email);
-
-    User getByEmail(String email);
-
-    User readByEmail(String email);
-
-    User queryByEmail(String email);
-
-    User searchByEmail(String email);
-
-    User streamByEmail(String email);
-
-    User findUserByEmail(String email);
-
-    List<User> findFirst2ByUserNm(String userNm);
-
-    List<User> findTop2ByUserNm(String userNm);
-
-    List<User> findByEmailAndUserNm(String email, String userNm);
-
-    List<User> findByEmailOrUserNm(String email, String userNm);
-
-    List<User> findByCreatedAtAfter(LocalDateTime yesterday);
-
-    List<User> findByIdAfter(Long id);
-
-    List<User> findByCreatedAtGreaterThan(LocalDateTime yesterday);
-
-    List<User> findByCreatedAtGreaterThanEqual(LocalDateTime yesterday);
-
-    List<User> findByCreatedAtBetween(LocalDateTime yesterday, LocalDateTime tomorrow);
-
-    List<User> findByIdBetween(Long id, Long id2);
-
-    List<User> findByIdGreaterThanEqualAndIdLessThanEqual(Long id, Long id2);
-
-    List<User> findByIdIsNotNull();
-
-    List<User> findByUserNmIn(List<String> names);
-
-    List<User> findTop1ByUserNm(String userNm);
-
-    List<User> findLast1ByUserNm(String userNm);
-
-    List<User> findTopByUserNmOrderByIdDesc(String userNm);
-
-    List<User> findFirstByUserNmOrderByIdDescEmailAsc(String userNm);
-
-    List<User> findFirstByUserNm(String userNm, Sort sort);
-
-    Page<User> findByEmail(String userNm, Pageable pageable);
-
-    @Query(value="select * from tb_user limit 1;", nativeQuery = true )
-    Map<String, Object> findRowRecord();
+//    User findByUserNm(String userNm);
+//
+//    User findByEmail(String email);
+//
+//    User getByEmail(String email);
+//
+//    User readByEmail(String email);
+//
+//    User queryByEmail(String email);
+//
+//    User searchByEmail(String email);
+//
+//    User streamByEmail(String email);
+//
+//    User findUserByEmail(String email);
+//
+//    List<User> findFirst2ByUserNm(String userNm);
+//
+//    List<User> findTop2ByUserNm(String userNm);
+//
+//    List<User> findByEmailAndUserNm(String email, String userNm);
+//
+//    List<User> findByEmailOrUserNm(String email, String userNm);
+//
+//    List<User> findByCreatedAtAfter(LocalDateTime yesterday);
+//
+//    List<User> findByIdAfter(Long id);
+//
+//    List<User> findByCreatedAtGreaterThan(LocalDateTime yesterday);
+//
+//    List<User> findByCreatedAtGreaterThanEqual(LocalDateTime yesterday);
+//
+//    List<User> findByCreatedAtBetween(LocalDateTime yesterday, LocalDateTime tomorrow);
+//
+//    List<User> findByIdBetween(Long id, Long id2);
+//
+//    List<User> findByIdGreaterThanEqualAndIdLessThanEqual(Long id, Long id2);
+//
+//    List<User> findByIdIsNotNull();
+//
+//    List<User> findByUserNmIn(List<String> names);
+//
+//    List<User> findTop1ByUserNm(String userNm);
+//
+//    List<User> findLast1ByUserNm(String userNm);
+//
+//    List<User> findTopByUserNmOrderByIdDesc(String userNm);
+//
+//    List<User> findFirstByUserNmOrderByIdDescEmailAsc(String userNm);
+//
+//    List<User> findFirstByUserNm(String userNm, Sort sort);
+//
+//    Page<User> findByEmail(String userNm, Pageable pageable);
+//
+//    @Query(value="select * from sample.tb_user limit 1;", nativeQuery = true )
+//    Map<String, Object> findRowRecord();
 
 }
 

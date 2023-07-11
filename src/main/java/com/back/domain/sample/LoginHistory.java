@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import lombok.Data;
@@ -24,8 +25,6 @@ public class LoginHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    public Long userId;
-
     public String device;
 
     @Column(updatable = false)
@@ -36,4 +35,8 @@ public class LoginHistory {
     public void prePersist(){
         this.createdAt = LocalDateTime.now();
     }
+
+    @ManyToOne
+    @ToString.Exclude
+    public User user;
 }

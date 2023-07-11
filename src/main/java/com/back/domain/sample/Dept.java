@@ -32,7 +32,9 @@ public class Dept extends BaseEntity {
     @Column(nullable = false)
     public String deptNm;
 
-    @Column(name="use_yn")
+    @Column(nullable = false)
+    public String deptCd;
+
     public String useYn;
 
 }

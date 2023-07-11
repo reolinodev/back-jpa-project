@@ -16,8 +16,8 @@ public class UserHistoryListener {
         UserHistoryRepository userHistoryRepository = BeanUtils.getBean(UserHistoryRepository.class);
 
         UserHistory userHistory = new UserHistory();
-//        userHistory.userId = 2L;
-//        userHistory.callUrl = "user/update";
+        userHistory.setUser(user);
+        userHistory.callUrl = "user update";
 
         userHistoryRepository.save(userHistory);
     }

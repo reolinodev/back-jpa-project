@@ -13,66 +13,61 @@ class UserServiceTest {
     @Autowired
     private UserService userService;
 
-
-
     @Test
     void getUserData() {
         //given
-        Long userId = 4L;
+        Long userId = 1L;
 
         //when
         User user  = userService.getUserData(userId);
         System.out.println("result = " + user);
 
         //then
-        Assertions.assertEquals("jack6", user.userNm);
+        Assertions.assertEquals("test1", user.userNm);
     }
-
-
 
     @Test
     void createUser() {
         //given
         User user = new User();
-        user.userNm = "tester2";
-        user.birth = "19830201";
-        user.email = "tester2@gmail.com";
-        user.userPw = "2222";
-        user.telNo = "01012345678";
+        user.loginId = "tester13@gmail.com";
+        user.userNm = "tester13";
+        user.userPw = "2222222222";
+        user.telNo = "0100000013";
+        user.useYn = "Y";
 
         //when
         User result  = userService.createUser(user);
         System.out.println("result = " + result);
 
         //then
-        Assertions.assertEquals("tester2", result.userNm);
+        Assertions.assertEquals("tester13", result.userNm);
     }
 
     @Test
     void updateUser() {
         //given
         User user = new User();
-        user.userNm = "tester3";
-        user.birth = "19830301";
-        user.email = "tester3@gmail.com";
-        user.userPw = "1111";
+        user.userNm = "tester1@";
+        user.useYn = "N";
+        user.userPw = "a123123!!!";
         user.telNo = "01012345678";
 
-        Long userId = 21L;
+        Long userId = 1L;
 
         //when
         User result  = userService.updateUser(user, userId);
         System.out.println("result = " + result);
 
         //then
-        Assertions.assertEquals("tester3", result.userNm);
+        Assertions.assertEquals("N", result.useYn);
     }
 
 
     @Test
     void deleteUser() {
         //given
-        Long userId = 25L;
+        Long userId = 14L;
 
         //when
         Boolean result = userService.deleteUser(userId);
