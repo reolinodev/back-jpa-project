@@ -1,9 +1,8 @@
-package com.back.service;
+package com.back.service.sample;
 
-import com.back.domain.sample.Login;
+import com.back.domain.sample.LoginDto;
 import com.back.domain.sample.LoginHistory;
 import com.back.domain.sample.User;
-import com.back.service.sample.LoginService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ class LoginServiceTest {
     @Test
     void checkExistUser() {
         //given
-        Login params = new Login();
+        LoginDto params = new LoginDto();
         params.loginId = "test2@gmail.com";
 
         //when
@@ -32,7 +31,7 @@ class LoginServiceTest {
     @Test
     void checkUserPw() {
         //given
-        Login params = new Login();
+        LoginDto params = new LoginDto();
         params.loginId = "test2@gmail.com";
         params.userPw = "a123123!";
 
@@ -49,7 +48,7 @@ class LoginServiceTest {
     void createLoginHistory() {
         //given
         LoginHistory params = new LoginHistory();
-        Login params2 = new Login();
+        LoginDto params2 = new LoginDto();
         params2.loginId = "test2@gmail.com";
         params2.userPw = "a123123!";
 
@@ -68,7 +67,7 @@ class LoginServiceTest {
     @Test
     void updateLoginFailCnt() {
         //given
-        Login params = new Login();
+        LoginDto params = new LoginDto();
         params.loginId = "test2@gmail.com";
         params.userPw = "a123123!";
 
@@ -88,7 +87,7 @@ class LoginServiceTest {
     @Test
     void updateUserPw() {
         //given
-        Login params = new Login();
+        LoginDto params = new LoginDto();
         params.loginId = "test2@gmail.com";
         params.userPw= "a123123!!";
         params.useYn = "Y";

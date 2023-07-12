@@ -11,6 +11,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class Login extends User {
+public class LoginDto extends User {
     public String device;
 }

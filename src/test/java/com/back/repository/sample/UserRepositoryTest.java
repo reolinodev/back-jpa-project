@@ -1,21 +1,22 @@
 package com.back.repository.sample;
 
 import com.back.domain.sample.User;
-import com.back.domain.sample.UserHistory;
+import com.back.domain.sample.UserMapping;
 import java.util.List;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 
 @SpringBootTest
 class UserRepositoryTest {
 
     @Autowired
     UserRepository userRepository;
-
-    @Autowired
-    DeptRepository deptRepository;
 
     @Autowired
     UserHistoryRepository userHistoryRepository;
@@ -100,11 +101,21 @@ class UserRepositoryTest {
    }
 
 
-//    @Test
-//    void userRelationTest() {
-//
-//        System.out.println("userHistoryRepository.getUser() : " + userHistoryRepository.findAll().get(0).getUser());
-//    }
+    @Test
+    void userPageTest() {
+
+        Page<UserMapping> users = userRepository.findUsersBy(PageRequest.of(0,10, Sort.by(Order.desc("id"))));
+
+        System.out.println("users : " + users);
+        System.out.println("totalElement :" + users.getTotalElements());
+        System.out.println("totalPages :" + users.getTotalPages());
+        System.out.println("numberofElement : " + users.getNumberOfElements());
+        System.out.println("sort : " + users.getSort());
+        System.out.println("size : " + users.getSize());
+        System.out.println("content : " + users.getContent());
+    }
+
+
 //
 //    @Test
 //    void userRelationTest2() {

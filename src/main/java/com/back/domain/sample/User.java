@@ -70,15 +70,15 @@ public class User extends BaseEntity {
     @ColumnDefault("0")
     public int loginFailCnt;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     @ToString.Exclude
     public List<LoginHistory> loginHistories = new ArrayList<>();
 
-//    @OneToMany(fetch = FetchType.EAGER)
-//    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-//    @ToString.Exclude
-//    private List<UserHistory> userHistories = new ArrayList<>();
+    @OneToMany
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @ToString.Exclude
+    public List<UserHistory> userHistories = new ArrayList<>();
 
 //    @OneToMany
 //    @JoinColumn(name = "user_id")

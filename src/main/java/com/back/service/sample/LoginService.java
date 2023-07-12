@@ -1,6 +1,6 @@
 package com.back.service.sample;
 
-import com.back.domain.sample.Login;
+import com.back.domain.sample.LoginDto;
 import com.back.domain.sample.LoginHistory;
 import com.back.domain.sample.User;
 import com.back.repository.sample.LoginHistoryRepository;
@@ -20,14 +20,14 @@ public class LoginService {
     /**
      * 아이디가 존재하는지 체크
      */
-    public User checkExistUser(Login params) {
+    public User checkUser(LoginDto params) {
         return userRepository.findByLoginIdAndUseYn(params.loginId, "Y");
     }
 
     /**
      * 사용자 정보를 가져온다.
      */
-    public int checkUserPw(Login params) {
+    public int checkUserPw(LoginDto params) {
         return userRepository.countByLoginIdAndUserPw(params.loginId, params.userPw);
     }
 
@@ -53,7 +53,7 @@ public class LoginService {
     /**
      * 사용자의 패스워드를 변경한다.
      */
-    public User updateUserPw(Login params, User userData) {
+    public User updateUserPw(LoginDto params, User userData) {
         userData.setUserPw(params.userPw);
         userData.loginFailCnt = 0;
         return userRepository.save(userData);

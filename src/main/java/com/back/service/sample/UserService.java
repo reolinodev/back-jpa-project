@@ -1,9 +1,16 @@
 package com.back.service.sample;
 
 import com.back.domain.sample.User;
+import com.back.domain.sample.UserDto;
+import com.back.domain.sample.UserMapping;
 import com.back.repository.sample.UserRepository;
+import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,17 +20,17 @@ public class UserService {
     private final UserRepository userRepository;
 
     /**
-     * 사용자를 전체조회 합니다.
+     * todo 사용자를 전체조회 합니다. (동적 쿼리 변경)
      */
-//    public List<User> getUsersList(User params) {
-////        return userRepository.findAll(params);
-//    }
-
+    public Page<UserMapping> getUsers(UserDto params) {
+        params.setPageIdx(params.size, params.page);
+        return userRepository.findUsersBy(PageRequest.of(params.page,params.size, Sort.by(Order.desc("id"))));
+    }
     /**
      * 사용자를 상세 조회 합니다.
      */
-    public User getUserData(long id) {
-        return userRepository.findById(id).get();
+    public UserMapping getUser(long id) {
+        return userRepository.findUserById(id);
     }
 //
 //
@@ -49,6 +56,6 @@ public class UserService {
     public Boolean deleteUser(Long id) {
         userRepository.delete(userRepository.findById(id).orElseThrow(RuntimeException::new));
         return userRepository.existsById(id);
-
     }
+
 }

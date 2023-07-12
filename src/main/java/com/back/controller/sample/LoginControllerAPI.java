@@ -1,7 +1,7 @@
 package com.back.controller.sample;
 
 import com.back.domain.common.ValidationGroups;
-import com.back.domain.sample.Login;
+import com.back.domain.sample.LoginDto;
 import com.back.domain.sample.LoginHistory;
 import com.back.domain.sample.User;
 import com.back.service.sample.LoginService;
@@ -27,15 +27,15 @@ public class LoginControllerAPI {
 
     private final LoginService loginService;
 
-    @PostMapping("/proc")
-    public ResponseEntity<Map<String,Object>> excuteLogin (
-        @Validated(ValidationGroups.LoginGroup.class) @RequestBody Login login, HttpServletRequest httpServletRequest) throws Exception {
+    @PostMapping("")
+    public ResponseEntity<Map<String,Object>> login (
+        @Validated(ValidationGroups.LoginGroup.class) @RequestBody LoginDto login, HttpServletRequest httpServletRequest) {
         Map <String,Object> responseMap = new HashMap<>();
-        String message = "";
+        String message;
         String code = "ok";
         HttpStatus status = HttpStatus.OK;
 
-        User loginData = loginService.checkExistUser(login);
+        User loginData = loginService.checkUser(login);
         int loginCnt = loginService.checkUserPw(login);
 
         boolean chkLogin = loginCnt != 0;
@@ -52,7 +52,7 @@ public class LoginControllerAPI {
             code = "unauthorized";
             status = HttpStatus.UNAUTHORIZED;
 
-            loginService.updateLoginFailCnt(loginData, chkLogin);
+            loginService.updateLoginFailCnt(loginData, false);
 
             responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));
             return new ResponseEntity<>(responseMap, status);
@@ -70,7 +70,7 @@ public class LoginControllerAPI {
             loginHistory.user = loginData;
             loginHistory.device = login.device;
 
-            loginService.updateLoginFailCnt(loginData, chkLogin);
+            loginService.updateLoginFailCnt(loginData, true);
             loginService.createLoginHistory(loginHistory);
 
             LinkedHashMap<String,Object> data = new LinkedHashMap<>();
@@ -89,13 +89,13 @@ public class LoginControllerAPI {
 
     @PutMapping("/user-pw")
     public ResponseEntity<Map<String,Object>> updateUserPw (
-        @Validated(ValidationGroups.UserPwUpdateGroup.class) @RequestBody Login login, HttpServletRequest httpServletRequest) throws Exception {
+        @Validated(ValidationGroups.UserPwUpdateGroup.class) @RequestBody LoginDto login, HttpServletRequest httpServletRequest) {
         Map <String,Object> responseMap = new HashMap<>();
-        String message = "";
+        String message;
         String code = "ok";
         HttpStatus status = HttpStatus.OK;
 
-        User loginData = loginService.checkExistUser(login);
+        User loginData = loginService.checkUser(login);
 
         if(loginData == null){
             message = "아이디가 존재하지 않습니다.";

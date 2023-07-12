@@ -1,11 +1,16 @@
-package com.back.service;
+package com.back.service.sample;
 
 import com.back.domain.sample.User;
+import com.back.domain.sample.UserDto;
+import com.back.domain.sample.UserMapping;
 import com.back.service.sample.UserService;
+import java.util.List;
+import javax.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 
 @SpringBootTest
 class UserServiceTest {
@@ -14,16 +19,17 @@ class UserServiceTest {
     private UserService userService;
 
     @Test
-    void getUserData() {
+    @Transactional
+    void getUser() {
         //given
         Long userId = 1L;
 
         //when
-        User user  = userService.getUserData(userId);
+        UserMapping user  = userService.getUser(userId);
         System.out.println("result = " + user);
 
         //then
-        Assertions.assertEquals("test1", user.userNm);
+        Assertions.assertEquals("tester1", user.getUserNm());
     }
 
     @Test
@@ -74,6 +80,22 @@ class UserServiceTest {
 
         //then
         Assertions.assertEquals(false, result);
+    }
+
+    @Test
+    @Transactional
+    void getUsers() {
+        //given
+        UserDto params = new UserDto();
+        params.size = 10;
+        params.page = 0;
+
+        //when
+        Page<UserMapping> users = userService.getUsers(params);
+        System.out.println("result = " + users);
+
+        //then
+        Assertions.assertEquals(2, users.getTotalPages());
     }
 
 }
