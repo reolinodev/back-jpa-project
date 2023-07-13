@@ -1,22 +1,20 @@
 package com.back.domain.sample;
 
 import com.back.domain.common.BaseEntity;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 @Data
@@ -27,7 +25,7 @@ import lombok.ToString;
 @Builder
 @Entity
 @Table(name="TB_DEPT", schema = "sample")
-public class Dept extends BaseEntity {
+public class Dept extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,24 +33,14 @@ public class Dept extends BaseEntity {
 
     public String deptNm;
 
+    @Column(nullable = false, updatable = false)
     public String deptCd;
 
     public String upperDeptCd;
 
     public String useYn;
 
-//    @OneToOne(mappedBy = "book")
-//    @ToString.Exclude
-//    private BookReviewInfo bookReviewInfo;
-//
-//    @OneToMany
-//    @JoinColumn(name = "book_id")
-//    @ToString.Exclude
-//    private List<Review> reviews = new ArrayList<>();
-//
-//    @OneToMany
-//    @JoinColumn(name = "book_id")
-//    @ToString.Exclude
-//    private List<Rental> rentals = new ArrayList<>();
-
+    @OneToMany(mappedBy = "dept")
+    @ToString.Exclude
+    public List<User> users;
 }

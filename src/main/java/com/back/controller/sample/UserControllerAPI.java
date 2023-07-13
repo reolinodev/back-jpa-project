@@ -1,22 +1,19 @@
 package com.back.controller.sample;
 
-import com.back.domain.sample.User;
 import com.back.domain.common.Header;
 import com.back.domain.common.ValidationGroups;
+import com.back.domain.sample.User;
 import com.back.domain.sample.UserDto;
-import com.back.domain.sample.UserHistory;
-import com.back.domain.sample.UserMapping;
-import com.back.service.sample.LoginService;
 import com.back.service.sample.UserService;
 import com.back.support.ResponseUtils;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,8 +39,14 @@ public class UserControllerAPI implements Serializable {
         @RequestBody UserDto params, HttpServletRequest httpServletRequest){
         Map <String,Object> responseMap = new HashMap<>();
 
-        Page<UserMapping> getUsers = userService.getUsers(params);
-        Long totalCount = getUsers.getTotalElements();
+        Page<User> getUsersRes = userService.getUsers(params);
+        Long totalCount = getUsersRes.getTotalElements();
+
+        ArrayList<LinkedHashMap<String,Object>> list = new ArrayList<>();
+        List<User> users = getUsersRes.getContent();
+        for (User user : users){
+            list.add(this.setUserMap(user));
+        }
 
         String message = totalCount+"건이 조회되었습니다.";
         String code = "ok";
@@ -51,7 +54,7 @@ public class UserControllerAPI implements Serializable {
 
         responseMap.put("header", header);
         responseMap.put("totalCount", totalCount);
-        responseMap.put("data", getUsers.getContent());
+        responseMap.put("data", list);
 
         return new ResponseEntity<> (responseMap, HttpStatus.OK);
     }
@@ -60,14 +63,17 @@ public class UserControllerAPI implements Serializable {
     @GetMapping("/{id}")
     public ResponseEntity <Map<String,Object>> getUser(@PathVariable Long id, HttpServletRequest httpServletRequest) {
         Map <String,Object> responseMap = new HashMap<>();
-        UserMapping getUser = userService.getUser(id);
 
         String message = "1건이 조회되었습니다.";
         String code = "ok";
         Header header = ResponseUtils.setHeader(message, code, httpServletRequest);
 
+        User getUserRes = userService.getUser(id);
+
+        LinkedHashMap<String,Object> data = this.setUserMap(getUserRes);
+
         responseMap.put("header", header);
-        responseMap.put("data", getUser);
+        responseMap.put("data", data);
 
         return new ResponseEntity<> (responseMap, HttpStatus.OK);
     }
@@ -145,5 +151,24 @@ public class UserControllerAPI implements Serializable {
         responseMap.put("header", header);
 
         return new ResponseEntity<>(responseMap, HttpStatus.OK);
+    }
+
+    private LinkedHashMap<String,Object> setUserMap(User user) {
+        LinkedHashMap<String,Object> data = new LinkedHashMap<>();
+
+        data.put("id", user.id);
+        data.put("userNm", user.userNm);
+        data.put("loginId", user.loginId);
+        data.put("telNo", user.telNo);
+
+        if(user.dept != null){
+            data.put("deptNm", user.dept.deptNm);
+            data.put("deptCd", user.dept.deptCd);
+        }else{
+            data.put("deptNm", "");
+            data.put("deptCd", "");
+        }
+
+        return data;
     }
 }

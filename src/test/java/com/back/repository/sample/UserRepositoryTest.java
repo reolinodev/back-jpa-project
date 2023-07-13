@@ -19,6 +19,9 @@ class UserRepositoryTest {
     UserRepository userRepository;
 
     @Autowired
+    DeptRepository deptRepository;
+
+    @Autowired
     UserHistoryRepository userHistoryRepository;
 
     @Test
@@ -100,11 +103,20 @@ class UserRepositoryTest {
        users.forEach(System.out::println);
    }
 
+    @Test
+    void findById() {
+
+        User users = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+
+        System.out.println("users : " + users);
+    }
+
+
 
     @Test
     void userPageTest() {
 
-        Page<UserMapping> users = userRepository.findUsersBy(PageRequest.of(0,10, Sort.by(Order.desc("id"))));
+        Page<User> users = userRepository.findUsersBy(PageRequest.of(1,10, Sort.by(Order.desc("id"))));
 
         System.out.println("users : " + users);
         System.out.println("totalElement :" + users.getTotalElements());
@@ -113,6 +125,19 @@ class UserRepositoryTest {
         System.out.println("sort : " + users.getSort());
         System.out.println("size : " + users.getSize());
         System.out.println("content : " + users.getContent());
+    }
+
+    @Test
+    void userSaveTest() {
+
+        User user = userRepository.findById(1L).orElseThrow(RuntimeException::new);
+
+        System.out.println("users : " + user);
+
+        user.dept = deptRepository.findById(3L).orElseThrow(RuntimeException::new);
+
+        userRepository.save(user);
+
     }
 
 

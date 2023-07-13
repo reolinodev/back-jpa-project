@@ -1,12 +1,8 @@
 package com.back.service.sample;
 
-import com.back.domain.sample.LoginDto;
 import com.back.domain.sample.User;
 import com.back.domain.sample.UserDto;
-import com.back.domain.sample.UserMapping;
 import com.back.repository.sample.UserRepository;
-import java.util.List;
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,32 +19,32 @@ public class UserService {
     /**
      * todo 사용자를 전체조회 합니다. (동적 쿼리 변경)
      */
-    public Page<UserMapping> getUsers(UserDto params) {
-        params.setPageIdx(params.size, params.page);
-        return userRepository.findUsersBy(PageRequest.of(params.page,params.size, Sort.by(Order.desc("id"))));
+    public Page<User> getUsers(UserDto userDto) {
+        userDto.setPageIdx(userDto.page);
+        return userRepository.findUsersBy(PageRequest.of(userDto.page,userDto.size, Sort.by(Order.desc("id"))));
     }
     /**
      * 사용자를 상세 조회 합니다.
      */
-    public UserMapping getUser(long id) {
-        return userRepository.findUserById(id);
+    public User getUser(long id) {
+        return userRepository.findById(id).get();
     }
 //
 //
     /**
      * 사용자를 생성합니다.
      */
-    public User createUser(User params) {
-        return userRepository.save(params);
+    public User createUser(User user) {
+        return userRepository.save(user);
     }
 
 
     /**
      * 사용자를 수정합니다.
      */
-    public User updateUser(User params, Long id) {
-        params.id = id;
-        return userRepository.save(params);
+    public User updateUser(User user, Long id) {
+        user.id = id;
+        return userRepository.save(user);
     }
 
     /**

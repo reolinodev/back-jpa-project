@@ -2,6 +2,7 @@ package com.back.service.sample;
 
 import com.back.domain.sample.User;
 import com.back.domain.sample.UserDto;
+import com.back.domain.sample.User;
 import com.back.domain.sample.UserMapping;
 import com.back.service.sample.UserService;
 import java.util.List;
@@ -25,7 +26,7 @@ class UserServiceTest {
         Long userId = 1L;
 
         //when
-        UserMapping user  = userService.getUser(userId);
+        User user  = userService.getUser(userId);
         System.out.println("result = " + user);
 
         //then
@@ -88,10 +89,10 @@ class UserServiceTest {
         //given
         UserDto params = new UserDto();
         params.size = 10;
-        params.page = 0;
+        params.page = 2;
 
         //when
-        Page<UserMapping> users = userService.getUsers(params);
+        Page<User> users = userService.getUsers(params);
         System.out.println("result = " + users);
 
         //then

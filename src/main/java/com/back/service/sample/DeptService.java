@@ -1,11 +1,8 @@
 package com.back.service.sample;
 
 import com.back.domain.sample.Dept;
-import com.back.domain.sample.User;
-import com.back.domain.sample.UserDto;
-import com.back.domain.sample.UserMapping;
+import com.back.domain.sample.DeptDto;
 import com.back.repository.sample.DeptRepository;
-import com.back.repository.sample.UserRepository;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,7 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
-import org.thymeleaf.expression.Lists;
 
 @Service
 @RequiredArgsConstructor
@@ -21,19 +17,19 @@ public class DeptService {
 
     private final DeptRepository deptRepository;
 
-//    /**
-//     * todo 사용자를 전체조회 합니다. (동적 쿼리 변경)
-//     */
-//    public Page<UserMapping> getUsers(UserDto params) {
-//        params.setPageIdx(params.size, params.page);
-//        return userRepository.findUsersBy(PageRequest.of(params.page,params.size, Sort.by(Order.desc("id"))));
-//    }
-//    /**
-//     * 사용자를 상세 조회 합니다.
-//     */
-//    public UserMapping getUser(long id) {
-//        return userRepository.findUserById(id);
-//    }
+    /**
+     * todo 부서를 전체조회 합니다. (동적 쿼리 변경)
+     */
+    public Page<Dept> getDepts(DeptDto deptDto) {
+        deptDto.setPageIdx(deptDto.page);
+        return deptRepository.findDeptsBy(PageRequest.of(deptDto.page,deptDto.size, Sort.by(Order.desc("id"))));
+    }
+    /**
+     * 사용자를 상세 조회 합니다.
+     */
+    public Dept getDept(long id) {
+        return deptRepository.findById(id).get();
+    }
 ////
 ////
     /**
@@ -49,25 +45,14 @@ public class DeptService {
     public List<Dept> createDept(List<Dept> depts) {
        return deptRepository.saveAll(depts);
     }
-//
-//
-//    /**
-//     * 사용자를 수정합니다.
-//     */
-//    public User updateUser(User params, Long id) {
-//        params.id = id;
-//        return userRepository.save(params);
-//    }
-//
-//    /**
-//     * 사용자를 삭제 합니다.
-//     */
-//    public Boolean deleteUser(Long id) {
-//        userRepository.delete(userRepository.findById(id).orElseThrow(RuntimeException::new));
-//        return userRepository.existsById(id);
-//    }
-//
-//
 
+
+    /**
+     * 부서를 수정합니다.
+     */
+    public Dept updateDept(Dept dept, Long id) {
+        dept.id = id;
+        return deptRepository.save(dept);
+    }
 
 }

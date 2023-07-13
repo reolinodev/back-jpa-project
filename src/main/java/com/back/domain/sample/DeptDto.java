@@ -11,7 +11,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class UserDto extends User {
+public class DeptDto extends Dept {
     public int page = 0;
     public int size = 10;
     public void setPageIdx(int page) {
