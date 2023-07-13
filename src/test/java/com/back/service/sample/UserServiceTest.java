@@ -36,9 +36,9 @@ class UserServiceTest {
     void createUser() {
         //given
         User user = new User();
-        user.loginId = "tester13@gmail.com";
-        user.userNm = "tester13";
-        user.userPw = "2222222222";
+        user.loginId = "tester18@gmail.com";
+        user.userNm = "tester18";
+        user.userPw = "a123123!!!!";
         user.telNo = "0100000013";
         user.useYn = "Y";
 
@@ -47,7 +47,7 @@ class UserServiceTest {
         System.out.println("result = " + result);
 
         //then
-        Assertions.assertEquals("tester13", result.userNm);
+        Assertions.assertEquals("tester18", result.userNm);
     }
 
     @Test

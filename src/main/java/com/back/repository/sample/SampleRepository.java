@@ -8,9 +8,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface SampleRepository extends JpaRepository <User, Long> {
+
+
 
 //    User findByUserNm(String userNm);
 //
@@ -66,8 +71,19 @@ public interface SampleRepository extends JpaRepository <User, Long> {
 //
 //    Page<User> findByEmail(String userNm, Pageable pageable);
 //
-//    @Query(value="select * from sample.tb_user limit 1;", nativeQuery = true )
-//    Map<String, Object> findRowRecord();
+    @Query(value="select * from sample.tb_user limit 1;", nativeQuery = true )
+    Map<String, Object> findRowRecord();
 
+    @Query(value="select a from User a "
+        + "where userNm = :userNm and telNo = :telNo order by userNm desc")
+    List<User> findUserCustom(
+        @Param("userNm") String userNm,
+        @Param("telNo") String telNo);
+
+
+    @Modifying
+    @Transactional
+    @Query(value="update sample.tb_user set updated_at = now() ", nativeQuery = true )
+    int updateUserCreated();
 }
 

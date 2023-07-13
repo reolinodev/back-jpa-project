@@ -21,7 +21,7 @@ class LoginServiceTest {
         params.loginId = "test2@gmail.com";
 
         //when
-        User result = loginService.checkExistUser(params);
+        User result = loginService.checkUser(params);
         System.out.println("result = " + result);
 
         //then
@@ -52,7 +52,7 @@ class LoginServiceTest {
         params2.loginId = "test2@gmail.com";
         params2.userPw = "a123123!";
 
-        params.user = loginService.checkExistUser(params2);
+        params.user = loginService.checkUser(params2);
         params.device = "WEB";
 
         //when
@@ -71,7 +71,7 @@ class LoginServiceTest {
         params.loginId = "test2@gmail.com";
         params.userPw = "a123123!";
 
-        User loginData = loginService.checkExistUser(params);
+        User loginData = loginService.checkUser(params);
         int loginCnt = loginService.checkUserPw(params);
 
         boolean chkLogin = loginCnt != 0;
@@ -92,7 +92,7 @@ class LoginServiceTest {
         params.userPw= "a123123!!";
         params.useYn = "Y";
 
-        User loginData = loginService.checkExistUser(params);
+        User loginData = loginService.checkUser(params);
 
         //when
         User result = loginService.updateUserPw(params, loginData);

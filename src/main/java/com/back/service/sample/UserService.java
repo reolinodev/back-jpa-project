@@ -1,5 +1,6 @@
 package com.back.service.sample;
 
+import com.back.domain.sample.LoginDto;
 import com.back.domain.sample.User;
 import com.back.domain.sample.UserDto;
 import com.back.domain.sample.UserMapping;
@@ -56,6 +57,14 @@ public class UserService {
     public Boolean deleteUser(Long id) {
         userRepository.delete(userRepository.findById(id).orElseThrow(RuntimeException::new));
         return userRepository.existsById(id);
+    }
+
+
+    /**
+     * 존재하는 아이디 인지 체크합니다.
+     */
+    public User checkUser(String loginId) {
+        return userRepository.findByLoginId(loginId);
     }
 
 }

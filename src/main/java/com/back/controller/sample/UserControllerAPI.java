@@ -6,6 +6,7 @@ import com.back.domain.common.ValidationGroups;
 import com.back.domain.sample.UserDto;
 import com.back.domain.sample.UserHistory;
 import com.back.domain.sample.UserMapping;
+import com.back.service.sample.LoginService;
 import com.back.service.sample.UserService;
 import com.back.support.ResponseUtils;
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -28,20 +30,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/sample/user")
 public class UserControllerAPI implements Serializable {
 
-    @Autowired
-    UserService userService;
+    private final UserService userService;
 
     @PostMapping("")
     public ResponseEntity<Map<String,Object>> getUsers(
         @RequestBody UserDto params, HttpServletRequest httpServletRequest){
         Map <String,Object> responseMap = new HashMap<>();
 
-        Page<UserMapping> result = userService.getUsers(params);
-        Long totalCount = result.getTotalElements();
+        Page<UserMapping> getUsers = userService.getUsers(params);
+        Long totalCount = getUsers.getTotalElements();
 
         String message = totalCount+"건이 조회되었습니다.";
         String code = "ok";
@@ -49,7 +51,7 @@ public class UserControllerAPI implements Serializable {
 
         responseMap.put("header", header);
         responseMap.put("totalCount", totalCount);
-        responseMap.put("data", result.getContent());
+        responseMap.put("data", getUsers.getContent());
 
         return new ResponseEntity<> (responseMap, HttpStatus.OK);
     }
@@ -58,14 +60,14 @@ public class UserControllerAPI implements Serializable {
     @GetMapping("/{id}")
     public ResponseEntity <Map<String,Object>> getUser(@PathVariable Long id, HttpServletRequest httpServletRequest) {
         Map <String,Object> responseMap = new HashMap<>();
-        UserMapping result = userService.getUser(id);
+        UserMapping getUser = userService.getUser(id);
 
         String message = "1건이 조회되었습니다.";
         String code = "ok";
         Header header = ResponseUtils.setHeader(message, code, httpServletRequest);
 
         responseMap.put("header", header);
-        responseMap.put("data", result);
+        responseMap.put("data", getUser);
 
         return new ResponseEntity<> (responseMap, HttpStatus.OK);
     }
@@ -74,20 +76,36 @@ public class UserControllerAPI implements Serializable {
     public ResponseEntity<Map<String,Object>> createUser(
         @Validated(ValidationGroups.UserCreateGroup.class) @RequestBody User params, HttpServletRequest httpServletRequest){
         Map <String,Object> responseMap = new HashMap<>();
+        String message;
+        String code;
+        HttpStatus status;
 
-        User result = userService.createUser(params);
-        String message = "사용자가 생성이 되었습니다.";
-        String code = "ok";
+        User checkUser = userService.checkUser(params.loginId);
 
-        if(!params.userNm.equals(result.userNm)){
+        if(checkUser != null){
+            message = "같은 아이디가 존재합니다.";
+            code = "bad request";
+            status = HttpStatus.BAD_REQUEST;
+            responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));
+            return new ResponseEntity<>(responseMap, status);
+        }
+
+        User createUser = userService.createUser(params);
+
+        if(!params.userNm.equals(createUser.userNm)){
             message ="정상적으로 생성이 되지 않았습니다.";
-            code = "fail";
+            code = "bad request";
+            status = HttpStatus.BAD_REQUEST;
+        }else{
+            message = "사용자가 생성이 되었습니다.";
+            code = "ok";
+            status = HttpStatus.CREATED;
         }
 
         Header header = ResponseUtils.setHeader(message, code, httpServletRequest);
         responseMap.put("header", header);
 
-        return new ResponseEntity<>(responseMap, HttpStatus.CREATED);
+        return new ResponseEntity<>(responseMap, status);
     }
 
     @PutMapping("/{id}")

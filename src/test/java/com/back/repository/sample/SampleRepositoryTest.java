@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 class SampleRepositoryTest {
@@ -214,10 +215,22 @@ class SampleRepositoryTest {
 //    }
 //
 //
-//    @Test
-//    void queryTest() {
-//        System.out.println(sampleRepository.findRowRecord().get("id"));
-//
-//    }
+    @Test
+    void queryTest() {
+        System.out.println(sampleRepository.findRowRecord().get("id"));
+    }
+
+    @Test
+    void queryTest2() {
+        sampleRepository.updateUserCreated();
+    }
+
+
+    @Test
+    void queryTest3() {
+       String userNm = "test1";
+       String telNo = "01011112222";
+       System.out.println(sampleRepository.findUserCustom(userNm, telNo));
+    }
 
 }
