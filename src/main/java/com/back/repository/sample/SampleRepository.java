@@ -71,7 +71,8 @@ public interface SampleRepository extends JpaRepository <User, Long> {
 //
 //    Page<User> findByEmail(String userNm, Pageable pageable);
 //
-    @Query(value="select * from sample.tb_user limit 1;", nativeQuery = true )
+    @Query(value="select * from sample.tb_user "
+        + "limit 1;", nativeQuery = true )
     Map<String, Object> findRowRecord();
 
     @Query(value="select a from User a "

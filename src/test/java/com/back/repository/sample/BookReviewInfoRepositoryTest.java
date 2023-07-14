@@ -48,12 +48,12 @@ class BookReviewInfoRepositoryTest {
 //
 //        System.out.println(">>> " + result);
 
-        BookReviewInfo result2 = bookRepository
-            .findById(6L)
-            .orElseThrow(RuntimeException::new)
-            .getBookReviewInfo();
-
-        System.out.println(">>> " + result2);
+//        BookReviewInfo result2 = bookRepository
+//            .findById(6L)
+//            .orElseThrow(RuntimeException::new)
+//            .getBookReviewInfo();
+//
+//        System.out.println(">>> " + result2);
     }
 
 

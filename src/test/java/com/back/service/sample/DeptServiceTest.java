@@ -2,8 +2,6 @@ package com.back.service.sample;
 
 import com.back.domain.sample.Dept;
 import com.back.domain.sample.DeptDto;
-import com.back.domain.sample.User;
-import com.back.domain.sample.UserDto;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;

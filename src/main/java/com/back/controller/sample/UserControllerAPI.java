@@ -36,14 +36,14 @@ public class UserControllerAPI implements Serializable {
 
     @PostMapping("")
     public ResponseEntity<Map<String,Object>> getUsers(
-        @RequestBody UserDto params, HttpServletRequest httpServletRequest){
+        @RequestBody UserDto userDto, HttpServletRequest httpServletRequest){
         Map <String,Object> responseMap = new HashMap<>();
 
-        Page<User> getUsersRes = userService.getUsers(params);
-        Long totalCount = getUsersRes.getTotalElements();
+        Page<User> getUsersResult = userService.getUsers(userDto);
+        Long totalCount = getUsersResult.getTotalElements();
 
         ArrayList<LinkedHashMap<String,Object>> list = new ArrayList<>();
-        List<User> users = getUsersRes.getContent();
+        List<User> users = getUsersResult.getContent();
         for (User user : users){
             list.add(this.setUserMap(user));
         }
@@ -68,9 +68,9 @@ public class UserControllerAPI implements Serializable {
         String code = "ok";
         Header header = ResponseUtils.setHeader(message, code, httpServletRequest);
 
-        User getUserRes = userService.getUser(id);
+        User getUserResult = userService.getUser(id);
 
-        LinkedHashMap<String,Object> data = this.setUserMap(getUserRes);
+        LinkedHashMap<String,Object> data = this.setUserMap(getUserResult);
 
         responseMap.put("header", header);
         responseMap.put("data", data);
@@ -86,9 +86,9 @@ public class UserControllerAPI implements Serializable {
         String code;
         HttpStatus status;
 
-        User checkUser = userService.checkUser(params.loginId);
+        User checkUserResult = userService.checkUser(params.loginId);
 
-        if(checkUser != null){
+        if(checkUserResult != null){
             message = "같은 아이디가 존재합니다.";
             code = "bad request";
             status = HttpStatus.BAD_REQUEST;
@@ -96,9 +96,9 @@ public class UserControllerAPI implements Serializable {
             return new ResponseEntity<>(responseMap, status);
         }
 
-        User createUser = userService.createUser(params);
+        User createUserResult = userService.createUser(params);
 
-        if(!params.userNm.equals(createUser.userNm)){
+        if(!params.userNm.equals(createUserResult.userNm)){
             message ="정상적으로 생성이 되지 않았습니다.";
             code = "bad request";
             status = HttpStatus.BAD_REQUEST;
@@ -119,12 +119,12 @@ public class UserControllerAPI implements Serializable {
         @Validated(ValidationGroups.UserUpdateGroup.class) @RequestBody User params, HttpServletRequest httpServletRequest) {
         Map <String,Object> responseMap = new HashMap<>();
 
-        User result = userService.updateUser(params, id);
+        User updateUserResult = userService.updateUser(params, id);
 
         String message = "사용자 정보가 수정이 되었습니다.";
         String code = "ok";
 
-        if(!params.id.equals(result.id)){
+        if(!params.id.equals(updateUserResult.id)){
             message ="정상적으로 수정이 되지 않았습니다.";
             code = "fail";
         }
@@ -139,10 +139,10 @@ public class UserControllerAPI implements Serializable {
     public ResponseEntity<Map<String,Object>> deleteUser(@PathVariable Long id, HttpServletRequest httpServletRequest) {
         Map <String,Object> responseMap = new HashMap<>();
 
-        Boolean result = userService.deleteUser(id);
+        Boolean deleteUserResult = userService.deleteUser(id);
         String message = "사용자가 삭제 되었습니다.";
         String code = "ok";
-        if(result){
+        if(deleteUserResult){
             message ="정상적으로 삭제 되지 않았습니다.";
             code = "fail";
         }

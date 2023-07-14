@@ -1,7 +1,6 @@
 package com.back.repository.sample;
 
 import com.back.domain.sample.User;
-import com.back.domain.sample.UserMapping;
 import java.util.List;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.Test;
@@ -125,6 +124,8 @@ class UserRepositoryTest {
         System.out.println("sort : " + users.getSort());
         System.out.println("size : " + users.getSize());
         System.out.println("content : " + users.getContent());
+
+
     }
 
     @Test

@@ -2,10 +2,6 @@ package com.back.service.sample;
 
 import com.back.domain.sample.User;
 import com.back.domain.sample.UserDto;
-import com.back.domain.sample.User;
-import com.back.domain.sample.UserMapping;
-import com.back.service.sample.UserService;
-import java.util.List;
 import javax.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,6 +24,8 @@ class UserServiceTest {
         //when
         User user  = userService.getUser(userId);
         System.out.println("result = " + user);
+        System.out.println("result2 = " + user.userHistories);
+        System.out.println("result3 = " + user.loginHistories);
 
         //then
         Assertions.assertEquals("tester1", user.getUserNm());

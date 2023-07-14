@@ -72,15 +72,18 @@ public class User extends BaseEntity {
     @ColumnDefault("0")
     public int loginFailCnt;
 
-    @OneToMany
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+//    @OneToMany
+//    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @OneToMany(mappedBy = "user")
     @ToString.Exclude
     public List<LoginHistory> loginHistories = new ArrayList<>();
 
-    @OneToMany
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+//    @OneToMany
+//    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @OneToMany(mappedBy = "user")
     @ToString.Exclude
     public List<UserHistory> userHistories = new ArrayList<>();
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "deptCd", referencedColumnName = "deptCd")
@@ -93,8 +96,7 @@ public class User extends BaseEntity {
 //    @ToString.Exclude
 //    private List<Review> reviews = new ArrayList<>();
 //
-//    @OneToMany
-//    @JoinColumn(name = "user_id")
-//    @ToString.Exclude
-//    private List<Rental> rentals = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    private List<Rental> rentals = new ArrayList<>();
 }

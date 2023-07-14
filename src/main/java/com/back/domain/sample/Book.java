@@ -12,13 +12,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -35,20 +40,27 @@ public class Book extends BaseEntity {
 
     public String storeDt;
 
+    public String rentalDt;
+
+    @ColumnDefault("'Y'")
     public String useYn;
 
-    @OneToOne(mappedBy = "book")
-    @ToString.Exclude
-    private BookReviewInfo bookReviewInfo;
+    @ColumnDefault("'N'")
+    public String rentalYn;
 
+//    @OneToOne(mappedBy = "book")
+//    @ToString.Exclude
+//    private BookReviewInfo bookReviewInfo;
+//
+//    @OneToMany
+//    @JoinColumn(name = "book_id")
+//    @ToString.Exclude
+//    private List<Review> reviews = new ArrayList<>();
+
+//    @OneToMany(mappedBy = "book")
     @OneToMany
     @JoinColumn(name = "book_id")
     @ToString.Exclude
-    private List<Review> reviews = new ArrayList<>();
-
-    @OneToMany
-    @JoinColumn(name = "book_id")
-    @ToString.Exclude
-    private List<Rental> rentals = new ArrayList<>();
+    public List<Rental> rentals = new ArrayList<>();
 
 }
