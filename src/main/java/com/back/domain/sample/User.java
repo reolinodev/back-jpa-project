@@ -6,7 +6,6 @@ import com.back.domain.common.ValidationGroups.UserCreateGroup;
 import com.back.domain.common.ValidationGroups.UserPwUpdateGroup;
 import com.back.domain.common.ValidationGroups.UserUpdateGroup;
 import com.back.domain.common.listener.UserHistoryListener;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
@@ -25,7 +24,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -72,31 +70,26 @@ public class User extends BaseEntity {
     @ColumnDefault("0")
     public int loginFailCnt;
 
-//    @OneToMany
-//    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+
     @OneToMany(mappedBy = "user")
     @ToString.Exclude
     public List<LoginHistory> loginHistories = new ArrayList<>();
 
-//    @OneToMany
-//    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     @OneToMany(mappedBy = "user")
     @ToString.Exclude
     public List<UserHistory> userHistories = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    private List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    private List<Rental> rentals = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "deptCd", referencedColumnName = "deptCd")
     @ToString.Exclude
     public Dept dept;
 
-
-//    @OneToMany
-//    @JoinColumn(name = "user_id")
-//    @ToString.Exclude
-//    private List<Review> reviews = new ArrayList<>();
-//
-    @OneToMany(mappedBy = "user")
-    @ToString.Exclude
-    private List<Rental> rentals = new ArrayList<>();
 }

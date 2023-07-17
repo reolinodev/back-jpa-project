@@ -38,6 +38,8 @@ public class Book extends BaseEntity {
 
     public String author;
 
+    public String category;
+
     public String storeDt;
 
     public String rentalDt;
@@ -48,18 +50,15 @@ public class Book extends BaseEntity {
     @ColumnDefault("'N'")
     public String rentalYn;
 
-//    @OneToOne(mappedBy = "book")
-//    @ToString.Exclude
-//    private BookReviewInfo bookReviewInfo;
-//
-//    @OneToMany
-//    @JoinColumn(name = "book_id")
-//    @ToString.Exclude
-//    private List<Review> reviews = new ArrayList<>();
+    @OneToOne(mappedBy = "book")
+    @ToString.Exclude
+    public BookReviewInfo bookReviewInfo;
 
-//    @OneToMany(mappedBy = "book")
-    @OneToMany
-    @JoinColumn(name = "book_id")
+    @OneToMany(mappedBy = "book")
+    @ToString.Exclude
+    public List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "book")
     @ToString.Exclude
     public List<Rental> rentals = new ArrayList<>();
 

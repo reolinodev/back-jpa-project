@@ -1,7 +1,5 @@
 package com.back.service.sample;
 
-import com.back.domain.sample.Book;
-import com.back.domain.sample.BookDto;
 import com.back.domain.sample.Rental;
 import com.back.domain.sample.RentalDto;
 import java.util.ArrayList;
@@ -81,7 +79,7 @@ class RentalServiceTest {
         System.out.println("result = " + getRentalResult);
 
         //then
-        Assertions.assertEquals(1, getRentalResult.user.id);
+        Assertions.assertEquals(4, getRentalResult.book.id);
     }
 
 

@@ -29,5 +29,5 @@ public class BookReviewInfo  extends BaseEntity {
     public int reviewCount;
 
     @OneToOne(optional = false)
-    private Book book;
+    public Book book;
 }

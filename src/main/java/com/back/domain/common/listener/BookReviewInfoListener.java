@@ -12,18 +12,18 @@ import javax.persistence.PostUpdate;
 
 public class BookReviewInfoListener {
 
-    @PostPersist
-    @PostUpdate
-    public void reviewInfoUpdate(Object o){
-        Review review = (Review) o;
-
-        BookReviewInfoRepository bookReviewInfoRepository = BeanUtils.getBean(BookReviewInfoRepository.class);
-
-        BookReviewInfo bookReviewInfo = bookReviewInfoRepository.findByBookId(review.getBook().getId());;
-        bookReviewInfo.averageReviewScore = 0.0f;
-        bookReviewInfo.reviewCount = 1;
-        bookReviewInfo.setBook(review.getBook());
-
-        bookReviewInfoRepository.save(bookReviewInfo);
-    }
+//    @PostPersist
+//    @PostUpdate
+//    public void reviewInfoUpdate(Object o){
+//        Review review = (Review) o;
+//
+//        BookReviewInfoRepository bookReviewInfoRepository = BeanUtils.getBean(BookReviewInfoRepository.class);
+//
+//        BookReviewInfo bookReviewInfo = bookReviewInfoRepository.findByBookId(review.getBook().getId());;
+//        bookReviewInfo.averageReviewScore = 0.0f;
+//        bookReviewInfo.reviewCount = 1;
+//        bookReviewInfo.setBook(review.getBook());
+//
+//        bookReviewInfoRepository.save(bookReviewInfo);
+//    }
 }

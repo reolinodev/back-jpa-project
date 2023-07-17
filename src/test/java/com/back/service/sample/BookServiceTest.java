@@ -165,15 +165,16 @@ class BookServiceTest {
     @Transactional
     void getBook() {
         //given
-        Long bookId=5L;
+        Long bookId=2L;
 
         //when
         Book getBookResult = bookService.getBook(bookId);
         System.out.println("result = " + getBookResult);
         System.out.println("result2 = " + getBookResult.rentals);
+        System.out.println("result3 = " + getBookResult.bookReviewInfo);
 
         //then
-        Assertions.assertEquals("홍길동전", getBookResult.bookNm);
+        Assertions.assertEquals("삼국지2", getBookResult.bookNm);
     }
 
     @Test
