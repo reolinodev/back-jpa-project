@@ -1,8 +1,9 @@
 package com.back.service.sample;
 
 import com.back.domain.sample.Dept;
-import com.back.domain.sample.DeptDto;
+import com.back.domain.sample.params.DeptParam;
 import com.back.repository.sample.DeptRepository;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,9 +21,9 @@ public class DeptService {
     /**
      * todo 부서를 전체조회 합니다. (동적 쿼리 변경)
      */
-    public Page<Dept> getDepts(DeptDto deptDto) {
-        deptDto.setPageIdx(deptDto.page);
-        return deptRepository.findDeptsBy(PageRequest.of(deptDto.page,deptDto.size, Sort.by(Order.desc("id"))));
+    public Page<Dept> getDepts(DeptParam deptParam) {
+        deptParam.setPaging(deptParam.page);
+        return deptRepository.findDeptsBy(PageRequest.of(deptParam.page,deptParam.size, Sort.by(Order.desc("id"))));
     }
     /**
      * 사용자를 상세 조회 합니다.
@@ -30,8 +31,7 @@ public class DeptService {
     public Dept getDept(long id) {
         return deptRepository.findById(id).get();
     }
-////
-////
+
     /**
      * 부서코드가 존재하는지 체크합니다.
      */
@@ -42,16 +42,23 @@ public class DeptService {
     /**
      * 부서를 생성합니다.
      */
-    public List<Dept> createDept(List<Dept> depts) {
-       return deptRepository.saveAll(depts);
-    }
+    public List<Dept> createDept(List<DeptParam> deptParams) {
+        List<Dept> depts = new ArrayList<>();
+        for (DeptParam deptParam : deptParams) {
+            Dept dept = new Dept();
+            dept.setDept(deptParam);
+            depts.add(dept);
+        }
 
+        return deptRepository.saveAll(depts);
+    }
 
     /**
      * 부서를 수정합니다.
      */
-    public Dept updateDept(Dept dept, Long id) {
-        dept.id = id;
+    public Dept updateDept(DeptParam deptParam, Long id) {
+        Dept dept = deptRepository.findById(id).orElseThrow(RuntimeException::new);
+        dept.setDept(deptParam);
         return deptRepository.save(dept);
     }
 

@@ -1,6 +1,7 @@
 package com.back.domain.sample;
 
 import com.back.domain.common.BaseEntity;
+import com.back.domain.sample.params.DeptParam;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 @Data
 @NoArgsConstructor
@@ -38,9 +40,17 @@ public class Dept extends BaseEntity implements Serializable {
 
     public String upperDeptCd;
 
+    @ColumnDefault("'Y'")
     public String useYn;
 
     @OneToMany(mappedBy = "dept")
     @ToString.Exclude
     public List<User> users;
+
+    public void setDept(DeptParam deptParam) {
+        this.deptNm = deptParam.deptNm;
+        this.deptCd = deptParam.deptCd;
+        this.upperDeptCd = deptParam.upperDeptCd;
+        this.useYn = deptParam.useYn;
+    }
 }

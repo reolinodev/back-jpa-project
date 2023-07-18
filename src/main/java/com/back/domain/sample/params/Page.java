@@ -1,9 +1,7 @@
-package com.back.domain.sample;
+package com.back.domain.sample.params;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -11,18 +9,16 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class RentalDto extends Rental {
-    public Long userId;
-    public Long bookId;
-
+public class Page {
     public int page = 0;
     public int size = 10;
-    public void setPageIdx(int page) {
+    public  void setPaging(int page) {
         if(page < 1){
             this.page = 0;
         }else {
             this.page = page - 1;
         }
     }
+
+
 }

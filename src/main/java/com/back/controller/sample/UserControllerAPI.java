@@ -3,14 +3,14 @@ package com.back.controller.sample;
 import com.back.domain.common.Header;
 import com.back.domain.common.ValidationGroups;
 import com.back.domain.sample.User;
-import com.back.domain.sample.UserDto;
+import com.back.domain.sample.dto.UserDto;
+import com.back.domain.sample.params.UserParam;
 import com.back.service.sample.UserService;
 import com.back.support.ResponseUtils;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -36,17 +36,13 @@ public class UserControllerAPI implements Serializable {
 
     @PostMapping("")
     public ResponseEntity<Map<String,Object>> getUsers(
-        @RequestBody UserDto userDto, HttpServletRequest httpServletRequest){
+        @RequestBody UserParam userParam, HttpServletRequest httpServletRequest){
         Map <String,Object> responseMap = new HashMap<>();
 
-        Page<User> getUsersResult = userService.getUsers(userDto);
+        Page<UserDto> getUsersResult = userService.getUsers(userParam);
         Long totalCount = getUsersResult.getTotalElements();
 
         ArrayList<LinkedHashMap<String,Object>> list = new ArrayList<>();
-        List<User> users = getUsersResult.getContent();
-        for (User user : users){
-            list.add(this.setUserMap(user));
-        }
 
         String message = totalCount+"건이 조회되었습니다.";
         String code = "ok";
@@ -54,7 +50,7 @@ public class UserControllerAPI implements Serializable {
 
         responseMap.put("header", header);
         responseMap.put("totalCount", totalCount);
-        responseMap.put("data", list);
+        responseMap.put("data", getUsersResult.getContent());
 
         return new ResponseEntity<> (responseMap, HttpStatus.OK);
     }
@@ -68,25 +64,21 @@ public class UserControllerAPI implements Serializable {
         String code = "ok";
         Header header = ResponseUtils.setHeader(message, code, httpServletRequest);
 
-        User getUserResult = userService.getUser(id);
-
-        LinkedHashMap<String,Object> data = this.setUserMap(getUserResult);
-
         responseMap.put("header", header);
-        responseMap.put("data", data);
+        responseMap.put("data", userService.getUser(id));
 
         return new ResponseEntity<> (responseMap, HttpStatus.OK);
     }
 
     @PutMapping("")
     public ResponseEntity<Map<String,Object>> createUser(
-        @Validated(ValidationGroups.UserCreateGroup.class) @RequestBody User params, HttpServletRequest httpServletRequest){
+        @Validated(ValidationGroups.UserCreateGroup.class) @RequestBody UserParam userParam, HttpServletRequest httpServletRequest){
         Map <String,Object> responseMap = new HashMap<>();
         String message;
         String code;
         HttpStatus status;
 
-        User checkUserResult = userService.checkUser(params.loginId);
+        User checkUserResult = userService.checkUser(userParam.loginId);
 
         if(checkUserResult != null){
             message = "같은 아이디가 존재합니다.";
@@ -96,9 +88,9 @@ public class UserControllerAPI implements Serializable {
             return new ResponseEntity<>(responseMap, status);
         }
 
-        User createUserResult = userService.createUser(params);
+        User createUserResult = userService.createUser(userParam);
 
-        if(!params.userNm.equals(createUserResult.userNm)){
+        if(!userParam.userNm.equals(createUserResult.userNm)){
             message ="정상적으로 생성이 되지 않았습니다.";
             code = "bad request";
             status = HttpStatus.BAD_REQUEST;
@@ -116,15 +108,15 @@ public class UserControllerAPI implements Serializable {
 
     @PutMapping("/{id}")
     public ResponseEntity<Map<String,Object>> updateUser(@PathVariable Long id,
-        @Validated(ValidationGroups.UserUpdateGroup.class) @RequestBody User params, HttpServletRequest httpServletRequest) {
+        @Validated(ValidationGroups.UserUpdateGroup.class) @RequestBody UserParam userParam, HttpServletRequest httpServletRequest) {
         Map <String,Object> responseMap = new HashMap<>();
 
-        User updateUserResult = userService.updateUser(params, id);
+        User updateUserResult = userService.updateUser(userParam, id);
 
         String message = "사용자 정보가 수정이 되었습니다.";
         String code = "ok";
 
-        if(!params.id.equals(updateUserResult.id)){
+        if(!id.equals(updateUserResult.id)){
             message ="정상적으로 수정이 되지 않았습니다.";
             code = "fail";
         }
@@ -151,24 +143,5 @@ public class UserControllerAPI implements Serializable {
         responseMap.put("header", header);
 
         return new ResponseEntity<>(responseMap, HttpStatus.OK);
-    }
-
-    private LinkedHashMap<String,Object> setUserMap(User user) {
-        LinkedHashMap<String,Object> data = new LinkedHashMap<>();
-
-        data.put("id", user.id);
-        data.put("userNm", user.userNm);
-        data.put("loginId", user.loginId);
-        data.put("telNo", user.telNo);
-
-        if(user.dept != null){
-            data.put("deptNm", user.dept.deptNm);
-            data.put("deptCd", user.dept.deptCd);
-        }else{
-            data.put("deptNm", "");
-            data.put("deptCd", "");
-        }
-
-        return data;
     }
 }

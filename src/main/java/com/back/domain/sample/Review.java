@@ -1,6 +1,8 @@
 package com.back.domain.sample;
 
 import com.back.domain.common.BaseEntity;
+import com.back.domain.sample.params.ReviewParam;
+import com.back.domain.sample.params.UserParam;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -44,5 +46,12 @@ public class Review extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     public Book book;
+
+    public void setReview(ReviewParam reviewParam) {
+        this.title = reviewParam.title;
+        this.content = reviewParam.content;
+        this.score = reviewParam.score;
+        this.useYn = reviewParam.useYn;
+    }
 
 }

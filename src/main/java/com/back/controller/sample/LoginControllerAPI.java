@@ -1,9 +1,9 @@
 package com.back.controller.sample;
 
 import com.back.domain.common.ValidationGroups;
-import com.back.domain.sample.LoginDto;
 import com.back.domain.sample.LoginHistory;
 import com.back.domain.sample.User;
+import com.back.domain.sample.params.LoginParam;
 import com.back.service.sample.LoginService;
 import com.back.support.ResponseUtils;
 import java.util.HashMap;
@@ -29,14 +29,14 @@ public class LoginControllerAPI {
 
     @PostMapping("")
     public ResponseEntity<Map<String,Object>> login (
-        @Validated(ValidationGroups.LoginGroup.class) @RequestBody LoginDto login, HttpServletRequest httpServletRequest) {
+        @Validated(ValidationGroups.LoginGroup.class) @RequestBody LoginParam loginParam, HttpServletRequest httpServletRequest) {
         Map <String,Object> responseMap = new HashMap<>();
         String message;
         String code = "ok";
         HttpStatus status = HttpStatus.OK;
 
-        User loginData = loginService.checkUser(login);
-        int loginCnt = loginService.checkUserPw(login);
+        User loginData = loginService.checkUser(loginParam);
+        int loginCnt = loginService.checkUserPw(loginParam);
 
         boolean chkLogin = loginCnt != 0;
 
@@ -68,7 +68,7 @@ public class LoginControllerAPI {
             message = "메인화면으로 이동합니다.";
             LoginHistory loginHistory = new LoginHistory();
             loginHistory.user = loginData;
-            loginHistory.device = login.device;
+            loginHistory.device = loginParam.device;
 
             loginService.updateLoginFailCnt(loginData, true);
             loginService.createLoginHistory(loginHistory);
@@ -89,20 +89,20 @@ public class LoginControllerAPI {
 
     @PutMapping("/user-pw")
     public ResponseEntity<Map<String,Object>> updateUserPw (
-        @Validated(ValidationGroups.UserPwUpdateGroup.class) @RequestBody LoginDto login, HttpServletRequest httpServletRequest) {
+        @Validated(ValidationGroups.UserPwUpdateGroup.class) @RequestBody LoginParam loginParam, HttpServletRequest httpServletRequest) {
         Map <String,Object> responseMap = new HashMap<>();
         String message;
         String code = "ok";
         HttpStatus status = HttpStatus.OK;
 
-        User loginData = loginService.checkUser(login);
+        User loginData = loginService.checkUser(loginParam);
 
         if(loginData == null){
             message = "아이디가 존재하지 않습니다.";
             code = "unauthorized";
             status = HttpStatus.UNAUTHORIZED;
         } else {
-            loginService.updateUserPw(login, loginData);
+            loginService.updateUserPw(loginParam);
             message = "비밀번호가 변경되었습니다.";
         }
         responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));

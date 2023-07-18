@@ -1,7 +1,10 @@
 package com.back.domain.sample;
 
 import com.back.domain.common.BaseEntity;
+import com.back.domain.sample.params.RentalParam;
+import com.back.domain.sample.params.UserParam;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,12 +37,18 @@ public class Rental extends BaseEntity {
 
     public String returnYn;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     public User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     public Book book;
+
+    public void setRental(RentalParam rentalParam) {
+        this.rentalDt = rentalParam.rentalDt;
+        this.returnDt = rentalParam.returnDt;
+        this.returnYn = rentalParam.returnYn;
+    }
 
 }

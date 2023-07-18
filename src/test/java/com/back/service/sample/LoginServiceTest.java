@@ -1,8 +1,8 @@
 package com.back.service.sample;
 
-import com.back.domain.sample.LoginDto;
 import com.back.domain.sample.LoginHistory;
 import com.back.domain.sample.User;
+import com.back.domain.sample.params.LoginParam;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,11 @@ class LoginServiceTest {
     @Test
     void checkExistUser() {
         //given
-        LoginDto params = new LoginDto();
-        params.loginId = "test2@gmail.com";
+        LoginParam loginParam = new LoginParam();
+        loginParam.loginId = "test2@gmail.com";
 
         //when
-        User result = loginService.checkUser(params);
+        User result = loginService.checkUser(loginParam);
         System.out.println("result = " + result);
 
         //then
@@ -31,12 +31,12 @@ class LoginServiceTest {
     @Test
     void checkUserPw() {
         //given
-        LoginDto params = new LoginDto();
-        params.loginId = "test2@gmail.com";
-        params.userPw = "a123123!";
+        LoginParam loginParam = new LoginParam();
+        loginParam.loginId = "test2@gmail.com";
+        loginParam.userPw = "a123123!!";
 
         //when
-        int result = loginService.checkUserPw(params);
+        int result = loginService.checkUserPw(loginParam);
         System.out.println("result = " + result);
 
         //then
@@ -48,9 +48,9 @@ class LoginServiceTest {
     void createLoginHistory() {
         //given
         LoginHistory params = new LoginHistory();
-        LoginDto params2 = new LoginDto();
+        LoginParam params2 = new LoginParam();
         params2.loginId = "test2@gmail.com";
-        params2.userPw = "a123123!";
+        params2.userPw = "a123123!!";
 
         params.user = loginService.checkUser(params2);
         params.device = "WEB";
@@ -67,12 +67,12 @@ class LoginServiceTest {
     @Test
     void updateLoginFailCnt() {
         //given
-        LoginDto params = new LoginDto();
-        params.loginId = "test2@gmail.com";
-        params.userPw = "a123123!";
+        LoginParam loginParam = new LoginParam();
+        loginParam.loginId = "test2@gmail.com";
+        loginParam.userPw = "a123123!";
 
-        User loginData = loginService.checkUser(params);
-        int loginCnt = loginService.checkUserPw(params);
+        User loginData = loginService.checkUser(loginParam);
+        int loginCnt = loginService.checkUserPw(loginParam);
 
         boolean chkLogin = loginCnt != 0;
 
@@ -87,19 +87,16 @@ class LoginServiceTest {
     @Test
     void updateUserPw() {
         //given
-        LoginDto params = new LoginDto();
-        params.loginId = "test2@gmail.com";
-        params.userPw= "a123123!!";
-        params.useYn = "Y";
-
-        User loginData = loginService.checkUser(params);
+        LoginParam loginParam = new LoginParam();
+        loginParam.loginId = "test2@gmail.com";
+        loginParam.userPw= "a123123!!!!!";
 
         //when
-        User result = loginService.updateUserPw(params, loginData);
+        User result = loginService.updateUserPw(loginParam);
         System.out.println("result = " + result);
 
         //then
-        Assertions.assertEquals("a123123!!", result.userPw);
+        Assertions.assertEquals("a123123!!!!!", result.userPw);
     }
 
 

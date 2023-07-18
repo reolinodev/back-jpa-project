@@ -1,8 +1,8 @@
 package com.back.service.sample;
 
-import com.back.domain.sample.LoginDto;
 import com.back.domain.sample.LoginHistory;
 import com.back.domain.sample.User;
+import com.back.domain.sample.params.LoginParam;
 import com.back.repository.sample.LoginHistoryRepository;
 import com.back.repository.sample.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,22 +20,22 @@ public class LoginService {
     /**
      * 아이디가 존재하는지 체크
      */
-    public User checkUser(LoginDto params) {
-        return userRepository.findByLoginIdAndUseYn(params.loginId, "Y");
+    public User checkUser(LoginParam loginParam) {
+        return userRepository.findByLoginIdAndUseYn(loginParam.loginId, "Y");
     }
 
     /**
      * 사용자 정보를 가져온다.
      */
-    public int checkUserPw(LoginDto params) {
-        return userRepository.countByLoginIdAndUserPw(params.loginId, params.userPw);
+    public int checkUserPw(LoginParam loginParam) {
+        return userRepository.countByLoginIdAndUserPw(loginParam.loginId, loginParam.userPw);
     }
 
     /**
      * 로그인 이력을 등록한다.
      */
-    public LoginHistory createLoginHistory(LoginHistory params) {
-        return loginHistoryRepository.save(params);
+    public LoginHistory createLoginHistory(LoginHistory loginHistory) {
+        return loginHistoryRepository.save(loginHistory);
     }
 
     /**
@@ -53,10 +53,12 @@ public class LoginService {
     /**
      * 사용자의 패스워드를 변경한다.
      */
-    public User updateUserPw(LoginDto params, User userData) {
-        userData.setUserPw(params.userPw);
-        userData.loginFailCnt = 0;
-        return userRepository.save(userData);
+    public User updateUserPw(LoginParam loginParam) {
+        User user = userRepository.findByLoginId(loginParam.loginId);
+        user.userPw = loginParam.userPw;
+        user.useYn = "N";
+        user.loginFailCnt = 0;
+        return userRepository.save(user);
     }
 
 }

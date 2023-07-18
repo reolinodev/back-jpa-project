@@ -1,7 +1,7 @@
 package com.back.service.sample;
 
 import com.back.domain.sample.Book;
-import com.back.domain.sample.BookDto;
+import com.back.domain.sample.params.BookParam;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -35,91 +35,91 @@ class BookServiceTest {
     @Test
     void createBook() {
         //given
-        Book book = Book.builder()
-            .bookNm("삼국지1")
-            .author("나관중")
+        BookParam book = BookParam.builder()
+            .bookNm("임꺽정1")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-        Book book2 = Book.builder()
-            .bookNm("삼국지2")
-            .author("나관중")
+        BookParam book2 = BookParam.builder()
+            .bookNm("임꺽정2")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-        Book book3 = Book.builder()
-            .bookNm("삼국지3")
-            .author("나관중")
+        BookParam book3 = BookParam.builder()
+            .bookNm("임꺽정3")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-        Book book4 = Book.builder()
-            .bookNm("삼국지4")
-            .author("나관중")
+        BookParam book4 = BookParam.builder()
+            .bookNm("임꺽정4")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-        Book book5 = Book.builder()
-            .bookNm("삼국지5")
-            .author("나관중")
+        BookParam book5 = BookParam.builder()
+            .bookNm("임꺽정5")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-        Book book6 = Book.builder()
-            .bookNm("삼국지6")
-            .author("나관중")
+        BookParam book6 = BookParam.builder()
+            .bookNm("임꺽정6")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-        Book book7 = Book.builder()
-            .bookNm("삼국지7")
-            .author("나관중")
+        BookParam book7 = BookParam.builder()
+            .bookNm("임꺽정7")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-        Book book8 = Book.builder()
-            .bookNm("삼국지8")
-            .author("나관중")
+        BookParam book8 = BookParam.builder()
+            .bookNm("임꺽정8")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-        Book book9 = Book.builder()
-            .bookNm("삼국지9")
-            .author("나관중")
+        BookParam book9 = BookParam.builder()
+            .bookNm("임꺽정9")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-        Book book10 = Book.builder()
-            .bookNm("삼국지10")
-            .author("나관중")
+        BookParam book10 = BookParam.builder()
+            .bookNm("임꺽정10")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-        Book book11 = Book.builder()
-            .bookNm("삼국지11")
-            .author("나관중")
+        BookParam book11 = BookParam.builder()
+            .bookNm("임꺽정11")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-        Book book12 = Book.builder()
-            .bookNm("삼국지12")
-            .author("나관중")
+        BookParam book12 = BookParam.builder()
+            .bookNm("임꺽정12")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-        List<Book> books = new ArrayList<>();
+        List<BookParam> books = new ArrayList<>();
         books.add(book);
         books.add(book2);
         books.add(book3);
@@ -146,14 +146,14 @@ class BookServiceTest {
     void updateBook() {
         //given
         Long bookId = 1L;
-        Book book = new Book();
-        book.storeDt = "20230714";
-        book.useYn ="Y";
-        book.bookNm = "홍길동전";
-        book.author = "허균";
+        BookParam bookParam = new BookParam();
+        bookParam.storeDt = "20230714";
+        bookParam.useYn ="Y";
+        bookParam.bookNm = "홍길동전";
+        bookParam.author = "허균";
 
         //when
-        Book updateBookResult = bookService.updateBook(book, bookId);
+        Book updateBookResult = bookService.updateBook(bookParam, bookId);
         System.out.println("result = " + updateBookResult);
 
         //then
@@ -174,19 +174,19 @@ class BookServiceTest {
         System.out.println("result3 = " + getBookResult.bookReviewInfo);
 
         //then
-        Assertions.assertEquals("삼국지2", getBookResult.bookNm);
+        Assertions.assertEquals("임꺽정2", getBookResult.bookNm);
     }
 
     @Test
     @Transactional
     void getBooks() {
         //given
-        BookDto bookDto = new BookDto();
-        bookDto.size = 10;
-        bookDto.page = 1;
+        BookParam bookParam = new BookParam();
+        bookParam.size = 10;
+        bookParam.page = 1;
 
         //when
-        Page<Book> books = bookService.getBooks(bookDto);
+        Page<Book> books = bookService.getBooks(bookParam);
         System.out.println("result = " + books);
 
         //then

@@ -10,11 +10,11 @@ PUT http://localhost:8080/api/sample/user
 Content-Type: application/json
 
 {
-  "userNm": "test16",
-  "loginId":"test16@gmail.com",
+  "userNm": "test20",
+  "loginId":"test20@gmail.com",
   "userPw": "a123123!",
-  "telNo": "01011112222",
-  "useYn": "Y"
+  "telNo": "01011144444",
+  "deptCd": "DEPT00006"
 }
 
 

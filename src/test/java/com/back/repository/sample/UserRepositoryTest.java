@@ -138,28 +138,6 @@ class UserRepositoryTest {
         user.dept = deptRepository.findById(3L).orElseThrow(RuntimeException::new);
 
         userRepository.save(user);
-
     }
-
-
-//
-//    @Test
-//    void userRelationTest2() {
-//
-//        List<UserHistory> results = userRepository.findById(1L).orElseThrow(RuntimeException::new).getUserHistories();
-//        results.forEach(System.out::println);
-//
-//        System.out.println(result);
-//
-//        List<User> user = deptRepository
-//            .findById(1L)
-//            .orElseThrow(RuntimeException::new)
-//            .getUser();
-//
-//        System.out.println(user);
-//
-//    }
-
-
 
 }

@@ -1,7 +1,7 @@
 package com.back.service.sample;
 
 import com.back.domain.sample.Rental;
-import com.back.domain.sample.RentalDto;
+import com.back.domain.sample.params.RentalParam;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -20,32 +20,32 @@ class RentalServiceTest {
     @Test
     void createRentals() {
         //given
-        RentalDto rentalDto = new RentalDto();
-        rentalDto.userId = 1L;
-        rentalDto.bookId = 2L;
+        RentalParam rentalParam = new RentalParam();
+        rentalParam.userId = 3L;
+        rentalParam.bookId = 8L;
 
-        RentalDto rentalDto2 = new RentalDto();
-        rentalDto2.userId = 1L;
-        rentalDto2.bookId = 3L;
+        RentalParam rentalParam2 = new RentalParam();
+        rentalParam2.userId = 3L;
+        rentalParam2.bookId = 9L;
 
-        RentalDto rentalDto3 = new RentalDto();
-        rentalDto3.userId = 1L;
-        rentalDto3.bookId = 4L;
+        RentalParam rentalParam3 = new RentalParam();
+        rentalParam3.userId = 3L;
+        rentalParam3.bookId = 10L;
 
-        RentalDto rentalDto4 = new RentalDto();
-        rentalDto4.userId = 1L;
-        rentalDto4.bookId = 5L;
+        RentalParam rentalParam4 = new RentalParam();
+        rentalParam4.userId = 3L;
+        rentalParam4.bookId = 11L;
 
-        RentalDto rentalDto5 = new RentalDto();
-        rentalDto5.userId = 1L;
-        rentalDto5.bookId = 6L;
+        RentalParam rentalParam5 = new RentalParam();
+        rentalParam5.userId = 3L;
+        rentalParam5.bookId = 12L;
 
-        List<RentalDto> rentals = new ArrayList<>();
-        rentals.add(rentalDto);
-        rentals.add(rentalDto2);
-        rentals.add(rentalDto3);
-        rentals.add(rentalDto4);
-        rentals.add(rentalDto5);
+        List<RentalParam> rentals = new ArrayList<>();
+        rentals.add(rentalParam);
+        rentals.add(rentalParam2);
+        rentals.add(rentalParam3);
+        rentals.add(rentalParam4);
+        rentals.add(rentalParam5);
 
         //when
         List<Rental> createRentalResult = rentalService.createRentals(rentals);
@@ -58,7 +58,7 @@ class RentalServiceTest {
     @Test
     void returnRental() {
         //given
-        Long id = 26L;
+        Long id = 25L;
 
         //when
         Rental updateRentalResult = rentalService.returnRental(id);
@@ -87,12 +87,12 @@ class RentalServiceTest {
     @Transactional
     void getRentals() {
         //given
-        RentalDto rentalDto = new RentalDto();
-        rentalDto.size = 10;
-        rentalDto.page = 1;
+        RentalParam rentalParam = new RentalParam();
+        rentalParam.size = 10;
+        rentalParam.page = 1;
 
         //when
-        Page<Rental> rentals = rentalService.getRentals(rentalDto);
+        Page<Rental> rentals = rentalService.getRentals(rentalParam);
         System.out.println("result = " + rentals);
 
         //then

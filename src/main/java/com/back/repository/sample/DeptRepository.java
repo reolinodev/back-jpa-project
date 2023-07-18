@@ -9,6 +9,8 @@ public interface DeptRepository extends JpaRepository <Dept, Long> {
 
     int countByDeptCd(String deptCd);
 
+    Dept findOneByDeptCd(String DeptCd);
+
     Page<Dept> findDeptsBy(Pageable pageable);
 
 }

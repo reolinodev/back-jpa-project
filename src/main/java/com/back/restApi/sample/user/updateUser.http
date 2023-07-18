@@ -5,14 +5,15 @@
 #        : telNo - 휴대폰 / 필수 / 휴대폰번호형식 제한
 #        : useYn - 사용여부 / 필수
 
-PUT http://localhost:8080/api/sample/user/1
+PUT http://localhost:8080/api/sample/user/18
 Content-Type: application/json
 
 {
-  "userNm": "tester1",
+  "userNm": "tester17!",
   "userPw": "a123123!!",
   "telNo": "0100000001",
-  "useYn": "Y"
+  "useYn": "Y",
+  "deptCd": "DEPT00001"
 }
 
 

@@ -1,7 +1,7 @@
 package com.back.service.sample;
 
 import com.back.domain.sample.Dept;
-import com.back.domain.sample.DeptDto;
+import com.back.domain.sample.params.DeptParam;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -33,48 +33,48 @@ class DeptServiceTest {
     @Test
     void createDept() {
         //given
-        Dept dept = Dept.builder()
+        DeptParam dept = DeptParam.builder()
             .deptNm("개발본부")
             .deptCd("DEPT00001")
             .upperDeptCd("")
             .useYn("Y")
             .build();
 
-        Dept dept2 = Dept.builder()
+        DeptParam dept2 = DeptParam.builder()
             .deptNm("경영본부")
             .deptCd("DEPT00002")
             .useYn("Y")
             .build();
 
-        Dept dept3 = Dept.builder()
+        DeptParam dept3 = DeptParam.builder()
             .deptNm("개발1팀")
             .deptCd("DEPT00003")
             .upperDeptCd("DEPT00001")
             .useYn("Y")
             .build();
 
-        Dept dept4 = Dept.builder()
+        DeptParam dept4 = DeptParam.builder()
             .deptNm("개발2팀")
             .deptCd("DEPT00004")
             .upperDeptCd("DEPT00001")
             .useYn("Y")
             .build();
 
-        Dept dept5 = Dept.builder()
+        DeptParam dept5 = DeptParam.builder()
             .deptNm("경영팀1")
             .deptCd("DEPT00005")
             .upperDeptCd("DEPT00002")
             .useYn("Y")
             .build();
 
-        Dept dept6 = Dept.builder()
+        DeptParam dept6 = DeptParam.builder()
             .deptNm("경영팀2")
             .deptCd("DEPT00006")
             .upperDeptCd("DEPT00002")
             .useYn("Y")
             .build();
 
-        List<Dept> depts = new ArrayList<>();
+        List<DeptParam> depts = new ArrayList<>();
         depts.add(dept);
         depts.add(dept2);
         depts.add(dept3);
@@ -87,7 +87,7 @@ class DeptServiceTest {
         System.out.println("result = " + createDeptRes);
 
         //then
-//        Assertions.assertEquals("DEPT00001", createDeptRes.deptCd);
+        Assertions.assertEquals(6, createDeptRes.size());
     }
 
 
@@ -97,15 +97,14 @@ class DeptServiceTest {
         //given
         Long deptId=5L;
 
-        Dept dept = Dept.builder()
+        DeptParam deptParam = DeptParam.builder()
             .deptNm("개발팀5")
             .upperDeptCd("DEPT00001")
             .useYn("N")
-            .id(deptId)
             .build();
 
         //when
-        Dept updateDeptRes = deptService.updateDept(dept, deptId);
+        Dept updateDeptRes = deptService.updateDept(deptParam, deptId);
         System.out.println("result = " + updateDeptRes);
 
         //then
@@ -129,12 +128,12 @@ class DeptServiceTest {
     @Transactional
     void getDepts() {
         //given
-        DeptDto deptDto = new DeptDto();
-        deptDto.size = 10;
-        deptDto.page = 1;
+        DeptParam deptParam = new DeptParam();
+        deptParam.size = 10;
+        deptParam.page = 1;
 
         //when
-        Page<Dept> depts = deptService.getDepts(deptDto);
+        Page<Dept> depts = deptService.getDepts(deptParam);
         System.out.println("result = " + depts);
 
         //then

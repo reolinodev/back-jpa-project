@@ -1,14 +1,14 @@
 package com.back.domain.sample;
 
 import com.back.domain.common.BaseEntity;
+import com.back.domain.sample.params.BookParam;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -50,7 +50,7 @@ public class Book extends BaseEntity {
     @ColumnDefault("'N'")
     public String rentalYn;
 
-    @OneToOne(mappedBy = "book")
+    @OneToOne(mappedBy = "book", fetch = FetchType.LAZY)
     @ToString.Exclude
     public BookReviewInfo bookReviewInfo;
 
@@ -61,5 +61,13 @@ public class Book extends BaseEntity {
     @OneToMany(mappedBy = "book")
     @ToString.Exclude
     public List<Rental> rentals = new ArrayList<>();
+
+    public void setBook(BookParam bookParam) {
+        this.bookNm = bookParam.bookNm;
+        this.author = bookParam.author;
+        this.category = bookParam.category;
+        this.storeDt = bookParam.storeDt;
+        this.useYn = bookParam.useYn;
+    }
 
 }

@@ -1,8 +1,9 @@
 package com.back.service.sample;
 
 import com.back.domain.sample.Book;
-import com.back.domain.sample.BookDto;
+import com.back.domain.sample.params.BookParam;
 import com.back.repository.sample.BookRepository;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,9 +19,9 @@ public class BookService {
     private final BookRepository bookRepository;
 
 
-    public Page<Book> getBooks(BookDto bookDto) {
-        bookDto.setPageIdx(bookDto.page);
-        return bookRepository.findBooksBy(PageRequest.of(bookDto.page,bookDto.size, Sort.by(Order.desc("id"))));
+    public Page<Book> getBooks(BookParam bookParam) {
+        bookParam.setPaging(bookParam.page);
+        return bookRepository.findBooksBy(PageRequest.of(bookParam.page, bookParam.size, Sort.by(Order.desc("id"))));
     }
     /**
      * 책을 상세 조회 합니다.
@@ -40,16 +41,23 @@ public class BookService {
     /**
      * 책을 생성합니다.
      */
-    public List<Book> createBooks(List<Book> books) {
-       return bookRepository.saveAll(books);
+    public List<Book> createBooks(List<BookParam> bookParams) {
+        List<Book> books = new ArrayList<>();
+        for (BookParam bookParam : bookParams) {
+            Book book = new Book();
+            book.setBook(bookParam);
+            books.add(book);
+        }
+        return bookRepository.saveAll(books);
     }
 
 
     /**
      * 책을 수정합니다.
      */
-    public Book updateBook(Book book, Long id) {
-        book.id = id;
+    public Book updateBook(BookParam bookParam, Long id) {
+        Book book = bookRepository.findById(id).orElseThrow(RuntimeException::new);
+        book.setBook(bookParam);
         return bookRepository.save(book);
     }
 

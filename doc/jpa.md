@@ -24,12 +24,59 @@
 |In                 |findByJob(String … jobs)                               |여러 값중에 하나인 항목 검색|
 |OrderBy            |findByEmailOrderByNameAsc(String email)                |검색 결과를 정렬하여 전달|
 
-	 	 
-	 	 
-	 
-	  
-	 	 
-	 	 
+
+
+
+
+#querysdl
+
+### 조건절 적용하기
+```java
+     User findUser = queryFactory
+        .selectFrom(user)
+        .where(
+            user.loginId.isNotNull().and(user.id.in(1L, 3L)) //id in (1L, 3L)
+        )
+        .fetchOne();
+```
+
+### 검색조건
+```java
+     user.loginId.eq("test1@gmail.com") //login_id = 'test1@gmail.com'
+    ,user.loginId.ne("test1@gmail.com") //login_id != 'test1@gmail.com'
+    ,user.loginId.eq("test1@gmail.com").not() //login_id != 'test1@gmail.com'
+    ,user.loginId.isNotNull() //login_id is not null
+    ,user.id.in(1L, 3L) //id in (1L, 3L)
+    ,user.id.between(1L, 3L) //id between 1L, 3L
+    ,user.id.goe(3L) // id >= 3L
+    ,user.id.gt(3L) // id > 3L
+    ,user.id.loe(3L) // id <= 3L
+    ,user.id.lt(3L) // id < 3L
+    ,user.loginId.like("test1%") // login_id like 'test1%'
+    ,user.loginId.contains("test1") // login_id like '%test1%'
+    ,user.loginId.startsWith("test1") // login_id like 'test1%'	 
+```
+
+### 기본적인 쿼리 메서드
+| method | 기능 |
+|---|:---|
+|select()||
+|from()||
+|selectFrom()|select하는 엔티티와 from의 엔티티가 일치한 경우 합칠 수 있다.|
+|where()||
+|update()||
+|set()||
+|delete()||
+
+### 결과 조회 메서드
+| method | 기능 |
+|---|:---|
+|fetch()|리스트 조회, 데이터가 없으면 빈 리스트 반환|
+|fetchOne()|단 건 조회, 결과 없으면 null, 결과가 2개 이상이면 NonUniquerResultException 반환|
+|fetchFirst()|첫번째 결과 조회|
+|fetchFirst()|페이징 정보 포함 및 totalCount 쿼리를 추가 실행|
+|fetchCount()|count 쿼리로 변경해서 count 수를 조회할 수 있다.|
+ 
 	 	 
 	 	 
 	 	 

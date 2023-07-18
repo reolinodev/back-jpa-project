@@ -1,18 +1,14 @@
 package com.back.service.sample;
 
 import com.back.domain.sample.Book;
-import com.back.domain.sample.BookDto;
 import com.back.domain.sample.Rental;
-import com.back.domain.sample.RentalDto;
-import com.back.domain.sample.User;
+import com.back.domain.sample.params.RentalParam;
 import com.back.repository.sample.BookRepository;
 import com.back.repository.sample.RentalRepository;
 import com.back.repository.sample.UserRepository;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -34,9 +30,9 @@ public class RentalService {
     /**
      * 대여를 전체 조회 합니다.
      */
-    public Page<Rental> getRentals(RentalDto rentalDto) {
-        rentalDto.setPageIdx(rentalDto.page);
-        return rentalRepository.findRentalsBy(PageRequest.of(rentalDto.page,rentalDto.size, Sort.by(Order.desc("id"))));
+    public Page<Rental> getRentals(RentalParam rentalParam) {
+        rentalParam.setPaging(rentalParam.page);
+        return rentalRepository.findRentalsBy(PageRequest.of(rentalParam.page,rentalParam.size, Sort.by(Order.desc("id"))));
     }
     /**
      *  대여를 상세 조회 합니다.
@@ -49,13 +45,13 @@ public class RentalService {
     /**
      * 대여 정보를 생성합니다.
      */
-    public List<Rental> createRentals(List<RentalDto> rentalDtos) {
+    public List<Rental> createRentals(List<RentalParam> rentalParams) {
         List<Rental> list = new ArrayList<>();
         String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-        for (RentalDto rentalDto : rentalDtos){
+        for (RentalParam rentalParam : rentalParams){
             Rental rental = Rental.builder()
-                .book(bookRepository.findById(rentalDto.bookId).orElseThrow(RuntimeException::new))
-                .user(userRepository.findById(rentalDto.userId).orElseThrow(RuntimeException::new))
+                .book(bookRepository.findById(rentalParam.bookId).orElseThrow(RuntimeException::new))
+                .user(userRepository.findById(rentalParam.userId).orElseThrow(RuntimeException::new))
                 .rentalDt(currentTime)
                 .returnYn("N")
                 .build();
