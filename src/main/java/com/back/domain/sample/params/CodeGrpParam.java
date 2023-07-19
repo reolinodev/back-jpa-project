@@ -13,20 +13,13 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Builder
-public class BookParam extends Page {
+public class CodeGrpParam extends Page {
 
-    public String bookNm;
+    public String codeGrpNm;
 
-    public String author;
+    public String codeGrpValue;
 
-    public String category;
-
-    public String storeDt;
-
-    public String rentalDt;
-
-    public String rentalYn;
+    public String codeGrpDetail;
 
     public String useYn;
-
 }

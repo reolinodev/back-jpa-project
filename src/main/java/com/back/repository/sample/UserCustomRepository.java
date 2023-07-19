@@ -5,6 +5,8 @@ import static com.back.domain.sample.QUser.user;
 
 import com.back.domain.sample.dto.UserDto;
 import com.back.domain.sample.params.UserParam;
+import com.back.support.ConvertUtils;
+
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -40,7 +42,10 @@ public class UserCustomRepository {
                     dept.deptNm,
                     user.telNo,
                     user.useYn,
-                    user.loginFailCnt
+                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnNm"),
+                    user.loginFailCnt,
+                    ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAt"),
+                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAt")
                 )
             )
             .from(user)
@@ -69,7 +74,10 @@ public class UserCustomRepository {
                     dept.deptNm,
                     user.telNo,
                     user.useYn,
-                    user.loginFailCnt
+                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnNm"),
+                    user.loginFailCnt,
+                    ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAt"),
+                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAt")
                 )
             )
             .from(user)
@@ -113,7 +121,10 @@ public class UserCustomRepository {
                     dept.deptNm,
                     user.telNo,
                     user.useYn,
-                    user.loginFailCnt
+                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnNm"),
+                    user.loginFailCnt,
+                    ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAt"),
+                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAt")
                 )
             )
             .from(user)
@@ -146,4 +157,5 @@ public class UserCustomRepository {
         }
         return user.telNo.contains(telNo);
     }
+
 }

@@ -6,6 +6,7 @@ import com.back.domain.sample.params.RentalParam;
 import com.back.repository.sample.BookRepository;
 import com.back.repository.sample.RentalRepository;
 import com.back.repository.sample.UserRepository;
+import com.back.support.TimeUtils;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -47,7 +48,7 @@ public class RentalService {
      */
     public List<Rental> createRentals(List<RentalParam> rentalParams) {
         List<Rental> list = new ArrayList<>();
-        String currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        String currentTime = TimeUtils.getNowDateTime();
         for (RentalParam rentalParam : rentalParams){
             Rental rental = Rental.builder()
                 .book(bookRepository.findById(rentalParam.bookId).orElseThrow(RuntimeException::new))
@@ -79,7 +80,7 @@ public class RentalService {
     public Rental returnRental(Long id) {
 
         Rental rental = rentalRepository.findById(id).orElseThrow(RuntimeException::new);
-        rental.returnDt = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+        rental.returnDt = TimeUtils.getNowDateTime();
         rental.returnYn = "Y";
 
         Rental saveResult = rentalRepository.save(rental);

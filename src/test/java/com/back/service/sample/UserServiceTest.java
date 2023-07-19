@@ -3,7 +3,6 @@ package com.back.service.sample;
 import com.back.domain.sample.User;
 import com.back.domain.sample.dto.UserDto;
 import com.back.domain.sample.params.UserParam;
-import java.util.List;
 import javax.transaction.Transactional;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,27 +20,27 @@ class UserServiceTest {
     @Transactional
     void getUser() {
         //given
-        Long userId = 1L;
+        Long userId = 10L;
 
         //when
         UserDto user  = userService.getUser(userId);
         System.out.println("result = " + user);
         //then
-        Assertions.assertEquals("tester1", user.getUserNm());
+        Assertions.assertEquals("test20", user.getUserNm());
     }
 
     @Test
     void createUser() {
         //given
-        UserParam UserParam = new UserParam();
-        UserParam.loginId = "tester18@gmail.com";
-        UserParam.userNm = "tester18";
-        UserParam.userPw = "a123123!!!!";
-        UserParam.telNo = "0100000013";
-        UserParam.useYn = "Y";
+        UserParam userParam = new UserParam();
+        userParam.loginId = "tester18@gmail.com";
+        userParam.userNm = "tester18";
+        userParam.userPw = "a123123!!!!";
+        userParam.telNo = "0100000013";
+        userParam.useYn = "Y";
 
         //when
-        User result  = userService.createUser(UserParam);
+        User result  = userService.createUser(userParam);
         System.out.println("result = " + result);
 
         //then
@@ -51,16 +50,17 @@ class UserServiceTest {
     @Test
     void updateUser() {
         //given
-        UserParam UserParam = new UserParam();
-        UserParam.userNm = "tester1@";
-        UserParam.useYn = "N";
-        UserParam.userPw = "a123123!!!";
-        UserParam.telNo = "01012345678";
+        UserParam userParam = new UserParam();
+        userParam.userNm = "tester1@";
+        userParam.useYn = "N";
+        userParam.userPw = "a123123!!!";
+        userParam.telNo = "01012345678";
+
 
         Long userId = 1L;
 
         //when
-        User result  = userService.updateUser(UserParam, userId);
+        User result  = userService.updateUser(userParam, userId);
         System.out.println("result = " + result);
 
         //then
@@ -84,12 +84,12 @@ class UserServiceTest {
     @Transactional
     void getUsers() {
         //given
-        UserParam UserParam = new UserParam();
-        UserParam.size = 10;
-        UserParam.page = 2;
+        UserParam userParam = new UserParam();
+        userParam.size = 10;
+        userParam.page = 1;
 
         //when
-        Page<UserDto> users = userService.getUsers(UserParam);
+        Page<UserDto> users = userService.getUsers(userParam);
         System.out.println("result = " + users);
 
         //then

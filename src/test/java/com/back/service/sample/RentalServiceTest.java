@@ -58,7 +58,7 @@ class RentalServiceTest {
     @Test
     void returnRental() {
         //given
-        Long id = 25L;
+        Long id = 27L;
 
         //when
         Rental updateRentalResult = rentalService.returnRental(id);

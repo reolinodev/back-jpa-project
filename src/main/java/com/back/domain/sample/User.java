@@ -48,7 +48,6 @@ public class User extends BaseEntity {
 
     public String telNo;
 
-    @ColumnDefault("'Y'")
     public String useYn;
 
     @ColumnDefault("0")
