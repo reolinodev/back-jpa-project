@@ -4,6 +4,8 @@ import com.back.domain.common.ValidationGroups.LoginGroup;
 import com.back.domain.common.ValidationGroups.UserCreateGroup;
 import com.back.domain.common.ValidationGroups.UserPwUpdateGroup;
 import com.back.domain.common.ValidationGroups.UserUpdateGroup;
+import javax.persistence.AttributeOverride;
+import javax.persistence.Column;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -43,4 +45,20 @@ public class UserParam extends Page {
     public String useYn;
 
     public String deptCd;
+
+    public String homeCity;
+
+    public String homeDistrict;
+
+    public String homeAddressDetail;
+
+    public String homeZipCode;
+
+    public String companyCity;
+
+    public String companyDistrict;
+
+    public String companyAddressDetail;
+
+    public String companyZipCode;
 }

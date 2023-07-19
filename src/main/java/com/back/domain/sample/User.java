@@ -5,8 +5,11 @@ import com.back.domain.common.listener.UserHistoryListener;
 import com.back.domain.sample.params.UserParam;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
@@ -53,6 +56,25 @@ public class User extends BaseEntity {
     @ColumnDefault("0")
     public int loginFailCnt;
 
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "city", column = @Column(name = "home_city")),
+        @AttributeOverride(name = "district", column = @Column(name = "home_district")),
+        @AttributeOverride(name = "addressDetail", column = @Column(name = "home_address_detail")),
+        @AttributeOverride(name = "zipCode", column = @Column(name = "home_zip_code"))
+    })
+    private Address homeAddress;
+
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "city", column = @Column(name = "company_city")),
+        @AttributeOverride(name = "district", column = @Column(name = "company_district")),
+        @AttributeOverride(name = "addressDetail", column = @Column(name = "company_address_detail")),
+        @AttributeOverride(name = "zipCode", column = @Column(name = "company_zip_code"))
+    })
+    private Address companyAddress;
+
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @ToString.Exclude
     public List<LoginHistory> loginHistories = new ArrayList<>();
@@ -80,6 +102,14 @@ public class User extends BaseEntity {
         this.userPw = userParam.userPw;
         this.telNo = userParam.telNo;
         this.useYn = userParam.useYn;
+        this.homeAddress.city = userParam.homeCity;
+        this.homeAddress.district = userParam.homeDistrict;
+        this.homeAddress.addressDetail = userParam.homeAddressDetail;
+        this.homeAddress.zipCode = userParam.homeZipCode;
+        this.companyAddress.city = userParam.companyCity;
+        this.companyAddress.district = userParam.companyDistrict;
+        this.companyAddress.addressDetail = userParam.companyAddressDetail;
+        this.companyAddress.zipCode = userParam.companyZipCode;
     }
 
 }
