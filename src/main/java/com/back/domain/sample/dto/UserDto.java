@@ -1,6 +1,5 @@
 package com.back.domain.sample.dto;
 
-import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
