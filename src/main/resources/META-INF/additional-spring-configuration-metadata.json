@@ -4,5 +4,15 @@
       "name": "spring.jpa.hibernate.dialect",
       "type": "java.lang.String",
       "description": "Description for spring.jpa.hibernate.dialect."
-  }
-] }
+    },
+    {
+      "name": "encrypt.key",
+      "type": "java.lang.String",
+      "description": "Description for encrypt.key."
+    },
+    {
+      "name": "encryptKey",
+      "type": "java.lang.String",
+      "description": "Description for encryptKey."
+    }
+  ] }

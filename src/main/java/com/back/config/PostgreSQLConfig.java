@@ -8,9 +8,6 @@ public class PostgreSQLConfig extends PostgreSQL10Dialect {
 
     public PostgreSQLConfig() {
         super();
-
-        this.registerFunction("test", new StandardSQLFunction("test", new StringType()));
-
         this.registerFunction("sample.fn_get_code_nm", new StandardSQLFunction("sample.fn_get_code_nm", new StringType()));
     }
 }
