@@ -11,43 +11,26 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode()
 public class UserDto {
-    private Long userId;
+    public Long userId;
 
-    private String loginId;
+    public String loginId;
 
-    private String userNm;
+    public String userNm;
 
-    private String telNo;
+    public String telNo;
 
-    private String deptNm;
+    public String deptNm;
 
-    private String deptCd;
+    public String deptCd;
 
-    private String useYn;
+    public String useYn;
 
-    private String useYnNm;
+    public String useYnNm;
 
-    private int loginFailCnt;
+    public int loginFailCnt;
 
-    private String createdAt;
+    public String createdAt;
 
-    private String updatedAt;
+    public String updatedAt;
 
-
-    @QueryProjection
-    public UserDto(Long userId, String loginId, String userNm, String telNo, String deptNm, String deptCd, String useYn
-        , String useYnNm, int loginFailCnt, String createdAt, String updatedAt){
-
-        this.userId = userId;
-        this.loginId = loginId;
-        this.userNm = userNm;
-        this.telNo = telNo;
-        this.deptNm = deptNm;
-        this.deptCd = deptCd;
-        this.useYn = useYn;
-        this.useYnNm = useYnNm;
-        this.loginFailCnt = loginFailCnt;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
-    }
 }
