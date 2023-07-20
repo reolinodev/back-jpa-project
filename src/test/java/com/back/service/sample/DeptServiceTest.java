@@ -140,4 +140,18 @@ class DeptServiceTest {
         Assertions.assertEquals(1, depts.getTotalPages());
     }
 
+
+    @Test
+    void getUsersInDept() {
+        //given
+        Long deptId=3L;
+
+        //when
+        Dept getUserInDept = deptService.getUsersInDept(deptId);
+        System.out.println("result = " + getUserInDept);
+
+        //then
+        Assertions.assertEquals("DEPT00001", getUserInDept.deptCd);
+    }
+
 }

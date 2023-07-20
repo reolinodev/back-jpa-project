@@ -13,5 +13,7 @@ public interface DeptRepository extends JpaRepository <Dept, Long> {
 
     Page<Dept> findDeptsBy(Pageable pageable);
 
+    Dept findOneDeptById(Long id);
+
 }
 

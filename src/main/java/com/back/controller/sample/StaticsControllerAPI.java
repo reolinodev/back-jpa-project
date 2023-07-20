@@ -2,10 +2,12 @@ package com.back.controller.sample;
 
 import com.back.domain.common.Header;
 import com.back.domain.common.ValidationGroups;
+import com.back.domain.sample.Dept;
 import com.back.domain.sample.User;
 import com.back.domain.sample.dto.UserDto;
 import com.back.domain.sample.dto.statics.LastLoginHistoryIF;
 import com.back.domain.sample.params.UserParam;
+import com.back.service.sample.DeptService;
 import com.back.service.sample.LoginHistoryService;
 import com.back.service.sample.UserService;
 import com.back.support.ResponseUtils;
@@ -37,6 +39,8 @@ public class StaticsControllerAPI {
 
     private final LoginHistoryService loginHistoryService;
 
+    private final DeptService deptService;
+
 
     @GetMapping("/last-login-hisotories")
     public ResponseEntity <Map<String,Object>> getLastLoginHistories(HttpServletRequest httpServletRequest) {
@@ -50,6 +54,36 @@ public class StaticsControllerAPI {
 
         responseMap.put("header", header);
         responseMap.put("data", results);
+
+        return new ResponseEntity<> (responseMap, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/users-in-dept/{id}")
+    public ResponseEntity <Map<String,Object>> getUsersInDept(@PathVariable Long id, HttpServletRequest httpServletRequest) {
+        Map <String,Object> responseMap = new HashMap<>();
+
+        Dept result = deptService.getUsersInDept(id);
+        List<User> users = result.users;
+
+        ArrayList<LinkedHashMap<String,Object>> list = new ArrayList<>();
+
+        for(User user : users){
+            LinkedHashMap<String,Object> map = new LinkedHashMap<>();
+            map.put("userId", user.id);
+            map.put("userNm", user.userNm);
+            map.put("loginId", user.loginId);
+            map.put("telNo", user.telNo);
+            map.put("useYn", user.useYn);
+            list.add(map);
+        }
+
+        String message = list.size()+"건이 조회되었습니다.";
+        String code = "ok";
+        Header header = ResponseUtils.setHeader(message, code, httpServletRequest);
+
+        responseMap.put("header", header);
+        responseMap.put("data", list);
 
         return new ResponseEntity<> (responseMap, HttpStatus.OK);
     }

@@ -26,7 +26,7 @@ public class DeptService {
         return deptRepository.findDeptsBy(PageRequest.of(deptParam.page,deptParam.size, Sort.by(Order.desc("id"))));
     }
     /**
-     * 사용자를 상세 조회 합니다.
+     * 부서를 상세 조회 합니다.
      */
     public Dept getDept(long id) {
         return deptRepository.findById(id).get();
@@ -60,6 +60,16 @@ public class DeptService {
         Dept dept = deptRepository.findById(id).orElseThrow(RuntimeException::new);
         dept.setDept(deptParam);
         return deptRepository.save(dept);
+    }
+
+
+    /**
+     * 부서에 속한 사람을 조회합니다.
+     */
+
+    public Dept getUsersInDept(long id) {
+
+        return deptRepository.findOneDeptById(id);
     }
 
 }

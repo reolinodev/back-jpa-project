@@ -42,8 +42,6 @@ public class UserControllerAPI implements Serializable {
         Page<UserDto> getUsersResult = userService.getUsers(userParam);
         Long totalCount = getUsersResult.getTotalElements();
 
-        ArrayList<LinkedHashMap<String,Object>> list = new ArrayList<>();
-
         String message = totalCount+"건이 조회되었습니다.";
         String code = "ok";
         Header header = ResponseUtils.setHeader(message, code, httpServletRequest);
