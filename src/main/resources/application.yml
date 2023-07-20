@@ -1,0 +1,10 @@
+spring:
+  profiles:
+    active: dev
+  devtools:
+    livereload:
+      enabled:  true
+  jpa:
+    database-platform: com.back.config.PostgreSQLConfig
+    hibernate:
+      ddl-auto: update
