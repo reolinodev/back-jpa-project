@@ -19,11 +19,11 @@ class ReviewServiceTest {
     void createReview() {
         //given
         ReviewParam reviewDto = new ReviewParam();
-        reviewDto.userId = 3L;
+        reviewDto.userId = 6L;
         reviewDto.bookId = 7L;
-        reviewDto.score = 5.0f;
-        reviewDto.title = "난 좋은데..7";
-        reviewDto.content ="너무 재미있네요.7";
+        reviewDto.score = 4.0f;
+        reviewDto.title = "난 좋은데..8";
+        reviewDto.content ="너무 재미있네요.8";
 
         //when
         Review createReviewResult = reviewService.createReview(reviewDto);
@@ -40,7 +40,7 @@ class ReviewServiceTest {
         reviewParam.score = 3.0f;
         reviewParam.title = "난 좋은데..11";
         reviewParam.content ="너무 재미있네요...11";
-        reviewParam.useYn = "N";
+        reviewParam.useYn = "Y";
 
         //when
         Review updateReviewResult = reviewService.updateReview(reviewParam, 6L);
@@ -79,5 +79,6 @@ class ReviewServiceTest {
         //then
         Assertions.assertEquals("저는 약간...", getReviewResult.title);
     }
+
 
 }

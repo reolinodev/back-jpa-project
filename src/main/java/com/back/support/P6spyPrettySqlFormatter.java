@@ -16,11 +16,16 @@ public class P6spyPrettySqlFormatter implements MessageFormattingStrategy {
 
         SimpleDateFormat format1 = new SimpleDateFormat("yy.MM.dd HH:mm:ss");
 
+        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<2");
+
+
         return format1.format(currentDate) + " | "+ "OperationTime : "+ elapsed + "ms" + sql;
     }
 
     private String formatSql(String category,String sql) {
         if(sql ==null || sql.trim().equals("")) return sql;
+
+        System.out.println("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<1");
 
         // Only format Statement, distinguish DDL And DML
         if (Category.STATEMENT.getName().equals(category)) {

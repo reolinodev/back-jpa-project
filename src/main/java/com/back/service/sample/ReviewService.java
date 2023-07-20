@@ -6,6 +6,7 @@ import com.back.domain.sample.Review;
 import com.back.domain.sample.params.ReviewParam;
 import com.back.repository.sample.BookRepository;
 import com.back.repository.sample.BookReviewInfoRepository;
+import com.back.repository.sample.ReviewCustomRepository;
 import com.back.repository.sample.ReviewRepository;
 import com.back.repository.sample.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,12 +15,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
+
+    private final ReviewCustomRepository reviewCustomRepository;
 
     private final BookReviewInfoRepository bookReviewInfoRepository;
 
@@ -45,6 +49,7 @@ public class ReviewService {
     /**
      * 리뷰를 생성합니다.
      */
+    @Transactional
     public Review createReview(ReviewParam reviewParam) {
         Review review = new Review();
         review.setReview(reviewParam);
@@ -66,7 +71,8 @@ public class ReviewService {
 
             params.book = book;
             params.reviewCount = reviewRepository.countByBookAndUseYn(book, "Y");
-            //todo 그룹함수 평균총점
+            params.averageReviewScore = reviewCustomRepository.findBookAvgById(book.id);
+
             bookReviewInfoRepository.save(params);
         }
 
@@ -77,13 +83,14 @@ public class ReviewService {
     /**
      * 리뷰를 수정합니다.
      */
+    @Transactional
     public Review updateReview(ReviewParam reviewParam, Long id) {
         Review review = reviewRepository.findById(id).orElseThrow(RuntimeException::new);
         review.setReview(reviewParam);
 
         Review updateReviewResult = reviewRepository.saveAndFlush(review);
 
-        Book book = updateReviewResult.book;
+        Book book = review.book;
 
         if(book != null){
             BookReviewInfo findByBookResult = bookReviewInfoRepository.findByBook(book);
@@ -94,7 +101,7 @@ public class ReviewService {
 
             params.book = book;
             params.reviewCount = reviewRepository.countByBookAndUseYn(book, "Y");
-            //todo 그룹함수 평균총점
+            params.averageReviewScore = reviewCustomRepository.findBookAvgById(book.id);
             bookReviewInfoRepository.save(params);
         }
 

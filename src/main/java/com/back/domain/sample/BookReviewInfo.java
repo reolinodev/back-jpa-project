@@ -2,6 +2,7 @@ package com.back.domain.sample;
 
 import com.back.domain.common.BaseEntity;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,10 +25,11 @@ public class BookReviewInfo  extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
-    public float averageReviewScore;
+    public Double averageReviewScore;
 
     public int reviewCount;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @ToString.Exclude
     public Book book;
 }

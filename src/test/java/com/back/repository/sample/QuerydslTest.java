@@ -215,9 +215,6 @@ public class QuerydslTest {
 
     @Test
     public void dynamicQuery() {
-        String useYn = "Y";
-        String telNo = "2";
-
 
         List<User> result = queryFactory
             .select(Projections.bean(User.class,

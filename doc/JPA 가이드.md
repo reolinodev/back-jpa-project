@@ -26,8 +26,6 @@
 
 
 
-
-
 #querysdl
 
 ### 조건절 적용하기
@@ -79,4 +77,21 @@
  
 	 	 
 	 	 
-	 	 
+###Case, coalesce(ifnull), concat
+```java
+.select (
+    student.age,
+    student.age.when(8).then("1학년"),
+    when(8).then("2학년"),
+    .otherwise("고학년").as("grade")
+)
+    
+.select (
+    student.name.coalesce("이름없음").as("name"),
+)
+
+.select (
+    student.name.concat("(").concat(student.age.stringValue()).concat(")").as("name"),
+)
+
+```

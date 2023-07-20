@@ -36,102 +36,102 @@ class BookServiceTest {
     void createBook() {
         //given
         BookParam book = BookParam.builder()
-            .bookNm("터미네이터1")
-            .author("아놀드슈왈츠제너거")
+            .bookNm("임꺽정1")
+            .author("황석영")
             .storeDt("20230713")
             .useYn("Y")
             .build();
 
-//        BookParam book2 = BookParam.builder()
-//            .bookNm("임꺽정2")
-//            .author("황석영")
-//            .storeDt("20230713")
-//            .useYn("Y")
-//            .build();
-//
-//        BookParam book3 = BookParam.builder()
-//            .bookNm("임꺽정3")
-//            .author("황석영")
-//            .storeDt("20230713")
-//            .useYn("Y")
-//            .build();
-//
-//        BookParam book4 = BookParam.builder()
-//            .bookNm("임꺽정4")
-//            .author("황석영")
-//            .storeDt("20230713")
-//            .useYn("Y")
-//            .build();
-//
-//        BookParam book5 = BookParam.builder()
-//            .bookNm("임꺽정5")
-//            .author("황석영")
-//            .storeDt("20230713")
-//            .useYn("Y")
-//            .build();
-//
-//        BookParam book6 = BookParam.builder()
-//            .bookNm("임꺽정6")
-//            .author("황석영")
-//            .storeDt("20230713")
-//            .useYn("Y")
-//            .build();
-//
-//        BookParam book7 = BookParam.builder()
-//            .bookNm("임꺽정7")
-//            .author("황석영")
-//            .storeDt("20230713")
-//            .useYn("Y")
-//            .build();
-//
-//        BookParam book8 = BookParam.builder()
-//            .bookNm("임꺽정8")
-//            .author("황석영")
-//            .storeDt("20230713")
-//            .useYn("Y")
-//            .build();
-//
-//        BookParam book9 = BookParam.builder()
-//            .bookNm("임꺽정9")
-//            .author("황석영")
-//            .storeDt("20230713")
-//            .useYn("Y")
-//            .build();
-//
-//        BookParam book10 = BookParam.builder()
-//            .bookNm("임꺽정10")
-//            .author("황석영")
-//            .storeDt("20230713")
-//            .useYn("Y")
-//            .build();
-//
-//        BookParam book11 = BookParam.builder()
-//            .bookNm("임꺽정11")
-//            .author("황석영")
-//            .storeDt("20230713")
-//            .useYn("Y")
-//            .build();
-//
-//        BookParam book12 = BookParam.builder()
-//            .bookNm("임꺽정12")
-//            .author("황석영")
-//            .storeDt("20230713")
-//            .useYn("Y")
-//            .build();
+        BookParam book2 = BookParam.builder()
+            .bookNm("임꺽정2")
+            .author("황석영")
+            .storeDt("20230713")
+            .useYn("Y")
+            .build();
+
+        BookParam book3 = BookParam.builder()
+            .bookNm("임꺽정3")
+            .author("황석영")
+            .storeDt("20230713")
+            .useYn("Y")
+            .build();
+
+        BookParam book4 = BookParam.builder()
+            .bookNm("임꺽정4")
+            .author("황석영")
+            .storeDt("20230713")
+            .useYn("Y")
+            .build();
+
+        BookParam book5 = BookParam.builder()
+            .bookNm("임꺽정5")
+            .author("황석영")
+            .storeDt("20230713")
+            .useYn("Y")
+            .build();
+
+        BookParam book6 = BookParam.builder()
+            .bookNm("임꺽정6")
+            .author("황석영")
+            .storeDt("20230713")
+            .useYn("Y")
+            .build();
+
+        BookParam book7 = BookParam.builder()
+            .bookNm("임꺽정7")
+            .author("황석영")
+            .storeDt("20230713")
+            .useYn("Y")
+            .build();
+
+        BookParam book8 = BookParam.builder()
+            .bookNm("임꺽정8")
+            .author("황석영")
+            .storeDt("20230713")
+            .useYn("Y")
+            .build();
+
+        BookParam book9 = BookParam.builder()
+            .bookNm("임꺽정9")
+            .author("황석영")
+            .storeDt("20230713")
+            .useYn("Y")
+            .build();
+
+        BookParam book10 = BookParam.builder()
+            .bookNm("임꺽정10")
+            .author("황석영")
+            .storeDt("20230713")
+            .useYn("Y")
+            .build();
+
+        BookParam book11 = BookParam.builder()
+            .bookNm("임꺽정11")
+            .author("황석영")
+            .storeDt("20230713")
+            .useYn("Y")
+            .build();
+
+        BookParam book12 = BookParam.builder()
+            .bookNm("임꺽정12")
+            .author("황석영")
+            .storeDt("20230713")
+            .useYn("Y")
+            .build();
 
         List<BookParam> books = new ArrayList<>();
         books.add(book);
-//        books.add(book2);
-//        books.add(book3);
-//        books.add(book4);
-//        books.add(book5);
-//        books.add(book6);
-//        books.add(book7);
-//        books.add(book8);
-//        books.add(book9);
-//        books.add(book10);
-//        books.add(book11);
-//        books.add(book12);
+        books.add(book2);
+        books.add(book3);
+        books.add(book4);
+        books.add(book5);
+        books.add(book6);
+        books.add(book7);
+        books.add(book8);
+        books.add(book9);
+        books.add(book10);
+        books.add(book11);
+        books.add(book12);
 
         //when
         List<Book> createBookResult = bookService.createBooks(books);
@@ -175,7 +175,7 @@ class BookServiceTest {
         System.out.println("result3 = " + getBookResult.bookReviewInfo);
 
         //then
-        Assertions.assertEquals("임꺽정2", getBookResult.bookNm);
+        Assertions.assertEquals("삼국지2", getBookResult.bookNm);
     }
 
     @Test
