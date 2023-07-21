@@ -13,7 +13,7 @@ public class ConvertUtils {
     }
 
     public static StringTemplate getParseCodeNm(String codeGrpValue,StringPath params) {
-        return Expressions.stringTemplate("sample.fn_get_code_nm({0}, {1})", codeGrpValue, params);
+        return Expressions.stringTemplate("ws.fn_get_code_nm({0}, {1})", codeGrpValue, params);
     }
 
 }
