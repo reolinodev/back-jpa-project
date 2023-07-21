@@ -1,4 +1,4 @@
-package com.back.domain.common;
+package com.back.domain.sample.common;
 
 import com.back.domain.common.listener.Auditable;
 import java.time.LocalDateTime;

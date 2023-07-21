@@ -1,11 +1,10 @@
 package com.back.domain.sample.params;
 
-import com.back.domain.common.ValidationGroups.LoginGroup;
-import com.back.domain.common.ValidationGroups.UserCreateGroup;
-import com.back.domain.common.ValidationGroups.UserPwUpdateGroup;
-import com.back.domain.common.ValidationGroups.UserUpdateGroup;
-import javax.persistence.AttributeOverride;
-import javax.persistence.Column;
+import com.back.domain.sample.common.ValidationGroups.LoginGroup;
+import com.back.domain.sample.common.ValidationGroups.UserCreateGroup;
+import com.back.domain.sample.common.ValidationGroups.UserPwUpdateGroup;
+import com.back.domain.sample.common.ValidationGroups.UserUpdateGroup;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;

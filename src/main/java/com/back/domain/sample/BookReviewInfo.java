@@ -1,6 +1,6 @@
 package com.back.domain.sample;
 
-import com.back.domain.common.BaseEntity;
+import com.back.domain.sample.common.BaseEntity;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;

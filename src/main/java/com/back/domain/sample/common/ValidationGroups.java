@@ -1,4 +1,4 @@
-package com.back.domain.common;
+package com.back.domain.sample.common;
 
 public class ValidationGroups {
     public interface UserCreateGroup {};

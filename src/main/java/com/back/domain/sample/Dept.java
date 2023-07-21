@@ -1,6 +1,6 @@
 package com.back.domain.sample;
 
-import com.back.domain.common.BaseEntity;
+import com.back.domain.sample.common.BaseEntity;
 import com.back.domain.sample.params.DeptParam;
 import java.io.Serializable;
 import java.util.List;
