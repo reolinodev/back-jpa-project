@@ -1,6 +1,6 @@
 package com.back.domain.sample.common;
 
-import com.back.domain.common.listener.Auditable;
+import com.back.domain.sample.listener.Auditable;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;

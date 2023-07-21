@@ -1,6 +1,5 @@
 package com.back.domain.sample;
 
-import com.back.domain.common.BaseEntity;
 import com.back.domain.sample.common.BaseEntity;
 import com.back.domain.sample.params.CodeParam;
 import javax.persistence.Entity;

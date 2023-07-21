@@ -1,8 +1,8 @@
 package com.back.controller.sample;
 
-import com.back.domain.common.ValidationGroups;
 import com.back.domain.sample.LoginHistory;
 import com.back.domain.sample.User;
+import com.back.domain.sample.common.ValidationGroups;
 import com.back.domain.sample.params.LoginParam;
 import com.back.service.sample.LoginService;
 import com.back.support.ResponseUtils;

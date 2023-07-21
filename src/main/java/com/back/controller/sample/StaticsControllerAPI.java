@@ -1,17 +1,12 @@
 package com.back.controller.sample;
 
 import com.back.domain.common.Header;
-import com.back.domain.common.ValidationGroups;
 import com.back.domain.sample.Dept;
 import com.back.domain.sample.User;
-import com.back.domain.sample.dto.UserDto;
 import com.back.domain.sample.dto.statics.LastLoginHistoryIF;
-import com.back.domain.sample.params.UserParam;
 import com.back.service.sample.DeptService;
 import com.back.service.sample.LoginHistoryService;
-import com.back.service.sample.UserService;
 import com.back.support.ResponseUtils;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -19,16 +14,10 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

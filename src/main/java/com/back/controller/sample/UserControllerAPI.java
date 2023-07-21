@@ -1,16 +1,14 @@
 package com.back.controller.sample;
 
 import com.back.domain.common.Header;
-import com.back.domain.common.ValidationGroups;
 import com.back.domain.sample.User;
+import com.back.domain.sample.common.ValidationGroups;
 import com.back.domain.sample.dto.UserDto;
 import com.back.domain.sample.params.UserParam;
 import com.back.service.sample.UserService;
 import com.back.support.ResponseUtils;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
