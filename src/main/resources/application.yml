@@ -10,9 +10,5 @@ spring:
       ddl-auto: update
     show-sql: false
 
-jwt:
-  secret: reolino
-  token-validity-in-seconds: 86400
-
 
 

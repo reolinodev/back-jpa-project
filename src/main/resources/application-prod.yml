@@ -10,5 +10,9 @@ spring:
     username: bdrnd
     password: bdrnd
 
-token:
-  long: Y
+jwt:
+  secret: reolino
+  validLongYn: N
+  accessTokenValidTime: 28800000
+  refreshTokenValidTime: 86400000
+

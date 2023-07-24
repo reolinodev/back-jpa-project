@@ -1,11 +1,13 @@
 package com.back.controller;
 
 
+import com.back.domain.LoginHistory;
 import com.back.domain.common.JwtHeader;
 import com.back.domain.dto.LoginDto;
 import com.back.domain.params.LoginParam;
 import com.back.service.LoginService;
 import com.back.support.ResponseUtils;
+import com.back.token.JwtTokenProvider;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +26,9 @@ public class LoginController {
 
     private final LoginService loginService;
 
-//    private final JwtUtils jwtUtils;
+    private final JwtTokenProvider jwtTokenProvider;
 
-    //사용자를 체크하고 인증키를 발급한다."
+    //사용자를 체크하고 인증키를 발급한다
     @PostMapping("/certification")
     public ResponseEntity<Map<String,Object>> certification (
         @RequestBody LoginParam loginParam, HttpServletRequest httpServletRequest) throws Exception {
@@ -95,15 +97,22 @@ public class LoginController {
 //        }
 //
         message = "인증키가 생성되었습니다.";
-        //accessToken = "억세스";
-        //refreshToken = "리프레시";
-//        accessToken = jwtUtils.generateToken(loginDto);
-//        refreshToken = jwtUtils.generateRefreshToken(loginDto);
-//
-//        loginData.access_token = accessToken;
-//        loginData.refresh_token = refreshToken;
-//        loginService.saveToken(loginData);
-//
+        accessToken = jwtTokenProvider.generateToken(loginDto);
+        refreshToken = jwtTokenProvider.generateRefreshToken(loginDto);
+
+        loginParam.accessToken = accessToken;
+        loginParam.refreshToken = refreshToken;
+        loginParam.userId = loginDto.userId;
+        LoginHistory saveTokenResult = loginService.saveToken(loginParam);
+        if(!saveTokenResult.accessToken.equals(accessToken)){
+            message = "사용자 히스토리가 정상적으로 저장되지 않았습니다.";
+            code = "bad request";
+            status = HttpStatus.BAD_REQUEST;
+            jwtHeader = ResponseUtils.setJwtHeader(message, code, accessToken, refreshToken, httpServletRequest);
+            responseMap.put("header", jwtHeader);
+            return new ResponseEntity<>(responseMap, status);
+        }
+
         jwtHeader = ResponseUtils.setJwtHeader(message, code, accessToken, refreshToken, httpServletRequest);
 
         responseMap.put("header", jwtHeader);

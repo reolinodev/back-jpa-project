@@ -150,7 +150,6 @@ public class UserCustomRepository {
                 )
             )
             .from(user)
-            .leftJoin(loginHistory)
             .where(
                 user.loginId.eq(loginId)
             )

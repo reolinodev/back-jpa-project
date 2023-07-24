@@ -1,9 +1,11 @@
 package com.back.service;
 
 
+import com.back.domain.LoginHistory;
 import com.back.domain.User;
 import com.back.domain.dto.LoginDto;
 import com.back.domain.params.LoginParam;
+import com.back.repository.LoginHistoryRepository;
 import com.back.repository.UserCustomRepository;
 import com.back.repository.UserRepository;
 import com.back.support.CryptUtils;
@@ -14,7 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LoginService {
 
-//    private final LoginRepository loginRepository;
+    private final LoginHistoryRepository loginHistoryRepository;
 
     private final UserRepository userRepository;
 
@@ -41,10 +43,15 @@ public class LoginService {
         user.loginFailCnt = user.loginFailCnt + 1;
         userRepository.save(user);
     }
-//
-//    public int saveToken(LoginEntity loginEntity) {
-//        return loginRepository.saveToken(loginEntity);
-//    }
+
+    public LoginHistory saveToken(LoginParam loginParam) {
+        LoginHistory loginHistory = new LoginHistory();
+
+        loginHistory.setCreateParam(loginParam);
+        loginHistory.user = userRepository.findById(loginParam.userId).orElseThrow(RuntimeException::new);
+
+        return loginHistoryRepository.save(loginHistory);
+    }
 //
 //    public LoginEntity getTokenInfo(LoginEntity loginEntity) {
 //        return loginRepository.findTokenByAccessToken(loginEntity);

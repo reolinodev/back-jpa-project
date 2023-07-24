@@ -1,15 +1,19 @@
-# name   : /api/user
-# method : PUT
-# param  : loginId - 사용자명 / 필수 / 로그인 아이디
-#        : userPw - 아이디 / 필수 / 비밀번호
-#        : device - 접속장비 / 선택
+# name   : /api/certification
+# method : POST
+# param  : loginId - 로그인 아이디 / 필수
+#        : userPw - 비밀번호 / 필수
+#        : loginDevice - 접속장비 / 선택
+#        : deviceBrowser - 브라우저 / 선택
+
 
 POST http://localhost:8080/api/certification
 Content-Type: application/json
 
 {
   "loginId":"test2@gmail.com",
-  "userPw": "1111"
+  "userPw": "1111",
+  "loginDevice":"WEB",
+  "deviceBrowser": "Chrome"
 }
 
 

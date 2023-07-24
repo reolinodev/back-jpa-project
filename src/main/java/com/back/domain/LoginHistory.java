@@ -1,5 +1,9 @@
 package com.back.domain;
 
+import com.back.domain.params.LoginParam;
+import com.back.domain.params.UserParam;
+import com.back.support.CryptUtils;
+import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,6 +40,13 @@ public class LoginHistory {
     //디바이스 브라우저
     public String deviceBrowser;
 
+
+    //억세스토큰
+    public String accessToken;
+
+    //리프레시토큰
+    public String refreshToken;
+
     @Column(updatable = false)
     @CreatedDate
     public LocalDateTime createdAt;
@@ -51,4 +62,11 @@ public class LoginHistory {
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     public User user;
+
+    public void setCreateParam(LoginParam loginParam) {
+        this.loginDevice = loginParam.loginDevice;
+        this.deviceBrowser = loginParam.deviceBrowser;
+        this.accessToken = loginParam.accessToken;
+        this.refreshToken = loginParam.refreshToken;
+    }
 }

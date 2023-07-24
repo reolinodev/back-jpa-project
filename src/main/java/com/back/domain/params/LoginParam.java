@@ -27,8 +27,8 @@ public class LoginParam {
     //디바이스 브라우저
     public String deviceBrowser;
 
-    //디바이스 브라우저
-    public Boolean loginFail;
+    //사용자 아이디
+    public long userId;
 
     //권한식별키
 //    public String auth_id;
