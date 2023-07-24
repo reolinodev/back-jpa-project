@@ -1,5 +1,6 @@
 # name   : /api/user/init-user-pw/{id}
 # method : GET
+# descript : 관리자가 임의로 비밀번호를 초기화 해준다. 기본 비밀번호는 자신의 로그인 아이디이다.
 # param  : id - 사용자아이디 / 필수
 
 

@@ -9,7 +9,6 @@ import com.back.service.UserService;
 import com.back.support.ResponseUtils;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -242,24 +241,6 @@ public class UserController {
 
         responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));
 
-
-
-//        String userId = jwtUtils.getTokenInfo(jwtUtils.resolveToken(httpServletRequest),"user_id");
-//        userEntity.updated_id = userId;
-//        userEntity.user_id = userId;
-//        userEntity.pw_init_yn = "Y";
-//        userEntity.pw_fail_cnt = 0;
-//
-//        int result = userService.updateUser(userEntity);
-//
-//        if(result < 1){
-//            message ="정상적으로 수정이 되지않았습니다.";
-//            code = "fail";
-//            status = HttpStatus.BAD_REQUEST;
-//        }
-//
-//        Header header = ResponseUtils.setHeader(message, code, httpServletRequest);
-//        responseMap.put("header", header);
 
         return new ResponseEntity<>(responseMap, status);
     }

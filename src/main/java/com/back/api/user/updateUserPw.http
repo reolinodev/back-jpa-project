@@ -1,5 +1,6 @@
 # name   : /api/user/user-pw
 # method : PUT
+# descript : 사용자가 자신의 비밀번호를 수정한다.
 # param  : loginId - 아이디 / 필수
 #        : userPw - 패스워드 / 필수
 

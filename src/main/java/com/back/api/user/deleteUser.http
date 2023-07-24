@@ -1,5 +1,6 @@
 # name   : /api/user/{id}
 # method : DELETE
+# descript : 사용자를 삭제한다. 실제로 삭제하지 않고 사용 여부를 N으로 변경한다.
 # param  : id - 사용자아이디 / 필수
 
 

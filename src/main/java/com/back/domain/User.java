@@ -64,9 +64,9 @@ public class User extends BaseEntity {
     //최근 로그인시간
     public LocalDateTime lastLoginAt;
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    @ToString.Exclude
-//    public List<LoginHistory> loginHistories = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    public List<LoginHistory> loginHistories = new ArrayList<>();
 //
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 //    @ToString.Exclude

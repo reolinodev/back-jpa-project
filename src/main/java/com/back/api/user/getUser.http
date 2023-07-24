@@ -1,5 +1,6 @@
 # name   : /api/user/{id}
 # method : GET
+# descript : 사용자의 상세 정보를 가져온다.
 # param  : id - 사용자아이디 / 필수
 
 GET http://localhost:8080/api/user/1

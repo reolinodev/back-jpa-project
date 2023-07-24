@@ -1,5 +1,6 @@
 # name   : /api/user
 # method : PUT
+# descript : 사용자 정보를 목록형으로 가져온다. 사이즈나 페이지는 입력하지 않으면 10개, 1페이지가 기본으로 조회된다.
 # param  : userNm - 사용자명 / 선택
 #        : loginId - 아이디 / 선택
 #        : useYn - 사용여부 / 선택

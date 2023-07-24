@@ -7,13 +7,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Header {
+public class JwtHeader {
 
     public String requestUrl;
 
-    public String method;
-
     public String message;
 
+    public String method;
+
     public String resultCode;
+
+    public String accessToken;
+
+    public String refreshToken;
+
 }

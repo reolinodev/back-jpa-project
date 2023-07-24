@@ -1,5 +1,6 @@
 # name   : /api/user/init-login-fail-cnt/{id}
 # method : GET
+# descript : 사용자 로그인 실패회수가 5회를 넘겼을 경우 로그인이 안되는데 그런 잠금 문제를 풀어준다.
 # param  : id - 사용자아이디 / 필수
 
 

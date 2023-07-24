@@ -36,7 +36,7 @@ public class UserService {
      * 존재하는 아이디 인지 체크합니다.
      */
     public int checkLoginId(String loginId) {
-        return userRepository.countByLoginId(loginId);
+        return userRepository.countByLoginIdAndUseYn(loginId, "Y");
     }
 
 

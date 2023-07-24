@@ -1,8 +1,10 @@
 package com.back.repository;
 
 
+import static com.back.domain.QLoginHistory.loginHistory;
 import static com.back.domain.QUser.user;
 
+import com.back.domain.dto.LoginDto;
 import com.back.domain.dto.UserDto;
 import com.back.domain.params.UserParam;
 import com.back.support.ConvertUtils;
@@ -123,6 +125,32 @@ public class UserCustomRepository {
                 )
             )
             .from(user)
+            .where(
+                user.loginId.eq(loginId)
+            )
+            .fetchOne();
+    }
+
+    /* 메소드명 : findUserByLoginId
+     * 기능 : 로그인아이디로 사용자 정보 조회
+     * 파라미터 : id
+     */
+    public LoginDto findLoginUser(String loginId) {
+        return queryFactory
+            .select(
+                Projections.bean(LoginDto.class,
+                    user.id.as("userId"),
+                    user.loginId,
+                    user.userNm,
+                    user.telNo,
+                    user.userPw,
+                    ConvertUtils.getParseLocalDateTimeToString(user.lastLoginAt).as("lastLoginLabel"),
+                    user.pwInitYn,
+                    user.loginFailCnt
+                )
+            )
+            .from(user)
+            .leftJoin(loginHistory)
             .where(
                 user.loginId.eq(loginId)
             )

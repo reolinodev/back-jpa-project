@@ -1,5 +1,6 @@
 # name   : /api/user
 # method : PUT
+# descript : 사용자를 등록한다.
 # param  : userNm - 사용자명 / 필수 / 최소 2자에서 10자사이로 입력
 #        : loginId - 아이디 / 필수 / 이메일형식 제한
 #        : telNo - 휴대폰 / 선택 / 휴대폰번호형식 제한
