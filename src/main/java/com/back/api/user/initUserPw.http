@@ -1,6 +1,8 @@
-# name   : /api/user/{id}
+# name   : /api/user/init-user-pw/{id}
 # method : GET
 # param  : id - 사용자아이디 / 필수
 
-GET http://localhost:8080/api/user/1
+
+GET http://localhost:8080/api/user/init-user-pw/4
 Content-Type: application/json
+

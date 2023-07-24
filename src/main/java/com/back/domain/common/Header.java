@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 public class Header {
 
     String requestUrl;
+    String method;
     String message;
     String resultCode;
 }

@@ -20,23 +20,23 @@ public class UserDto {
 
     public String useYn;
 
-    public String useYnVal;
+    public String useYnLabel;
 
-    public String lastLoginVal;
+    public String lastLoginLabel;
 
     public String pwInitYn;
 
     public int loginFailCnt;
 
-    public String createdAtVal;
+    public String createdAtLabel;
 
-    public String updatedAtVal;
+    public String updatedAtLabel;
 
     public Long createdId;
 
-    public String createdIdVal;
+    public String createdIdLabel;
 
     public Long updatedId;
 
-    public String updatedIdVal;
+    public String updatedIdLabel;
 }

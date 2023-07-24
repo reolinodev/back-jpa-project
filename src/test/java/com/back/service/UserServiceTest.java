@@ -88,9 +88,9 @@ class UserServiceTest {
         String loginId = "admin@gmail.com";
 
         //when
-        User user  = userService.checkLoginId(loginId);
-        System.out.println("result = " + user);
+        int result  = userService.checkLoginId(loginId);
+        System.out.println("result = " + result);
         //then
-        Assertions.assertEquals("관리자", user.getUserNm());
+        Assertions.assertEquals(0, result);
     }
 }

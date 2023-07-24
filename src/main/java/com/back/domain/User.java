@@ -111,5 +111,4 @@ public class User extends BaseEntity {
             this.useYn = userParam.useYn;
         }
     }
-
 }

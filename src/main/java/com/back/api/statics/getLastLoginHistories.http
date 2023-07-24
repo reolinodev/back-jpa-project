@@ -1,6 +1,0 @@
-# name   : api/sample/statics/last-login-hisotories
-# method : GET
-# param  : 없음
-
-GET http://localhost:8080/api/sample/statics/last-login-hisotories
-Content-Type: application/json

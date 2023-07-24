@@ -9,6 +9,7 @@ public class ResponseUtils {
         HttpServletRequest httpServletRequest) {
         Header header = new Header();
         header.setMessage(message);
+        header.setMethod(httpServletRequest.getMethod());
         header.setRequestUrl(httpServletRequest.getRequestURI());
         header.setResultCode(code);
         return header;

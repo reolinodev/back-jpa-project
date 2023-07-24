@@ -10,9 +10,7 @@ public interface UserRepository extends JpaRepository <User, Long> {
 //    User findByLoginIdAndUseYn(String loginId, String useYn);
 //
 //    int countByLoginIdAndUserPw(String loginId, String userPw);
-//
-//    Page<User> findUsersBy(Pageable pageable);
-//
-    User findByLoginId(String loginId);
+
+    int countByLoginId(String loginId);
 }
 

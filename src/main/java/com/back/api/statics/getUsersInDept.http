@@ -1,6 +1,0 @@
-# name   : api/sample/statics/users-in-dept
-# method : GET
-# param  : 없음
-
-GET http://localhost:8080/api/sample/statics/users-in-dept/5
-Content-Type: application/json

@@ -40,12 +40,12 @@ public class UserCustomRepository {
                     user.userNm,
                     user.telNo,
                     user.useYn,
-//                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnVal"),
-                    ConvertUtils.getParseLocalDateTimeToString(user.lastLoginAt).as("lastLoginVal"),
+//                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(user.lastLoginAt).as("lastLoginLabel"),
                     user.pwInitYn,
                     user.loginFailCnt,
-                    ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAtVal"),
-                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtVal")
+                    ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAtLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtLabel")
                 )
             )
             .from(user)
@@ -85,12 +85,12 @@ public class UserCustomRepository {
                     user.userNm,
                     user.telNo,
                     user.useYn,
-//                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnVal"),
-                    ConvertUtils.getParseLocalDateTimeToString(user.lastLoginAt).as("lastLoginVal"),
+//                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(user.lastLoginAt).as("lastLoginLabel"),
                     user.pwInitYn,
                     user.loginFailCnt,
-                    ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAtVal"),
-                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtVal")
+                    ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAtLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtLabel")
                 )
             )
             .from(user)
@@ -99,9 +99,38 @@ public class UserCustomRepository {
             )
             .fetchOne();
     }
-//
-//    /************************* 조건절 ***************************/
-//
+
+
+    /* 메소드명 : findUserByLoginId
+     * 기능 : 로그인아이디로 사용자 정보 조회
+     * 파라미터 : id
+     */
+    public UserDto findUserByLoginId(String loginId) {
+        return queryFactory
+            .select(
+                Projections.bean(UserDto.class,
+                    user.id.as("userId"),
+                    user.loginId,
+                    user.userNm,
+                    user.telNo,
+                    user.useYn,
+//                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(user.lastLoginAt).as("lastLoginLabel"),
+                    user.pwInitYn,
+                    user.loginFailCnt,
+                    ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAtLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtLabel")
+                )
+            )
+            .from(user)
+            .where(
+                user.loginId.eq(loginId)
+            )
+            .fetchOne();
+    }
+
+    /************************* 조건절 ***************************/
+
     private BooleanExpression loginIdLike(String loginId){
         if(loginId == null){
             return null;

@@ -1,0 +1,14 @@
+# name   : /api/user/user-pw
+# method : PUT
+# param  : loginId - 아이디 / 필수
+#        : userPw - 패스워드 / 필수
+
+PUT http://localhost:8080/api/user/user-pw
+Content-Type: application/json
+
+{
+  "loginId":"test2@gmail.com",
+  "userPw":"1qaz2wsx!@ "
+}
+
+
