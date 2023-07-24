@@ -2,9 +2,6 @@
 # method : POST
 # param  : loginId - 로그인 아이디 / 필수
 #        : userPw - 비밀번호 / 필수
-#        : loginDevice - 접속장비 / 선택
-#        : deviceBrowser - 브라우저 / 선택
-
 
 POST http://localhost:8080/api/certification
 Content-Type: application/json
@@ -15,5 +12,3 @@ Content-Type: application/json
   "loginDevice":"WEB",
   "deviceBrowser": "Chrome"
 }
-
-

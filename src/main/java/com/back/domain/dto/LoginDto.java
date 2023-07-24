@@ -20,14 +20,11 @@ public class LoginDto {
 
     public String userPw;
 
+    public String pwInitYn;
+
     public String lastLoginLabel;
 
     public String loginDevice;
 
     public String deviceBrowser;
-
-    public String accessToken;
-
-    public String refreshToken;
-
 }

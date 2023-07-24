@@ -1,0 +1,16 @@
+# name   : /api/certification
+# method : POST
+# param  : loginId - 로그인 아이디 / 필수
+#        : userPw - 비밀번호 / 필수
+#        : loginDevice - 접속장비 / 선택
+#        : deviceBrowser - 브라우저 / 선택
+
+POST http://localhost:8080/api/login
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsImV4cCI6MjAwNTU0NjQ2MywiaWF0IjoxNjkwMTg2NDYzLCJ1c2VySWQiOjR9.kLgkvWpFZNu641R2dFeLcTgnYEwNiNdPOpiTUK5pdEU
+
+{
+"loginId":"test2@gmail.com",
+"userPw": "1111"
+}
+

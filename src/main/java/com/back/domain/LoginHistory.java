@@ -1,9 +1,6 @@
 package com.back.domain;
 
 import com.back.domain.params.LoginParam;
-import com.back.domain.params.UserParam;
-import com.back.support.CryptUtils;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -55,9 +52,6 @@ public class LoginHistory {
     public void prePersist(){
         this.createdAt = LocalDateTime.now();
     }
-
-    //등록아이디
-    public Long createdId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude

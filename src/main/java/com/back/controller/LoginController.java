@@ -2,6 +2,7 @@ package com.back.controller;
 
 
 import com.back.domain.LoginHistory;
+import com.back.domain.User;
 import com.back.domain.common.JwtHeader;
 import com.back.domain.dto.LoginDto;
 import com.back.domain.params.LoginParam;
@@ -10,6 +11,7 @@ import com.back.support.ResponseUtils;
 import com.back.token.JwtTokenProvider;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,7 +30,7 @@ public class LoginController {
 
     private final JwtTokenProvider jwtTokenProvider;
 
-    //사용자를 체크하고 인증키를 발급한다
+    //인증키를 발급하고 로그인 히스토리를 저장한다.
     @PostMapping("/certification")
     public ResponseEntity<Map<String,Object>> certification (
         @RequestBody LoginParam loginParam, HttpServletRequest httpServletRequest) throws Exception {
@@ -119,51 +121,42 @@ public class LoginController {
         return new ResponseEntity<>(responseMap, status);
     }
 
-//    @ApiOperation(value = "사용자를 정보를 체크하고 이력을 관리한다.")
-//    @PostMapping("/login")
-//    public ResponseEntity<Map<String,Object>> login (
-//        @ApiParam(
-//            value = "login_id : 로그인 아이디, 필수 \n"
-//                +"user_pw : 비밀번호, 필수  \n"
-//                +"login_device : 사용자 디바이스   \n"
-//                +"device_browser : 사용자 브라우저  \n"
-//        )
-//        @RequestBody LoginEntity loginEntity, HttpServletRequest httpServletRequest) {
-//
-//        LinkedHashMap <String,Object> responseMap = new LinkedHashMap<>();
-//
-//        String message = "메인화면으로 이동합니다";
-//        String code = "ok";
-//        HttpStatus status = HttpStatus.OK;
-//
-//        LoginEntity loginInfo = loginService.getLoginId(loginEntity.login_id);
-//        String pwInitYn = loginInfo.pw_init_yn;
-//
-//        //초기화를 안했을때
-//        if("N".equals(pwInitYn)) {
-//            message = "비밀번호 초기화가 필요합니다. 비밀번호 변경 화면으로 이동합니다.";
-//            code = "pwchange";
-//        }
-//        if("N".equals(pwInitYn)) {
-//            message = "비밀번호 초기화가 필요합니다. 비밀번호 변경 화면으로 이동합니다.";
-//            code = "pwchange";
-//        }
-//        else{
-//            loginEntity.user_id = loginInfo.user_id;
-//            loginService.saveLoginHistory(loginEntity);
-//            int result = loginService.updateLastLoginDt(loginInfo);
-//
-//            if(result < 1){
-//                message = "로그인에 실패하였습니다..";
-//                code = "unauthorized";
-//                status = HttpStatus.UNAUTHORIZED;
-//            }
-//        }
-//
-//        responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));
-//        responseMap.put("data", loginInfo);
-//
-//        return new ResponseEntity<>(responseMap, status);
-//    }
+    //로그인을 한다. 비밀번호 초기화가 안되어 있으면 비밀번호 수정하는 페이지로 이동한다. 로그인을 성공하면 최종 로그인 일시를 남긴다.
+    @PostMapping("/login")
+    public ResponseEntity<Map<String,Object>> login (@RequestBody LoginParam loginParam, HttpServletRequest httpServletRequest) {
+
+        LinkedHashMap <String,Object> responseMap = new LinkedHashMap<>();
+
+        String message = "메인화면으로 이동합니다";
+        String code = "ok";
+        HttpStatus status = HttpStatus.OK;
+
+        LoginDto loginInfo = loginService.getLoginUser(loginParam.loginId);
+        String pwInitYn = loginInfo.pwInitYn;
+
+        //초기화를 안했을때
+        if("N".equals(pwInitYn)) {
+            message = "비밀번호 초기화가 필요합니다. 비밀번호 변경 화면으로 이동합니다.";
+            code = "pwchange";
+        }
+        if("N".equals(pwInitYn)) {
+            message = "비밀번호 초기화가 필요합니다. 비밀번호 변경 화면으로 이동합니다.";
+            code = "pwchange";
+        }
+        else{
+            User result = loginService.updateLastLoginDt(loginInfo.userId);
+
+            if(!Objects.equals(result.id, loginInfo.userId)){
+                message = "로그인에 실패하였습니다.";
+                code = "unauthorized";
+                status = HttpStatus.UNAUTHORIZED;
+            }
+        }
+
+        responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));
+        responseMap.put("data", loginInfo);
+
+        return new ResponseEntity<>(responseMap, status);
+    }
 
 }

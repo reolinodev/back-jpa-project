@@ -9,6 +9,7 @@ import com.back.repository.LoginHistoryRepository;
 import com.back.repository.UserCustomRepository;
 import com.back.repository.UserRepository;
 import com.back.support.CryptUtils;
+import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +34,14 @@ public class LoginService {
     public LoginDto getLoginUser(String loginId) {
         return userCustomRepository.findLoginUser(loginId);
     }
-//
-//    public int updateLastLoginDt(LoginEntity loginEntity) {
-//        return  loginRepository.saveLastLoginAt(loginEntity);
-//    }
-//
+
+    public User updateLastLoginDt(Long id) {
+        User user = userRepository.findById(id).orElseThrow(RuntimeException::new);
+        user.lastLoginAt = LocalDateTime.now();
+        user.loginFailCnt = 0;
+        return  userRepository.save(user);
+    }
+
     public void updateLoginFailCnt(LoginParam loginParam) {
         User user = userRepository.findByLoginIdAndUseYn(loginParam.loginId, "Y");
         user.loginFailCnt = user.loginFailCnt + 1;
