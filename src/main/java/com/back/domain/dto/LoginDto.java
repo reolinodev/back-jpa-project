@@ -23,8 +23,4 @@ public class LoginDto {
     public String pwInitYn;
 
     public String lastLoginLabel;
-
-    public String loginDevice;
-
-    public String deviceBrowser;
 }

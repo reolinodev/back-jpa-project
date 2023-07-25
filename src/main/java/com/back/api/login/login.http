@@ -7,10 +7,10 @@
 
 POST http://localhost:8080/api/login
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsImV4cCI6MjAwNTU0NjQ2MywiaWF0IjoxNjkwMTg2NDYzLCJ1c2VySWQiOjR9.kLgkvWpFZNu641R2dFeLcTgnYEwNiNdPOpiTUK5pdEU
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
 
 {
-"loginId":"test2@gmail.com",
-"userPw": "1111"
+  "loginId":"test2@gmail.com",
+  "userPw": "1111"
 }
 

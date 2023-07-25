@@ -56,13 +56,12 @@ public class LoginService {
 
         return loginHistoryRepository.save(loginHistory);
     }
-//
-//    public LoginEntity getTokenInfo(LoginEntity loginEntity) {
-//        return loginRepository.findTokenByAccessToken(loginEntity);
-//    }
-//
-//    public int saveLoginHistory(LoginEntity loginEntity) {
-//        return loginRepository.saveLoginHistory(loginEntity);
-//    }
 
+    public void updateToken(LoginHistory loginHistory) {
+        loginHistoryRepository.save(loginHistory);
+    }
+
+    public LoginHistory getTokenInfo(LoginParam loginParam) {
+        return loginHistoryRepository.findByAccessToken(loginParam.accessToken);
+    }
 }

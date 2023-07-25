@@ -5,3 +5,4 @@
 
 GET http://localhost:8080/api/user/1
 Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsImV4cCI6MjAwNTYwNTQ4NiwiaWF0IjoxNjkwMjQ1NDg2LCJ1c2VySWQiOjR9.9WWGjZpEP2gzWCENITdJEO0nT9Pl9Hqw9EA2syzKlPg

@@ -8,7 +8,7 @@ import com.back.domain.dto.LoginDto;
 import com.back.domain.params.LoginParam;
 import com.back.service.LoginService;
 import com.back.support.ResponseUtils;
-import com.back.token.JwtTokenProvider;
+import com.back.token.JwtUtils;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -28,7 +28,7 @@ public class LoginController {
 
     private final LoginService loginService;
 
-    private final JwtTokenProvider jwtTokenProvider;
+    private final JwtUtils jwtUtils;
 
     //인증키를 발급하고 로그인 히스토리를 저장한다.
     @PostMapping("/certification")
@@ -46,6 +46,7 @@ public class LoginController {
 
         int countLoginId = loginService.checkLoginId(loginParam);
 
+        //아이디 체크
         if(countLoginId == 0){
             message = "아이디가 존재하지 않습니다.";
             code = "unauthorized";
@@ -98,14 +99,16 @@ public class LoginController {
 //            return new ResponseEntity<>(responseMap, status);
 //        }
 //
+        //토큰 생성 및 로그인 이력 생성
         message = "인증키가 생성되었습니다.";
-        accessToken = jwtTokenProvider.generateToken(loginDto);
-        refreshToken = jwtTokenProvider.generateRefreshToken(loginDto);
+        accessToken = jwtUtils.generateToken(loginDto);
+        refreshToken = jwtUtils.generateRefreshToken(loginDto);
 
         loginParam.accessToken = accessToken;
         loginParam.refreshToken = refreshToken;
         loginParam.userId = loginDto.userId;
         LoginHistory saveTokenResult = loginService.saveToken(loginParam);
+
         if(!saveTokenResult.accessToken.equals(accessToken)){
             message = "사용자 히스토리가 정상적으로 저장되지 않았습니다.";
             code = "bad request";
