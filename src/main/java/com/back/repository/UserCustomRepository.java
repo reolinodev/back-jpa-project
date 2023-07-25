@@ -1,7 +1,5 @@
 package com.back.repository;
 
-
-import static com.back.domain.QLoginHistory.loginHistory;
 import static com.back.domain.QUser.user;
 
 import com.back.domain.dto.LoginDto;
@@ -168,7 +166,7 @@ public class UserCustomRepository {
         if(loginId == null){
             return null;
         }
-        return user.loginId.contains(loginId);
+        return user.loginId.toUpperCase().contains(loginId.toUpperCase());
     }
 
     private BooleanExpression useYnEq(String useYn){
@@ -182,7 +180,7 @@ public class UserCustomRepository {
         if(userNm == null){
             return null;
         }
-        return user.userNm.contains(userNm);
+        return user.userNm.toUpperCase().contains(userNm.toUpperCase());
     }
 
 }

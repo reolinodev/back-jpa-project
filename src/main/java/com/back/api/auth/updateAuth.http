@@ -1,0 +1,18 @@
+# name   : /api/user/{id}
+# method : PUT
+# descript : 권한 정보를 수정한다.
+# param  : authNm - 권한명 / 필수 / 최대 15자
+#        : ord - 순서 / 선택
+#        : memo - 비고 / 선택
+#        : useYn - 사용여부 / 필수
+
+PUT http://localhost:8080/api/auth/2
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
+
+{
+  "authNm": "시스템 운영자",
+  "ord": "2",
+  "memo": "사이트를 관리하는 관리자",
+  "useYn" : "Y"
+}

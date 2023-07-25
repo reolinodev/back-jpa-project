@@ -62,7 +62,7 @@ public class UserController {
         UserDto getUserResult = userService.getUser(id);
 
         int count = 0;
-        if (!"".equals(getUserResult.loginId)) count= 1;
+        if (getUserResult != null) count= 1;
 
         String message = count+"건이 조회되었습니다.";
         String code = "ok";

@@ -34,10 +34,11 @@ import org.hibernate.annotations.ColumnDefault;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@EntityListeners({UserHistoryListener.class})
+//@EntityListeners({UserHistoryListener.class})
 @Table(name="TB_USER", schema = "ws")
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
+//사용자정보
 public class User extends BaseEntity {
 
     @Id
