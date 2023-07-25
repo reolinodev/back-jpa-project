@@ -23,10 +23,12 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class UserParam extends Page {
 
+    //사용자명
     @NotBlank(groups = { UserCreateGroup.class, UserUpdateGroup.class}, message = "이름을 입력해주세요.")
     @Size(groups = { UserCreateGroup.class, UserUpdateGroup.class}, min = 2, max = 10, message = "최소 2자에서 10자사이로 입력해주세요")
     public String userNm;
 
+    //로그인 아이디
     @NotBlank(groups = { UserCreateGroup.class, LoginGroup.class, UserPwUpdateGroup.class}, message = "아이디를 입력해주세요.")
     @Email(groups = { UserCreateGroup.class}, message = "아이디는 이메일 형식 입니다.")
     public String loginId;
@@ -36,11 +38,18 @@ public class UserParam extends Page {
 //    @Pattern(groups = { UserPwUpdateGroup.class}, regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}",
 //        message = "비밀번호는 영문 대,소문자와 숫자, 특수기호가 적어도 1개 이상씩 포함된 8자 ~ 20자의 비밀번호여야 합니다.")
     public String userPw;
-
+    
+    //전화번호
     @Pattern(groups = { UserCreateGroup.class, UserUpdateGroup.class}, regexp = "^\\d{2,3}\\d{3,4}\\d{4}$", message = "올바른 휴대폰번호 형식이 아닙니다. ex) 01011112222")
     public String telNo;
 
+    //사용여부
     @NotBlank(groups = { UserUpdateGroup.class}, message = "사용여부를 입력해주세요.")
     public String useYn;
+    
+    //등록아이디
+    public Long createdId;
 
+    //수정아이디
+    public Long updatedId;
 }

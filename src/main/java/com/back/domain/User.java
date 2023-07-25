@@ -91,10 +91,14 @@ public class User extends BaseEntity {
         this.userPw = CryptUtils.encryptSha256(userParam.userPw);
         this.telNo = userParam.telNo;
         this.useYn = userParam.useYn;
+        this.createdId = userParam.createdId;
     }
 
 
     public void setUpdateParam(UserParam userParam) throws NoSuchAlgorithmException {
+
+        this.updatedId = userParam.updatedId;
+
         if(userParam.userNm != null){
             this.userNm = userParam.userNm;
         }

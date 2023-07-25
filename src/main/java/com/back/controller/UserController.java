@@ -8,6 +8,7 @@ import com.back.domain.params.UserParam;
 import com.back.service.UserService;
 import com.back.support.ResponseUtils;
 
+import com.back.token.JwtUtils;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private final UserService userService;
-//    private final JwtUtils jwtUtils;
+    private final JwtUtils jwtUtils;
 
     //"사용자를 전체 조회한다.
     @PostMapping("")
@@ -90,7 +91,9 @@ public class UserController {
             code ="fail";
             status = HttpStatus.BAD_REQUEST;
         } else {
-//            userEntity.created_id = jwtUtils.getTokenInfo(jwtUtils.resolveToken(httpServletRequest),"user_id");
+            userParam.createdId = jwtUtils.getTokenUserId(jwtUtils.resolveToken(httpServletRequest));
+
+            //생성시 사용자의 최초 패스워드는 로그인 아이디로 한다.
             userParam.userPw = userParam.loginId;
             User createUserResult = userService.createUser(userParam);
 
@@ -107,7 +110,7 @@ public class UserController {
     }
 
 
-    //"사용자를 수정한다
+    //사용자를 수정한다
     @PutMapping("/{id}")
     public ResponseEntity<Map<String,Object>> updateUser(
         @Validated(ValidationGroups.UserUpdateGroup.class) @RequestBody UserParam userParam, @PathVariable Long id, HttpServletRequest httpServletRequest) throws Exception {
@@ -117,7 +120,8 @@ public class UserController {
         String code = "ok";
         HttpStatus status = HttpStatus.OK;
 
-//        userEntity.updated_id = jwtUtils.getTokenInfo(jwtUtils.resolveToken(httpServletRequest),"user_id");
+
+        userParam.updatedId = jwtUtils.getTokenUserId(jwtUtils.resolveToken(httpServletRequest));
         User updateUserResult = userService.updateUser(userParam, id);
 
         if(!id.equals(updateUserResult.id)){
@@ -142,9 +146,7 @@ public class UserController {
         String code = "ok";
         HttpStatus status = HttpStatus.OK;
 
-        //토큰에서 값 추출
-        Long updatedId = 1L;
-
+        Long updatedId =  jwtUtils.getTokenUserId(jwtUtils.resolveToken(httpServletRequest));
         User deleteUserResult = userService.deleteUser(id, updatedId);
 
         if(!"N".equals(deleteUserResult.useYn)){
@@ -168,9 +170,7 @@ public class UserController {
         String code = "ok";
         HttpStatus status = HttpStatus.OK;
 
-        //토큰에서 값 추출
-        Long updatedId = 1L;
-
+        Long updatedId =  jwtUtils.getTokenUserId(jwtUtils.resolveToken(httpServletRequest));
         User updateUserPwResult = userService.initUserPw(id, updatedId);
 
         if(updateUserPwResult.loginFailCnt != 0){
@@ -194,9 +194,7 @@ public class UserController {
         String code = "ok";
         HttpStatus status = HttpStatus.OK;
 
-        //토큰에서 값 추출
-        Long updatedId = 1L;
-
+        Long updatedId =  jwtUtils.getTokenUserId(jwtUtils.resolveToken(httpServletRequest));
         User initLoginFailCntResult = userService.initLoginFailCnt(id, updatedId);
 
         if(initLoginFailCntResult.loginFailCnt != 0){
@@ -230,6 +228,7 @@ public class UserController {
             status = HttpStatus.BAD_REQUEST;
         } else {
 
+            userParam.updatedId = jwtUtils.getTokenUserId(jwtUtils.resolveToken(httpServletRequest));
             User updateUserPwResult = userService.updateUserPw(userParam, getUserByLoginIdResult.userId);
 
             if(!"Y".equals(updateUserPwResult.pwInitYn)){

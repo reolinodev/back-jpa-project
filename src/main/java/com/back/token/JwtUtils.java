@@ -87,6 +87,10 @@ public class JwtUtils {
         return (String) getClaims(token).get(field);
     }
 
+    public Long getTokenUserId(String token) {
+        return Long.valueOf((int) getClaims(token).get("userId"));
+    }
+
 
     public Authentication getAuthentication(String token) {
         String loginId = this.getTokenInfo(token,"loginId");

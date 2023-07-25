@@ -47,7 +47,10 @@ public class UserCustomRepository {
                     user.pwInitYn,
                     user.loginFailCnt,
                     ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAtLabel"),
-                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtLabel")
+                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtLabel"),
+                    user.createdId,
+                    user.updatedId
+                    //todo 아이디 이름으로 변환하는 함수 추가
                 )
             )
             .from(user)
@@ -92,7 +95,10 @@ public class UserCustomRepository {
                     user.pwInitYn,
                     user.loginFailCnt,
                     ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAtLabel"),
-                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtLabel")
+                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtLabel"),
+                    user.createdId,
+                    user.updatedId
+                    //todo 아이디 이름으로 변환하는 함수 추가
                 )
             )
             .from(user)
