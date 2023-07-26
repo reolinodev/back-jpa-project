@@ -2,7 +2,7 @@
 # method : PUT
 # descript : 권한울 등록한다.
 # param  : authNM - 권한명 / 필수 / 최대 15자
-#        : authCd - 권한코드 / 필수 / 최대 15자
+#        : authVal - 권한코드 / 필수 / 최대 15자
 #        : authRole - 권한구분 / 필수 / 권한을 적용할 사이트(WEB, MOBILE)
 #        : ord - 권한순서 / 선택
 #        : memo - 비고 / 선택
@@ -12,9 +12,9 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
 
 {
-  "authNm": "시스템 관리자",
-  "authCd":"SYSTEM-ADMIN",
+  "authNm": "일반사용자",
+  "authVal":"USER",
   "authRole": "MAIN-WEB",
-  "ord": "2",
-  "memo": "사이트를 관리하는 관리자"
+  "ord": "3",
+  "memo": "사이트를 이용하는 사용자"
 }

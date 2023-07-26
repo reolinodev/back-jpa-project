@@ -36,7 +36,7 @@ public class AuthCustomRepository {
                 Projections.bean(AuthDto.class,
                     auth.id.as("authId"),
                     auth.authNm,
-                    auth.authCd,
+                    auth.authVal,
                     auth.authRole,
                     auth.memo,
                     auth.ord,
@@ -54,7 +54,7 @@ public class AuthCustomRepository {
                 authRoleEq(authParam.authRole),
                 useYnEq(authParam.useYn),
                 authNmLike(authParam.authNm),
-                authCdLike(authParam.authCd)
+                authValLike(authParam.authVal)
             )
             .orderBy(auth.createdAt.desc())
             .offset(pageable.getOffset())
@@ -68,7 +68,7 @@ public class AuthCustomRepository {
                 authRoleEq(authParam.authRole),
                 useYnEq(authParam.useYn),
                 authNmLike(authParam.authNm),
-                authCdLike(authParam.authCd)
+                authValLike(authParam.authVal)
             )
             .fetchOne();
 
@@ -85,7 +85,7 @@ public class AuthCustomRepository {
                 Projections.bean(AuthDto.class,
                     auth.id.as("authId"),
                     auth.authNm,
-                    auth.authCd,
+                    auth.authVal,
                     auth.authRole,
                     auth.memo,
                     auth.ord,
@@ -129,11 +129,11 @@ public class AuthCustomRepository {
         return auth.authNm.toUpperCase().contains(authNm.toUpperCase());
     }
 
-    private BooleanExpression authCdLike(String authCd){
+    private BooleanExpression authValLike(String authCd){
         if(authCd == null){
             return null;
         }
-        return auth.authCd.toUpperCase().contains(authCd.toUpperCase());
+        return auth.authVal.toUpperCase().contains(authCd.toUpperCase());
     }
 
 }

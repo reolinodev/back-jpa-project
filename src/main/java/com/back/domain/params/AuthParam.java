@@ -35,7 +35,7 @@ public class AuthParam extends Page {
     //권한코드
     @NotEmpty(groups = {AuthCreateGroup.class}, message = "권한코드를 입력해 주세요.")
     @Size(groups = {AuthCreateGroup.class}, max = 15, message = "최대 15자까지 입력해주세요.")
-    public String authCd;
+    public String authVal;
 
     //권한구분
     @NotEmpty(groups = {AuthCreateGroup.class}, message = "권한구분을 입력해 주세요.")

@@ -2,11 +2,15 @@ package com.back.domain.params;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@ToString(callSuper = true)
+@EqualsAndHashCode()
 public class LoginParam {
 
     //아이디

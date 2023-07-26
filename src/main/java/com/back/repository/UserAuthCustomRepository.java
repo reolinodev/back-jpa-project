@@ -43,7 +43,7 @@ public class UserAuthCustomRepository {
                     user.loginId,
                     user.userNm,
                     user.telNo,
-                    auth.authCd,
+                    auth.authVal,
                     auth.authRole,
                     auth.authNm,
                     ConvertUtils.getParseLocalDateTimeToString(userAuth.createdAt).as("createdAtLabel"),

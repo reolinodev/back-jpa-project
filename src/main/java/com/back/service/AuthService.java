@@ -21,8 +21,8 @@ public class AuthService {
     /**
      * 존재하는 권한코드가 있는지 체크합니다.
      */
-    public int checkAuthCd(AuthParam authParam) {
-        return authRepository.countByAuthCd(authParam.authCd);
+    public int checkAuthVal(AuthParam authParam) {
+        return authRepository.countByAuthVal(authParam.authVal);
     }
 
     /**
@@ -49,7 +49,7 @@ public class AuthService {
     public AuthDto getAuth(Long id) {
         return authCustomRepository.findAuthBy(id);
     }
-    
+
     /**
      * 권한을 수정합니다.
      */

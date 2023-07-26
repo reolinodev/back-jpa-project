@@ -39,7 +39,7 @@ public class Auth extends BaseEntity {
     public String authNm;
 
     //권한코드
-    public String authCd;
+    public String authVal;
 
     //권한구분
     public String authRole;
@@ -56,7 +56,7 @@ public class Auth extends BaseEntity {
 
     public void setCreateParam(AuthParam authParam) {
         this.authNm = authParam.authNm;
-        this.authCd = authParam.authCd;
+        this.authVal = authParam.authVal;
         this.authRole = authParam.authRole;
         this.ord = authParam.ord;
         this.memo = authParam.memo;

@@ -61,7 +61,7 @@ public class AuthController {
         String code = "ok";
         HttpStatus status = HttpStatus.CREATED;
 
-        int count = authService.checkAuthCd(authParam);
+        int count = authService.checkAuthVal(authParam);
 
         if(count > 0){
             message ="같은 코드가 존재합니다.";
@@ -115,7 +115,7 @@ public class AuthController {
         String code = "ok";
         HttpStatus status = HttpStatus.OK;
 
-        if("".equals(updateAuthResult.authCd)){
+        if("".equals(updateAuthResult.authVal)){
             message ="권한 수정에 실패하였습니다.";
             code = "fail";
             status = HttpStatus.BAD_REQUEST;

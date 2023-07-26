@@ -14,7 +14,7 @@ public class AuthDto {
 
     public String authNm;
 
-    public String authCd;
+    public String authVal;
 
     public String authRole;
 
