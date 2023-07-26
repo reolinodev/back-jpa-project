@@ -3,9 +3,6 @@ package com.back.domain;
 
 import com.back.domain.common.BaseEntity;
 import com.back.domain.params.AuthParam;
-import com.back.domain.params.UserParam;
-import com.back.support.CryptUtils;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;

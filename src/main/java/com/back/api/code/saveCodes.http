@@ -1,0 +1,50 @@
+# name   : /api/code/{codeGrpId}
+# method : PUT
+# descript : 코드를 등록한다. (그리드로 처리 되기때문에 해당값들을 다 받아야 한다.)  - 주의할점은 같은 코드그룹안에서 codeVal값이 중복되지 않도록 프론트단에서 체크를 해줘야 한다.
+# param  : createdRows - 생성된 코드 Rows / 필수
+#        : updatedRows - 수정된 코드 Rows / 필수
+#        : deletedRows - 삭제된 코드 Rows / 필수
+#        : codeGrpId - 코드그룹아이디 / 필수
+#        : Rows < codeNm - 코드명 / 필수
+#        : Rows < codeVal - 코드값 / 필수
+#        : Rows < memo - 비고 / 필수
+#        : Rows < ord - 순서/ 필수
+#        : Rows < prnCodeVal - 상위코드값 / 필수
+
+
+
+PUT http://localhost:8080/api/code/2
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
+
+{
+  "createdRows": [
+    {
+      "codeNm" : "60개",
+      "codeVal" : "60",
+      "memo" : "페이지당 60개",
+      "ord" : "6",
+      "useYn" : "Y"
+    }
+  ],
+  "updatedRows": [
+    {
+      "id" : 5,
+      "codeNm" : "40개",
+      "codeVal" : "40",
+      "memo" : "페이지당 40개",
+      "ord" : "4",
+      "useYn" : "N"
+    }
+  ],
+  "deletedRows": [
+    {
+      "id" : 7,
+      "codeNm" : "30개",
+      "codeVal" : "30",
+      "memo" : "페이지당 30개",
+      "ord" : "3",
+      "useYn" : "Y"
+    }
+  ]
+}
