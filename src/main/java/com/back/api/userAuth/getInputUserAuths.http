@@ -1,0 +1,19 @@
+# name   : /api/userAuth
+# method : PUT
+# descript : 사용자 권한을 가진 사람의 정보를 목록형태로 조회 한다.
+# param  : authId - 권한아이디 / 필수
+#        : loginId - 로그인아이디 / 선택
+#        : userNm - 사용자명 / 선택
+
+
+POST http://localhost:8080/api/userAuth/input-user
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
+
+{
+  "authId": 2,
+  "loginId": "test",
+  "userNm": "테스터"
+}
+
+

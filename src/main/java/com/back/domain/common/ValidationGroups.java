@@ -7,6 +7,8 @@ public class ValidationGroups {
     public interface UserPwUpdateGroup {};
     public interface AuthCreateGroup {};
     public interface AuthUpdateGroup {};
+    public interface UserAuthUpdateGroup {};
+
 //    public interface CodeGrpCreateGroup {};
 //    public interface CodeGrpUpdateGroup {};
 //    public interface CodeCreateGroup {};

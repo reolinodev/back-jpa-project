@@ -6,10 +6,14 @@ import com.back.domain.params.AuthParam;
 import com.back.domain.params.UserParam;
 import com.back.support.CryptUtils;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -45,6 +49,10 @@ public class Auth extends BaseEntity {
 
     //비고
     public String memo;
+
+    @OneToMany(mappedBy = "auth", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    public List<UserAuth> userAuths = new ArrayList<>();
 
     public void setCreateParam(AuthParam authParam) {
         this.authNm = authParam.authNm;

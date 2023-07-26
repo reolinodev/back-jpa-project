@@ -77,9 +77,9 @@ public class User extends BaseEntity {
 //    @ToString.Exclude
 //    private List<Review> reviews = new ArrayList<>();
 //
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    @ToString.Exclude
-//    private List<Rental> rentals = new ArrayList<>();
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    public List<UserAuth> userAuths = new ArrayList<>();
 //
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "deptCd", referencedColumnName = "deptCd")

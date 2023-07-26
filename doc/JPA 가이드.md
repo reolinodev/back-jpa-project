@@ -95,3 +95,46 @@
 )
 
 ```
+
+###서브쿼리
+```java
+public List<StudentCount> findAllStudentCount() {
+return queryFactory
+    .select(
+        Projections.fields(
+            StudentCount.class,
+            academy.name.as("academyName"),
+            ExpressionUtils.as(
+                JPAExpressions.
+                    select(count(student.id))
+                    .from(student)
+                    .where(student.academy.eq(academy)),
+                "studentCount"
+            )
+        )
+    )
+    .from(academy)
+    .fetch();
+}
+
+public List<Academy> findAllByStudentId(long studentId) {
+    return queryFactory
+    .selectFrom(academy)
+    .where(
+        academy.id.in(
+            JPAExpressions
+            .select(student.academy.id)
+            .from(student)
+            .where(student.id.eq(studentId))
+        )
+    )
+    .fetch();
+}
+```
+
+
+
+
+
+
+
