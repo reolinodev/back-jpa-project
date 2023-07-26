@@ -1,0 +1,17 @@
+# name   : /api/codeGrp
+# method : PUT
+# descript : 코드그룹울 등록한다.
+# param  : codeGrpNm - 코드그룹명 / 필수 / 최대 15자
+#        : codeGrpVal - 코드그룹값 / 필수 / 최대 15자
+
+
+PUT http://localhost:8080/api/codeGrp
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
+
+{
+  "codeGrpNm": "페이지 항목수",
+  "codeGrpVal":"PAGE-PER"
+}
+
+

@@ -20,7 +20,7 @@ class AuthServiceTest {
         //given
         AuthParam authParam = new AuthParam();
         authParam.authNm ="시스템개발자";
-        authParam.authCd ="SYSTEM-ENGINEER";
+        authParam.authVal ="SYSTEM-ENGINEER";
         authParam.authRole = "MAIN-WEB";
         authParam.ord = "1";
         authParam.memo = "시스템 개발 및 유지보수";
@@ -35,13 +35,13 @@ class AuthServiceTest {
 
 
     @Test
-    void checkAuthCd() {
+    void checkAuthVal() {
         //given
         AuthParam authParam = new AuthParam();
-        authParam.authCd ="SYSTEM-ENGINEER";
+        authParam.authVal ="SYSTEM-ENGINEER";
 
         //when
-        int result  = authService.checkAuthCd(authParam);
+        int result  = authService.checkAuthVal(authParam);
         System.out.println("result = " + result);
 
         //then
@@ -58,7 +58,7 @@ class AuthServiceTest {
         authParam.useYn = "Y";
         authParam.authRole = "WEB";
         authParam.authNm ="시스템";
-        authParam.authCd = "SYSTEM";
+        authParam.authVal = "SYSTEM";
 
         //when
         Page<AuthDto> auths = authService.getAuths(authParam);
