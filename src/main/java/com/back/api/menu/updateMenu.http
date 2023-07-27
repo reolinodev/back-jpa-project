@@ -1,0 +1,22 @@
+# name   : /api/menu/{id}
+# method : PUT
+# descript : 메뉴 정보를 수정한다.
+# param  : menuNm - 메뉴명 / 필수 / 최대 30자
+#        : url - 메뉴도메인 / 선택 /200자,영문만
+#        : menuType - 메뉴유형 / 필수 / DOMAIN or BOARD
+#        : useYn - 사용여부 / 필수
+#        : ord - 순서 / 선택 / 없으면 99
+#        : boardId - 게시판아이디 / 선택 / 메뉴유형이 BOARD일때 저장
+#        : boardType - 게시판유형 / 선택 / 메뉴유형이 BOARD일때 저장
+
+PUT http://localhost:8080/api/menu/12
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
+
+{
+  "menuNm": "FAQ정보",
+  "url": "/page/board/faq/list/init",
+  "useYn" : "Y",
+  "menuType" : "DOMAIN"
+}
+

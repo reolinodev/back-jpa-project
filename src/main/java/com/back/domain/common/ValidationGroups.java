@@ -10,8 +10,8 @@ public class ValidationGroups {
     public interface UserAuthUpdateGroup {};
     public interface CodeGrpCreateGroup {};
     public interface CodeGrpUpdateGroup {};
-//    public interface MenuCreateGroup {};
-//    public interface MenuUpdateGroup {};
+    public interface MenuCreateGroup {};
+    public interface MenuUpdateGroup {};
 //    public interface BoardCreateGroup {};
 //    public interface BoardUpdateGroup {};
 //    public interface PostCreateGroup {};

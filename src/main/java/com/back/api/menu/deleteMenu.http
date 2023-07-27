@@ -1,0 +1,11 @@
+# name   : /api/menu/{id}
+# method : DELETE
+# descript : 메뉴를 삭제한다. 하위 메뉴가 있으면 하위 메뉴를 먼저 지워야 삭제 가능하다.
+# param  : id - 메뉴아이디 / 필수
+
+
+DELETE http://localhost:8080/api/menu/14
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
+
+

@@ -3,9 +3,6 @@ package com.back.domain.params;
 import com.back.domain.common.Page;
 import com.back.domain.common.ValidationGroups.AuthCreateGroup;
 import com.back.domain.common.ValidationGroups.AuthUpdateGroup;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -22,10 +19,6 @@ import lombok.ToString;
 @EqualsAndHashCode()
 //권한정보
 public class AuthParam extends Page {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
 
     //권한명
     @NotEmpty(groups = {AuthCreateGroup.class, AuthUpdateGroup.class}, message = "권한명을 입력해 주세요.")
