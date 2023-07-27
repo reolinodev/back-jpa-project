@@ -9,26 +9,20 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
-import javax.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class AuthCustomRepository {
-    private final EntityManager entityManager;
     private final JPAQueryFactory queryFactory;
-
-    public AuthCustomRepository(EntityManager em){
-        this.entityManager = em;
-        this.queryFactory = new JPAQueryFactory(em);
-    }
-
 
     /* 메소드명 : findAllWithPaging
      * 기능 : 페이징 처리된 권한 조회
-     * 파라미터 : UserParam
+     * 파라미터 : AuthParam
      */
     public Page<AuthDto> findAllWithPaging(AuthParam authParam, Pageable pageable) {
         List<AuthDto> content = queryFactory
@@ -38,15 +32,17 @@ public class AuthCustomRepository {
                     auth.authNm,
                     auth.authVal,
                     auth.authRole,
+                    ConvertUtils.getParseCodeNm("AUTH_ROLE", auth.authRole).as("authRoleLabel"),
                     auth.memo,
                     auth.ord,
                     auth.useYn,
-//                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnLabel"),
+                    ConvertUtils.getParseCodeNm("USE_YN", auth.useYn).as("useYnLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(auth.createdAt).as("createdAtLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(auth.updatedAt).as("updatedAtLabel"),
                     auth.createdId,
-                    auth.updatedId
-                    //todo 아이디 이름으로 변환하는 함수 추가
+                    ConvertUtils.getParseUserNm(auth.createdId).as("createdIdLabel"),
+                    auth.updatedId,
+                    ConvertUtils.getParseUserNm(auth.updatedId).as("updatedIdLabel")
                 )
             )
             .from(auth)
@@ -87,15 +83,17 @@ public class AuthCustomRepository {
                     auth.authNm,
                     auth.authVal,
                     auth.authRole,
+                    ConvertUtils.getParseCodeNm("AUTH_ROLE", auth.authRole).as("authRoleLabel"),
                     auth.memo,
                     auth.ord,
                     auth.useYn,
-//                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnLabel"),
+                    ConvertUtils.getParseCodeNm("USE_YN", auth.useYn).as("useYnLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(auth.createdAt).as("createdAtLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(auth.updatedAt).as("updatedAtLabel"),
                     auth.createdId,
-                    auth.updatedId
-                    //todo 아이디 이름으로 변환하는 함수 추가
+                    ConvertUtils.getParseUserNm(auth.createdId).as("createdIdLabel"),
+                    auth.updatedId,
+                    ConvertUtils.getParseUserNm(auth.updatedId).as("updatedIdLabel")
                 )
             )
             .from(auth)

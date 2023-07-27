@@ -14,24 +14,20 @@ import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import javax.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class UserAuthCustomRepository {
-    private final EntityManager entityManager;
     private final JPAQueryFactory queryFactory;
-
-    public UserAuthCustomRepository(EntityManager em){
-        this.entityManager = em;
-        this.queryFactory = new JPAQueryFactory(em);
-    }
 
     /* 메소드명 : findAllWithPaging
      * 기능 : 권한을 가진 사용자의 정보를 조회
-     * 파라미터 : UserParam
+     * 파라미터 : UserAuthParam
      */
     public Page<UserAuthDto> findAllWithPaging(UserAuthParam userAuthParam, Pageable pageable) {
         List<UserAuthDto> content = queryFactory
@@ -45,12 +41,16 @@ public class UserAuthCustomRepository {
                     user.telNo,
                     auth.authVal,
                     auth.authRole,
+                    ConvertUtils.getParseCodeNm("AUTH_ROLE", auth.authRole).as("authRoleLabel"),
                     auth.authNm,
+                    userAuth.useYn,
+                    ConvertUtils.getParseCodeNm("USE_YN", userAuth.useYn).as("useYnLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(userAuth.createdAt).as("createdAtLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(userAuth.updatedAt).as("updatedAtLabel"),
                     userAuth.createdId,
+                    ConvertUtils.getParseUserNm(userAuth.createdId).as("createdIdLabel"),
                     userAuth.updatedId,
-                    userAuth.useYn
+                    ConvertUtils.getParseUserNm(userAuth.updatedId).as("updatedIdLabel")
                 )
             )
             .from(userAuth)
@@ -88,7 +88,7 @@ public class UserAuthCustomRepository {
 
     /* 메소드명 : findAllInputUserAuthsWithPaging
      * 기능 : 해당 권한을 가지지 않는 사용자를 조회
-     * 파라미터 : UserParam
+     * 파라미터 : UserAuthParam
      */
     public Page<UserAuthInputDto> findAllInputUserAuthsWithPaging(UserAuthParam userAuthParam, Pageable pageable) {
         List<UserAuthInputDto> content = queryFactory

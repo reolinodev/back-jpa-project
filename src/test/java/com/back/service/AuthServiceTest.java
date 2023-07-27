@@ -55,10 +55,10 @@ class AuthServiceTest {
         AuthParam authParam = new AuthParam();
         authParam.size = 10;
         authParam.page = 1;
-        authParam.useYn = "Y";
-        authParam.authRole = "WEB";
-        authParam.authNm ="시스템";
-        authParam.authVal = "SYSTEM";
+//        authParam.useYn = "Y";
+//        authParam.authRole = "WEB";
+//        authParam.authNm ="시스템";
+//        authParam.authVal = "SYSTEM";
 
         //when
         Page<AuthDto> auths = authService.getAuths(authParam);

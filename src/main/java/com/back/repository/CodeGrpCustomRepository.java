@@ -1,34 +1,29 @@
 package com.back.repository;
 
 import static com.back.domain.QCodeGrp.codeGrp;
-import static com.back.domain.QUser.user;
+
 import com.back.domain.dto.CodeGrpDto;
-import com.back.domain.dto.LoginDto;
 import com.back.domain.params.CodeGrpParam;
 import com.back.support.ConvertUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
-import javax.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class CodeGrpCustomRepository {
-    private final EntityManager entityManager;
     private final JPAQueryFactory queryFactory;
 
-    public CodeGrpCustomRepository(EntityManager em){
-        this.entityManager = em;
-        this.queryFactory = new JPAQueryFactory(em);
-    }
 
     /* 메소드명 : findAllWithPaging
      * 기능 : 코드 그룹을 조회한다.
-     * 파라미터 : UserParam
+     * 파라미터 : CodeGrpParam
      */
     public Page<CodeGrpDto> findAllWithPaging(CodeGrpParam codeGrpParam, Pageable pageable) {
         List<CodeGrpDto> content = queryFactory
@@ -37,11 +32,14 @@ public class CodeGrpCustomRepository {
                     codeGrp.id.as("codeGrpId"),
                     codeGrp.codeGrpNm,
                     codeGrp.codeGrpVal,
+                    codeGrp.useYn,
+                    ConvertUtils.getParseCodeNm("USE_YN", codeGrp.useYn).as("useYnLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(codeGrp.createdAt).as("createdAtLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(codeGrp.updatedAt).as("updatedAtLabel"),
                     codeGrp.createdId,
+                    ConvertUtils.getParseUserNm(codeGrp.createdId).as("createdIdLabel"),
                     codeGrp.updatedId,
-                    codeGrp.useYn
+                    ConvertUtils.getParseUserNm(codeGrp.updatedId).as("updatedIdLabel")
                 )
             )
             .from(codeGrp)
@@ -80,11 +78,14 @@ public class CodeGrpCustomRepository {
                     codeGrp.id.as("codeGrpId"),
                     codeGrp.codeGrpNm,
                     codeGrp.codeGrpVal,
+                    codeGrp.useYn,
+                    ConvertUtils.getParseCodeNm("USE_YN", codeGrp.useYn).as("useYnLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(codeGrp.createdAt).as("createdAtLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(codeGrp.updatedAt).as("updatedAtLabel"),
                     codeGrp.createdId,
+                    ConvertUtils.getParseUserNm(codeGrp.createdId).as("createdIdLabel"),
                     codeGrp.updatedId,
-                    codeGrp.useYn
+                    ConvertUtils.getParseUserNm(codeGrp.updatedId).as("updatedIdLabel")
                 )
             )
             .from(codeGrp)

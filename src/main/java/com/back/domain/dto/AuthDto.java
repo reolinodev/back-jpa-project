@@ -18,6 +18,8 @@ public class AuthDto {
 
     public String authRole;
 
+    public String authRoleLabel;
+
     public String ord;
 
     public String memo;

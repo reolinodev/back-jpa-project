@@ -19,15 +19,15 @@ class CodeGrpServiceTest {
     void createCodeGrp() {
         //given
         CodeGrpParam codeGrpParam = new CodeGrpParam();
-        codeGrpParam.codeGrpNm ="사용여부";
-        codeGrpParam.codeGrpVal ="USE-YN";
+        codeGrpParam.codeGrpNm ="권한구분";
+        codeGrpParam.codeGrpVal ="AUTH_ROLE";
 
         //when
         CodeGrp result  = codeGrpService.createCodeGrp(codeGrpParam);
         System.out.println("result = " + result);
 
         //then
-        Assertions.assertEquals("사용여부", result.codeGrpNm);
+        Assertions.assertEquals("권한구분", result.codeGrpNm);
     }
 
 

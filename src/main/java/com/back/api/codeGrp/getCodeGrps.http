@@ -14,7 +14,7 @@ Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0i
 {
   "useYn": "Y",
   "codeGrpNm" : "사용여부",
-  "codeGrpVal" : "USE-YN"
+  "codeGrpVal" : "USE_YN"
 }
 
 

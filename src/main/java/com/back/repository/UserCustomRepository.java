@@ -10,22 +10,16 @@ import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
-import javax.persistence.EntityManager;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 @Repository
+@RequiredArgsConstructor
 public class UserCustomRepository {
-    private final EntityManager entityManager;
     private final JPAQueryFactory queryFactory;
-
-    public UserCustomRepository(EntityManager em){
-        this.entityManager = em;
-        this.queryFactory = new JPAQueryFactory(em);
-    }
-
 
     /* 메소드명 : findAllWithPaging
      * 기능 : 페이징 처리된 조회
@@ -40,15 +34,16 @@ public class UserCustomRepository {
                     user.userNm,
                     user.telNo,
                     user.useYn,
-//                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnLabel"),
+                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(user.lastLoginAt).as("lastLoginLabel"),
                     user.pwInitYn,
                     user.loginFailCnt,
                     ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAtLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtLabel"),
                     user.createdId,
-                    user.updatedId
-                    //todo 아이디 이름으로 변환하는 함수 추가
+                    ConvertUtils.getParseUserNm(user.createdId).as("createdIdLabel"),
+                    user.updatedId,
+                    ConvertUtils.getParseUserNm(user.updatedId).as("updatedIdLabel")
                 )
             )
             .from(user)
@@ -88,15 +83,16 @@ public class UserCustomRepository {
                     user.userNm,
                     user.telNo,
                     user.useYn,
-//                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnLabel"),
+                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(user.lastLoginAt).as("lastLoginLabel"),
                     user.pwInitYn,
                     user.loginFailCnt,
                     ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAtLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtLabel"),
                     user.createdId,
-                    user.updatedId
-                    //todo 아이디 이름으로 변환하는 함수 추가
+                    ConvertUtils.getParseUserNm(user.createdId).as("createdIdLabel"),
+                    user.updatedId,
+                    ConvertUtils.getParseUserNm(user.updatedId).as("updatedIdLabel")
                 )
             )
             .from(user)
@@ -120,12 +116,16 @@ public class UserCustomRepository {
                     user.userNm,
                     user.telNo,
                     user.useYn,
-//                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnLabel"),
+                    ConvertUtils.getParseCodeNm("USE_YN", user.useYn).as("useYnLabel"),
                     ConvertUtils.getParseLocalDateTimeToString(user.lastLoginAt).as("lastLoginLabel"),
                     user.pwInitYn,
                     user.loginFailCnt,
                     ConvertUtils.getParseLocalDateTimeToString(user.createdAt).as("createdAtLabel"),
-                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtLabel")
+                    ConvertUtils.getParseLocalDateTimeToString(user.updatedAt).as("updatedAtLabel"),
+                    user.createdId,
+                    ConvertUtils.getParseUserNm(user.createdId).as("createdIdLabel"),
+                    user.updatedId,
+                    ConvertUtils.getParseUserNm(user.updatedId).as("updatedIdLabel")
                 )
             )
             .from(user)
