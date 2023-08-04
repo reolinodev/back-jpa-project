@@ -51,6 +51,10 @@ public class Auth extends BaseEntity {
     @ToString.Exclude
     public List<UserAuth> userAuths = new ArrayList<>();
 
+    @OneToMany(mappedBy = "auth", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    public List<MenuAuth> menuAuths = new ArrayList<>();
+
     public void setCreateParam(AuthParam authParam) {
         this.authNm = authParam.authNm;
         this.authVal = authParam.authVal;

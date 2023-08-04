@@ -2,10 +2,14 @@ package com.back.domain;
 
 import com.back.domain.common.BaseEntity;
 import com.back.domain.params.MenuParam;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -54,6 +58,10 @@ public class Menu extends BaseEntity {
 
     //게시판유형
     public String boardType;
+
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    public List<MenuAuth> menuAuths = new ArrayList<>();
 
     public void setCreateParam(MenuParam menuParam) {
         this.menuNm = menuParam.menuNm;
