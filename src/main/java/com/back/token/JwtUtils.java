@@ -56,9 +56,8 @@ public class JwtUtils {
             .setExpiration(new Date(System.currentTimeMillis() + accessTokenValidTime))
             .claim("userId", loginDto.userId)
             .claim("loginId", loginDto.loginId)
-//            .claim("auth_id", loginDto.auth_id)
+            .claim("authId", loginDto.authId)
             .claim("userNm", loginDto.userNm)
-            .claim("userPw", loginDto.userPw)
             .signWith(SignatureAlgorithm.HS256, secretKey).compact();
     }
 
@@ -70,9 +69,8 @@ public class JwtUtils {
             .setExpiration(new Date(System.currentTimeMillis() + refreshTokenValidTime))
             .claim("userId", loginDto.userId)
             .claim("loginId", loginDto.loginId)
-//            .claim("auth_id", loginDto.auth_id)
+            .claim("authId", loginDto.authId)
             .claim("userNm", loginDto.userNm)
-            .claim("userPw", loginDto.userPw)
             .signWith(SignatureAlgorithm.HS256, secretKey).compact();
     }
 
@@ -91,10 +89,14 @@ public class JwtUtils {
         return Long.valueOf((int) getClaims(token).get("userId"));
     }
 
+    public Long getTokenAuthId(String token) {
+        return Long.valueOf((int) getClaims(token).get("authId"));
+    }
+
 
     public Authentication getAuthentication(String token) {
         String loginId = this.getTokenInfo(token,"loginId");
-        String userPw = this.getTokenInfo(token,"userPw");
+        String userPw = secretKey;
         UserDetails userDetails = new org.springframework.security.core.userdetails.User(loginId, userPw, new ArrayList<>());
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }

@@ -14,6 +14,10 @@ public class ConvertUtils {
         return Expressions.stringTemplate("to_char({0}, {1})", params, "yyyy-mm-dd HH:mm:ss");
     }
 
+    public static StringTemplate getParseLocalDateTimeToStringYYYYMMDD(DateTimePath<LocalDateTime> params) {
+        return Expressions.stringTemplate("to_char({0}, {1})", params, "yyyy-mm-dd");
+    }
+
     public static StringTemplate getParseCodeNm(String codeGrpValue, StringExpression params) {
         return Expressions.stringTemplate("ws.fn_get_code_nm({0}, {1})", codeGrpValue, params);
     }

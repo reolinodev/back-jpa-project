@@ -14,13 +14,17 @@ public class LoginDto {
 
     public String loginId;
 
+    public Long authId;
+
+    public String authNm;
+
     public String userNm;
 
     public String telNo;
 
-    public String userPw;
-
     public String pwInitYn;
+
+    public int loginFailCnt;
 
     public String lastLoginLabel;
 }

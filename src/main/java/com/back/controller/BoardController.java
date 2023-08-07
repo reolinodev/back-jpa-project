@@ -1,10 +1,7 @@
 package com.back.controller;
 
-
-import com.back.domain.Auth;
 import com.back.domain.Board;
 import com.back.domain.common.ValidationGroups;
-import com.back.domain.dto.AuthDto;
 import com.back.domain.dto.BoardAuthDto;
 import com.back.domain.dto.BoardDto;
 import com.back.domain.params.BoardParam;

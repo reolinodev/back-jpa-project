@@ -7,7 +7,7 @@ POST http://localhost:8080/api/certification
 Content-Type: application/json
 
 {
-  "loginId":"test2@gmail.com",
+  "loginId":"test9@gmail.com",
   "userPw": "1111",
   "loginDevice":"WEB",
   "deviceBrowser": "Chrome"

@@ -1,0 +1,27 @@
+# name   : /api/post
+# method : PUT
+# descript : 게시글 정보를 목록형으로 가져온다. 사이즈나 페이지는 입력하지 않으면 10개, 1페이지가 기본으로 조회된다.
+# param  : boardId - 게시판 아이디 / 선택
+#        : useYn - 사용여부 / 선택
+#        : postTitle - 게시글명 / 선택
+#        : startDate - 게시글작성일(시작) / 선택
+#        : endDate - 게시글작성일(종료) / 선택
+#        : createdNm - 작성자명 / 선택
+#        : size - 페이지당 개수/ 선택
+#        : page - 현재페이지 / 선택
+
+POST http://localhost:8080/api/post
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAzMyIsImxvZ2luSWQiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyUHciOiIwZmZlMWFiZDFhMDgyMTUzNTNjMjMzZDZlMDA5NjEzZTk1ZWVjNDI1MzgzMmE3NjFhZjI4ZmYzN2FjNWExNTBjIiwiZXhwIjoyMDA2NzU0NTMyLCJpYXQiOjE2OTEzOTQ1MzIsInVzZXJJZCI6NCwiYXV0aElkIjoxfQ.Tc4s3Cioyj6IzpTuo0fsrcXL84PrI_DFjcTG-sO1V_8
+
+{
+  "boardId": 1,
+  "useYn": "Y",
+  "postTitle": "2번째",
+  "startDate": "2023-08-07",
+  "endDate": "2023-08-07",
+  "createdNm": "테스",
+  "size": 10,
+  "page": 1
+}
+

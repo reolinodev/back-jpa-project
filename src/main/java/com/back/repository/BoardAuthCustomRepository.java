@@ -70,5 +70,23 @@ public class BoardAuthCustomRepository {
     }
 
 
+    /* 메소드명 : countByBoardIdAndAuthId
+     * 기능 : 게시글 수정권한 조회
+     * 파라미터 : menuId, authId
+     */
+    public Long countByBoardIdAndAuthId(Long boardId, Long authId) {
+        return queryFactory
+            .select(
+                boardAuth.count()
+            )
+            .from(boardAuth)
+            .where(
+                boardAuth.board.id.eq(boardId),
+                boardAuth.auth.id.eq(authId)
+            )
+            .fetchOne();
+    }
+
+
     /************************* 조건절 ***************************/
 }

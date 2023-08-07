@@ -1,6 +1,5 @@
 package com.back.controller;
 
-
 import com.back.domain.LoginHistory;
 import com.back.domain.User;
 import com.back.domain.common.JwtHeader;
@@ -71,34 +70,26 @@ public class LoginController {
         }
 
         LoginDto loginDto = loginService.getLoginUser(loginParam.loginId);
-//
-//        if(loginData == null){
-//            message = "접속 권한이 없습니다.";
-//            code = "unauthorized";
-//            status = HttpStatus.UNAUTHORIZED;
-//
-//            jwtHeader = ResponseUtils.setJwtHeader(message, code, accessToken, refreshToken, httpServletRequest);
-//            responseMap.put("header", jwtHeader);
-//            return new ResponseEntity<>(responseMap, status);
-//        }
-//        else if(loginData.pw_fail_cnt > 5){
-//            message = "비밀번호 입력을 5회이상 실패하셨습니다. 관리자에게 문의 바랍니다.";
-//            code = "unauthorized";
-//            status = HttpStatus.UNAUTHORIZED;
-//
-//            jwtHeader = ResponseUtils.setJwtHeader(message, code, accessToken, refreshToken, httpServletRequest);
-//            responseMap.put("header", jwtHeader);
-//            return new ResponseEntity<>(responseMap, status);
-//        }else if("".equals(loginData.auth_id)){
-//            message = "사용자의 권한이 존재하지 않습니다. 관리자에게 문의 바랍니다.";
-//            code = "unauthorized";
-//            status = HttpStatus.UNAUTHORIZED;
-//
-//            jwtHeader = ResponseUtils.setJwtHeader(message, code, accessToken, refreshToken, httpServletRequest);
-//            responseMap.put("header", jwtHeader);
-//            return new ResponseEntity<>(responseMap, status);
-//        }
-//
+
+        if(loginDto.authId == null){
+            message = "사용자의 권한이 존재하지 않습니다. 관리자에게 문의 바랍니다.";
+            code = "unauthorized";
+            status = HttpStatus.UNAUTHORIZED;
+
+            jwtHeader = ResponseUtils.setJwtHeader(message, code, accessToken, refreshToken, httpServletRequest);
+            responseMap.put("header", jwtHeader);
+            return new ResponseEntity<>(responseMap, status);
+        }
+        else if(loginDto.loginFailCnt > 5){
+            message = "비밀번호 입력을 5회이상 실패하셨습니다. 관리자에게 문의 바랍니다.";
+            code = "unauthorized";
+            status = HttpStatus.UNAUTHORIZED;
+
+            jwtHeader = ResponseUtils.setJwtHeader(message, code, accessToken, refreshToken, httpServletRequest);
+            responseMap.put("header", jwtHeader);
+            return new ResponseEntity<>(responseMap, status);
+        }
+
         //토큰 생성 및 로그인 이력 생성
         message = "인증키가 생성되었습니다.";
         accessToken = jwtUtils.generateToken(loginDto);

@@ -3,7 +3,6 @@ package com.back.service;
 import com.back.domain.UserAuth;
 import com.back.domain.dto.UserAuthDto;
 import com.back.domain.dto.UserAuthInputDto;
-import com.back.domain.dto.UserDto;
 import com.back.domain.params.UserAuthParam;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
@@ -23,8 +22,8 @@ class UserAuthServiceTest {
     void createUserAuths() {
         //given
         UserAuthParam userAuthParam = new UserAuthParam();
-        userAuthParam.authId = 1L;
-        userAuthParam.userArr = new Long[]{2L, 6L, 9L};
+        userAuthParam.authId = 2L;
+        userAuthParam.userArr = new Long[]{1L, 2L, 3L, 4L};
         userAuthParam.createdId = 2L;
 
         //when

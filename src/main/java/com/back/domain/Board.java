@@ -1,8 +1,6 @@
 package com.back.domain;
 
-
 import com.back.domain.common.BaseEntity;
-import com.back.domain.params.AuthParam;
 import com.back.domain.params.BoardParam;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +50,9 @@ public class Board extends BaseEntity {
     @ToString.Exclude
     public List<BoardAuth> boardAuths = new ArrayList<>();
 
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    public List<Post> posts = new ArrayList<>();
 
     public void setCreateParam(BoardParam boardParam) {
         this.boardTitle = boardParam.boardTitle;

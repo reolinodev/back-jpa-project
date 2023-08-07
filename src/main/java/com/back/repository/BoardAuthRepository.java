@@ -20,5 +20,6 @@ public interface BoardAuthRepository extends JpaRepository <BoardAuth, Long> {
     @Query(value = updateUseYnNSql, nativeQuery = true)
     void deleteAllByBoardId(@Param("boardId") Long boardId, @Param("updatedId") Long updatedId);
 
+
 }
 

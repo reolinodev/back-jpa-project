@@ -1,6 +1,7 @@
 package com.back.repository;
 
 import static com.back.domain.QUser.user;
+import static com.back.domain.QUserAuth.userAuth;
 
 import com.back.domain.dto.LoginDto;
 import com.back.domain.dto.UserDto;
@@ -150,13 +151,18 @@ public class UserCustomRepository {
                     user.userPw,
                     ConvertUtils.getParseLocalDateTimeToString(user.lastLoginAt).as("lastLoginLabel"),
                     user.pwInitYn,
-                    user.loginFailCnt
+                    user.loginFailCnt,
+                    userAuth.auth.id.as("authId"),
+                    userAuth.auth.authNm.as("authNm")
                 )
             )
             .from(user)
+            .leftJoin(user.userAuths, userAuth)
             .where(
                 user.loginId.eq(loginId)
             )
+            .orderBy(userAuth.auth.ord.asc())
+            .limit(1)
             .fetchOne();
     }
 

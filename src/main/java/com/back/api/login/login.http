@@ -10,7 +10,7 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAzMyIsImxvZ2luSWQiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyUHciOiIwZmZlMWFiZDFhMDgyMTUzNTNjMjMzZDZlMDA5NjEzZTk1ZWVjNDI1MzgzMmE3NjFhZjI4ZmYzN2FjNWExNTBjIiwiZXhwIjoyMDA1NjEwNjkxLCJpYXQiOjE2OTAyNTA2OTEsInVzZXJJZCI6NH0.kGSGH9Q1VomglYmSkVKSCUYswY7Bz5BoSR3hZ4Cw-ZI
 
 {
-  "loginId":"test3@gmail.com",
-  "userPw": "1qaz2wsx!@"
+  "loginId":"admin@gmail.com",
+  "userPw": "1234"
 }
 
