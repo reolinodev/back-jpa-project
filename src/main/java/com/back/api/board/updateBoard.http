@@ -1,0 +1,22 @@
+# name   : /api/board/{id}
+# method : PUT
+# descript : 게시판울 수정한다.
+# param  : boardTitle - 게시판명 / 필수
+#        : memo - 비고 / 선택
+#        : useYn - 사용여부 / 필수
+#        : attachYn - 첨부파일사용여부 / 필수
+#        : commentYn - 댓글사용여부 / 필수
+#        : authIdArr - 수정권한목록 / 필수
+
+PUT http://localhost:8080/api/board/2
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
+
+{
+  "boardTitle": "FAQ",
+  "memo": "FAQ 게시판",
+  "useYn": "Y",
+  "attachYn": "Y",
+  "commentYn": "Y",
+  "authIdArr": [1]
+}

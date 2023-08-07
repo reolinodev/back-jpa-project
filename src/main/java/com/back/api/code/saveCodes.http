@@ -13,38 +13,35 @@
 
 
 
-PUT http://localhost:8080/api/code/2
+PUT http://localhost:8080/api/code/6
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
 
 {
   "createdRows": [
     {
-      "codeNm" : "60개",
-      "codeVal" : "60",
-      "memo" : "페이지당 60개",
-      "ord" : "6",
+      "codeNm" : "일반게시판",
+      "codeVal" : "POST",
+      "memo" : "",
+      "ord" : "1",
       "useYn" : "Y"
-    }
-  ],
-  "updatedRows": [
+    },
     {
-      "id" : 5,
-      "codeNm" : "40개",
-      "codeVal" : "40",
-      "memo" : "페이지당 40개",
-      "ord" : "4",
-      "useYn" : "N"
-    }
-  ],
-  "deletedRows": [
+      "codeNm" : "FAQ",
+      "codeVal" : "FAQ",
+      "memo" : " ",
+      "ord" : "2",
+      "useYn" : "Y"
+    },
     {
-      "id" : 7,
-      "codeNm" : "30개",
-      "codeVal" : "30",
-      "memo" : "페이지당 30개",
+      "codeNm" : "QNA",
+      "codeVal" : "QNA",
+      "memo" : " ",
       "ord" : "3",
       "useYn" : "Y"
     }
-  ]
+  ],
+  "updatedRows": [],
+  "deletedRows": []
+
 }

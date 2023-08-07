@@ -12,12 +12,12 @@ public class ValidationGroups {
     public interface CodeGrpUpdateGroup {};
     public interface MenuCreateGroup {};
     public interface MenuUpdateGroup {};
-//    public interface BoardCreateGroup {};
-//    public interface BoardUpdateGroup {};
-//    public interface PostCreateGroup {};
-//    public interface PostUpdateGroup {};
-//    public interface FaqCreateGroup {};
-//    public interface FaqUpdateGroup {};
-//    public interface QnaCreateGroup {};
-//    public interface QnaUpdateGroup {};
+    public interface BoardCreateGroup {};
+    public interface BoardUpdateGroup {};
+    public interface PostCreateGroup {};
+    public interface PostUpdateGroup {};
+    public interface FaqCreateGroup {};
+    public interface FaqUpdateGroup {};
+    public interface QnaCreateGroup {};
+    public interface QnaUpdateGroup {};
 }

@@ -40,7 +40,7 @@ class MenuAuthServiceTest {
         menuAuthParam.updatedId = 1L;
 
         //when
-        menuAuthService.saveMenuAuth(menuAuthParam);
+        menuAuthService.saveMenuAuths(menuAuthParam);
     }
 
 

@@ -1,0 +1,21 @@
+# name   : /api/board
+# method : PUT
+# descript : 게시판 정보를 목록형으로 가져온다. 사이즈나 페이지는 입력하지 않으면 10개, 1페이지가 기본으로 조회된다.
+# param  : boardType - 게시판유형 / 선택
+#        : useYn - 사용여부 / 선택
+#        : boardTitle - 게시판명 / 선택
+#        : size - 페이지당 개수/ 선택
+#        : page - 현재페이지 / 선택
+
+POST http://localhost:8080/api/board
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
+
+{
+  "boardType": "QNA",
+  "useYn": "Y",
+  "boardTitle": "QNA",
+  "size": 10,
+  "page": 1
+}
+
