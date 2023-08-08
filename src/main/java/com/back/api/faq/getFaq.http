@@ -1,0 +1,8 @@
+# name   : /api/faq/{id}
+# method : GET
+# descript : FAQ글의 상세 정보를 가져온다. 내 글인지 수정이 가능한 권한인지의 정보 역시 준다.
+# param  : id - FAQ글아이디 / 필수
+
+GET http://localhost:8080/api/faq/1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAzMyIsImxvZ2luSWQiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyUHciOiIwZmZlMWFiZDFhMDgyMTUzNTNjMjMzZDZlMDA5NjEzZTk1ZWVjNDI1MzgzMmE3NjFhZjI4ZmYzN2FjNWExNTBjIiwiZXhwIjoyMDA2NzU0NTMyLCJpYXQiOjE2OTEzOTQ1MzIsInVzZXJJZCI6NCwiYXV0aElkIjoxfQ.Tc4s3Cioyj6IzpTuo0fsrcXL84PrI_DFjcTG-sO1V_8

@@ -54,6 +54,10 @@ public class Board extends BaseEntity {
     @ToString.Exclude
     public List<Post> posts = new ArrayList<>();
 
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+    @ToString.Exclude
+    public List<Faq> faqs = new ArrayList<>();
+
     public void setCreateParam(BoardParam boardParam) {
         this.boardTitle = boardParam.boardTitle;
         this.boardType = boardParam.boardType;

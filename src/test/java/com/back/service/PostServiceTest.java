@@ -12,7 +12,6 @@ import org.springframework.data.domain.Page;
 @SpringBootTest
 class PostServiceTest {
 
-
     @Autowired
     private PostService postService;
 
