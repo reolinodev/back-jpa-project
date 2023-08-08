@@ -1,0 +1,23 @@
+# name   : /api/qna
+# method : PUT
+# descript : QNA를 등록한다.
+# param  : boardId - 게시판아이디 / 필수
+#        : qnaTitle - qna명 / 필수
+#        : questions - qna 질문 / 필수
+#        : hiddenYn - 공개글여부 / 필수
+#        : qnaPw - qna 패스워드 / hiddenYn이 Y이면 패스워드를 N이면 빈값을 보낸다.
+
+PUT http://localhost:8080/api/qna
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAzMyIsImxvZ2luSWQiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyUHciOiIwZmZlMWFiZDFhMDgyMTUzNTNjMjMzZDZlMDA5NjEzZTk1ZWVjNDI1MzgzMmE3NjFhZjI4ZmYzN2FjNWExNTBjIiwiZXhwIjoyMDA2NzU0NTMyLCJpYXQiOjE2OTEzOTQ1MzIsInVzZXJJZCI6NCwiYXV0aElkIjoxfQ.Tc4s3Cioyj6IzpTuo0fsrcXL84PrI_DFjcTG-sO1V_8
+
+{
+  "boardId": 5,
+  "qnaTitle":"세번째 질문입니다.",
+  "questions":"세번째 질문 내용입니다.",
+  "hiddenYn": "Y",
+  "qnaPw": "1111"
+}
+
+
+

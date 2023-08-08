@@ -1,18 +1,12 @@
 package com.back.service;
 
-
 import com.back.domain.Post;
-import com.back.domain.dto.BoardDto;
 import com.back.domain.dto.PostDto;
-import com.back.domain.params.BoardParam;
 import com.back.domain.params.PostParam;
 import com.back.repository.BoardAuthCustomRepository;
-import com.back.repository.BoardAuthRepository;
 import com.back.repository.BoardRepository;
 import com.back.repository.PostCustomRepository;
 import com.back.repository.PostRepository;
-import java.util.List;
-import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,7 +33,7 @@ public class PostService {
     }
 
     /**
-     * 게시판를 전체조회 합니다. 페이징처리
+     * 게시글을 전체조회 합니다. 페이징처리
      */
     public Page<PostDto> getPosts(PostParam postParam) {
         postParam.setPaging(postParam.page);
@@ -47,7 +41,7 @@ public class PostService {
     }
 
     /**
-     * 게시판를 상세조회 합니다.
+     * 게시글을 상세조회 합니다.
      */
     public PostDto getPost(Long id) {
         //상세 조회시 조회수를 1 올린다.
@@ -57,6 +51,10 @@ public class PostService {
         return postCustomRepository.findPostBy(id);
     }
 
+
+    /**
+     * 게시글을 수정합니다.
+     */
     public Post updatePost(Long id, PostParam postParam) {
         Post post = postRepository.findById(id).orElseThrow(RuntimeException::new);
         post.setUpdateParam(postParam);

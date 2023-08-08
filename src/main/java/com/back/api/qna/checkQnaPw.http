@@ -1,0 +1,14 @@
+# name   : /api/qna/qna-pw/{id}
+# method : POST
+# descript : 비밀글일 경우 패스워드가 맞는지 체크한다.
+# param  : id - qna 아이디 / 필수
+#        : qnaPw - qna 패스워드 / 필수
+
+
+POST http://localhost:8080/api/qna/qna-pw/2
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAzMyIsImxvZ2luSWQiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyUHciOiIwZmZlMWFiZDFhMDgyMTUzNTNjMjMzZDZlMDA5NjEzZTk1ZWVjNDI1MzgzMmE3NjFhZjI4ZmYzN2FjNWExNTBjIiwiZXhwIjoyMDA2NzU0NTMyLCJpYXQiOjE2OTEzOTQ1MzIsInVzZXJJZCI6NCwiYXV0aElkIjoxfQ.Tc4s3Cioyj6IzpTuo0fsrcXL84PrI_DFjcTG-sO1V_8
+
+{
+  "qnaPw": "1111"
+}

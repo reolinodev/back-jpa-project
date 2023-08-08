@@ -19,5 +19,6 @@ public class ValidationGroups {
     public interface FaqCreateGroup {};
     public interface FaqUpdateGroup {};
     public interface QnaCreateGroup {};
-    public interface QnaUpdateGroup {};
+    public interface QnaUserUpdateGroup {};
+    public interface QnaAdminUpdateGroup {};
 }
