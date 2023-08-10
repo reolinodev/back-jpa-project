@@ -1,0 +1,8 @@
+# name   : /api/item/menu/prn-menu/{authRole}
+# method : GET
+# descript : 권한 구분별로 상위 메뉴를 조회한다.
+# param  : authRole - 권한 구분 / 필수
+
+
+GET http://localhost:8080/api/item/menu/prn-menu/WEB
+Content-Type: application/json

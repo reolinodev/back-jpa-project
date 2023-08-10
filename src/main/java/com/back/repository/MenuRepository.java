@@ -54,5 +54,6 @@ public interface MenuRepository extends JpaRepository <Menu, Long> {
     int countByPrnMenuId(Long id);
 
     List<Menu> findByMenuLvAndPrnMenuId(int menuLv, Long prnMenuId);
+
 }
 

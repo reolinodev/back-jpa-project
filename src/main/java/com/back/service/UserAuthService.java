@@ -1,7 +1,7 @@
 package com.back.service;
 
-
 import com.back.domain.UserAuth;
+import com.back.domain.dto.MyAuthDto;
 import com.back.domain.dto.UserAuthDto;
 import com.back.domain.dto.UserAuthInputDto;
 import com.back.domain.params.UserAuthParam;
@@ -79,5 +79,9 @@ public class UserAuthService {
         }
 
         return  userAuthRepository.saveAll(list);
+    }
+
+    public List<MyAuthDto> getItemMyAuths(UserAuthParam userAuthParam) {
+        return userAuthCustomRepository.findMyUserAuth(userAuthParam);
     }
 }

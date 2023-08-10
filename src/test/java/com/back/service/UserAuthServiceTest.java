@@ -1,6 +1,7 @@
 package com.back.service;
 
 import com.back.domain.UserAuth;
+import com.back.domain.dto.MyAuthDto;
 import com.back.domain.dto.UserAuthDto;
 import com.back.domain.dto.UserAuthInputDto;
 import com.back.domain.params.UserAuthParam;
@@ -82,4 +83,20 @@ class UserAuthServiceTest {
         //then
 //        Assertions.assertEquals(1, result.getTotalElements());
     }
+
+    @Test
+    void getMyUserAuth() {
+        //given
+        UserAuthParam userAuthParam = new UserAuthParam();
+        userAuthParam.authRole = "WEB";
+        userAuthParam.userId = 1L;
+
+        //when
+        List<MyAuthDto> result  = userAuthService.getItemMyAuths(userAuthParam);
+        System.out.println("result = " + result);
+
+        //then
+        Assertions.assertEquals(2, result.size());
+    }
+
 }

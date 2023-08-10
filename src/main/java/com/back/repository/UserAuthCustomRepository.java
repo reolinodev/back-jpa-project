@@ -4,6 +4,7 @@ import static com.back.domain.QUser.user;
 import static com.back.domain.QAuth.auth;
 import static com.back.domain.QUserAuth.userAuth;
 
+import com.back.domain.dto.MyAuthDto;
 import com.back.domain.dto.UserAuthDto;
 import com.back.domain.dto.UserAuthInputDto;
 import com.back.domain.params.UserAuthParam;
@@ -13,7 +14,6 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
-import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -138,6 +138,34 @@ public class UserAuthCustomRepository {
             .fetchOne();
 
         return new PageImpl<>(content, pageable, count);
+    }
+
+    /* 메소드명 : findMyUserAuth
+     * 기능 : 내가 가진 권한의 목록을 조회한다.
+     * 파라미터 : UserAuthParam
+     */
+    public List<MyAuthDto> findMyUserAuth(UserAuthParam userAuthParam) {
+        return queryFactory
+            .select(
+                Projections.bean(MyAuthDto.class,
+                    userAuth.id.as("userAuthId"),
+                    user.id.as("userId"),
+                    auth.id.as("authId"),
+                    auth.authVal,
+                    auth.authRole,
+                    auth.authNm
+                )
+            )
+            .from(userAuth)
+            .where(
+                auth.useYn.eq("Y"),
+                userAuth.useYn.eq("Y"),
+                auth.authRole.eq(userAuthParam.authRole),
+                userAuth.user.id.eq(userAuthParam.userId)
+            )
+            .orderBy(auth.ord.when("").then("99")
+                .otherwise(auth.ord).castToNum(Integer.class).asc(), auth.createdAt.asc())
+            .fetch();
     }
 
     /************************* 조건절 ***************************/

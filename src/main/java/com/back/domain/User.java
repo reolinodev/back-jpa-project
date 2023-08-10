@@ -1,26 +1,18 @@
 package com.back.domain;
 
 import com.back.domain.common.BaseEntity;
-import com.back.domain.listener.UserHistoryListener;
 import com.back.domain.params.UserParam;
 import com.back.support.CryptUtils;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -34,7 +26,6 @@ import org.hibernate.annotations.ColumnDefault;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-//@EntityListeners({UserHistoryListener.class})
 @Table(name="TB_USER", schema = "ws")
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
@@ -68,23 +59,10 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @ToString.Exclude
     public List<LoginHistory> loginHistories = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    @ToString.Exclude
-//    public List<UserHistory> userHistories = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    @ToString.Exclude
-//    private List<Review> reviews = new ArrayList<>();
-//
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     @ToString.Exclude
     public List<UserAuth> userAuths = new ArrayList<>();
-//
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "deptCd", referencedColumnName = "deptCd")
-//    @ToString.Exclude
-//    public Dept dept;
 
     public void setCreateParam(UserParam userParam) throws NoSuchAlgorithmException {
         this.userNm = userParam.userNm;
@@ -94,7 +72,6 @@ public class User extends BaseEntity {
         this.useYn = userParam.useYn;
         this.createdId = userParam.createdId;
     }
-
 
     public void setUpdateParam(UserParam userParam) throws NoSuchAlgorithmException {
 

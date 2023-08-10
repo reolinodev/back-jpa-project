@@ -1,0 +1,8 @@
+# name   : /api/item/auth/auth-roles/{authRole}
+# method : GET
+# descript : 권한 구분별로 사용가능한 권한의 목록을 표시한다. 콤보박스 사용
+# param  : authRole - 권한 구분 / 필수
+
+
+GET http://localhost:8080/api/item/auth/auth-roles/WEB
+Content-Type: application/json

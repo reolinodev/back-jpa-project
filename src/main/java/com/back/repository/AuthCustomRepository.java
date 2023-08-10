@@ -104,6 +104,76 @@ public class AuthCustomRepository {
     }
 
 
+    /* 메소드명 : findAuthByUseYn
+     * 기능 : 사용가능한 권한 조회
+     * 파라미터 : id
+     */
+    public List<AuthDto> findAuthByUseYn() {
+        return queryFactory
+            .select(
+                Projections.bean(AuthDto.class,
+                    auth.id.as("authId"),
+                    auth.authNm,
+                    auth.authVal,
+                    auth.authRole,
+                    ConvertUtils.getParseCodeNm("AUTH_ROLE", auth.authRole).as("authRoleLabel"),
+                    auth.memo,
+                    auth.ord,
+                    auth.useYn,
+                    ConvertUtils.getParseCodeNm("USE_YN", auth.useYn).as("useYnLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(auth.createdAt).as("createdAtLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(auth.updatedAt).as("updatedAtLabel"),
+                    auth.createdId,
+                    ConvertUtils.getParseUserNm(auth.createdId).as("createdIdLabel"),
+                    auth.updatedId,
+                    ConvertUtils.getParseUserNm(auth.updatedId).as("updatedIdLabel")
+                )
+            )
+            .from(auth)
+            .where(
+                auth.useYn.eq("Y")
+            )
+            .orderBy(auth.ord.when("").then("99")
+                .otherwise(auth.ord).castToNum(Integer.class).asc(), auth.createdAt.asc())
+            .fetch();
+    }
+
+
+    /* 메소드명 : findAuthByAuthRole
+     * 기능 : 권한 구분별로 사용가능한 권한 조회
+     * 파라미터 : id
+     */
+    public List<AuthDto> findAuthByAuthRole(String authRole) {
+        return queryFactory
+            .select(
+                Projections.bean(AuthDto.class,
+                    auth.id.as("authId"),
+                    auth.authNm,
+                    auth.authVal,
+                    auth.authRole,
+                    ConvertUtils.getParseCodeNm("AUTH_ROLE", auth.authRole).as("authRoleLabel"),
+                    auth.memo,
+                    auth.ord,
+                    auth.useYn,
+                    ConvertUtils.getParseCodeNm("USE_YN", auth.useYn).as("useYnLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(auth.createdAt).as("createdAtLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(auth.updatedAt).as("updatedAtLabel"),
+                    auth.createdId,
+                    ConvertUtils.getParseUserNm(auth.createdId).as("createdIdLabel"),
+                    auth.updatedId,
+                    ConvertUtils.getParseUserNm(auth.updatedId).as("updatedIdLabel")
+                )
+            )
+            .from(auth)
+            .where(
+                auth.useYn.eq("Y"),
+                auth.authRole.eq(authRole)
+            )
+            .orderBy(auth.ord.when("").then("99")
+                .otherwise(auth.ord).castToNum(Integer.class).asc(), auth.createdAt.asc())
+            .fetch();
+    }
+
     /************************* 조건절 ***************************/
 
     private BooleanExpression authRoleEq(String authRole){

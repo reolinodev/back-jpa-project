@@ -48,6 +48,37 @@ public class CodeCustomRepository {
             .fetch();
     }
 
+
+    public List<CodeDto> findCodeByCodeGrpVal(String codeGrpVal) {
+        return queryFactory
+            .select(
+                Projections.bean(CodeDto.class,
+                    code.id.as("codeId"),
+                    code.codeNm,
+                    code.codeVal,
+                    code.ord,
+                    code.memo,
+                    code.useYn,
+                    code.prnCodeVal,
+                    ConvertUtils.getParseCodeNm("USE_YN", code.useYn).as("useYnLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(code.createdAt).as("createdAtLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(code.updatedAt).as("updatedAtLabel"),
+                    code.createdId,
+                    ConvertUtils.getParseUserNm(code.createdId).as("createdIdLabel"),
+                    code.updatedId,
+                    ConvertUtils.getParseUserNm(code.updatedId).as("updatedIdLabel")
+                )
+            )
+            .from(code)
+            .where(
+                code.codeGrp.codeGrpVal.eq(codeGrpVal),
+                code.useYn.eq("Y")
+            )
+            .orderBy(code.ord.when("").then("99")
+                .otherwise(code.ord).castToNum(Integer.class).asc(), code.createdAt.asc())
+            .fetch();
+    }
+
     /************************* 조건절 ***************************/
 
 }

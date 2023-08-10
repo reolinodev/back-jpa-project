@@ -105,6 +105,40 @@ public class BoardCustomRepository {
             .fetchOne();
     }
 
+    /* 메소드명 : findUsedBoardBy
+     * 기능 : 사용가능한 게시판 항목 조회
+     */
+    public List<BoardDto> findUsedBoards(String boardType) {
+        return queryFactory
+            .select(
+                Projections.bean(BoardDto.class,
+                    board.id.as("boardId"),
+                    board.boardTitle,
+                    board.boardType,
+                    ConvertUtils.getParseCodeNm("BOARD_TYPE", board.boardType).as("boardTypeLabel"),
+                    board.memo,
+                    board.attachYn,
+                    ConvertUtils.getParseCodeNm("ATTACH_YN", board.attachYn).as("attachYnLabel"),
+                    board.commentYn,
+                    ConvertUtils.getParseCodeNm("COMMENT_YN", board.commentYn).as("commentYnLabel"),
+                    board.useYn,
+                    ConvertUtils.getParseCodeNm("USE_YN", board.useYn).as("useYnLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(board.createdAt).as("createdAtLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(board.updatedAt).as("updatedAtLabel"),
+                    board.createdId,
+                    ConvertUtils.getParseUserNm(board.createdId).as("createdIdLabel"),
+                    board.updatedId,
+                    ConvertUtils.getParseUserNm(board.updatedId).as("updatedIdLabel")
+                )
+            )
+            .from(board)
+            .where(
+                board.useYn.eq("Y"),
+                board.boardType.eq(boardType)
+            )
+            .fetch();
+    }
+
 
     /************************* 조건절 ***************************/
 

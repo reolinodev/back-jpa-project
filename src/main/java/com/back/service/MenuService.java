@@ -46,13 +46,14 @@ public class MenuService {
         menuRepository.deleteById(id);
     }
 
+    public List<MenuDto> getItemPrnMenus(String authRole) {
+        return menuCustomRepository.findPrnMenuBy(authRole);
+    }
+
 //    public MenuEntity getUrlData(MenuEntity menuEntity) {
 //        return menuRepository.findUrlByAuthId(menuEntity);
 //    }
 //
-//    public List<MenuEntity> getMenuList(MenuEntity menuEntity) {
-//        return menuRepository.findByMenuLvAndAuthId(menuEntity);
-//    }
 
 
 }

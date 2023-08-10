@@ -85,4 +85,17 @@ class MenuServiceTest {
         Assertions.assertEquals(12, result.size());
     }
 
+    @Test
+    void getItemPrnMenus() {
+        //given
+        String authRole = "WEB";
+
+        //when
+        List<MenuDto> getPrnMenuListResult  = menuService.getItemPrnMenus(authRole);
+        System.out.println("result = " + getPrnMenuListResult);
+
+        //then
+        Assertions.assertEquals(4, getPrnMenuListResult.size());
+    }
+
 }

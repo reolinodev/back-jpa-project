@@ -24,6 +24,10 @@ public class CodeService {
         return codeCustomRepository.findCodeBy(codeGrpId);
     }
 
+    public List<CodeDto> getItemCodes(String codeGrpVal) {
+        return codeCustomRepository.findCodeByCodeGrpVal(codeGrpVal);
+    }
+
     public void saveCode(CodeParam codeParam) {
         Code[] createdRows = codeParam.createdRows;
         Code[] updatedRows = codeParam.updatedRows;

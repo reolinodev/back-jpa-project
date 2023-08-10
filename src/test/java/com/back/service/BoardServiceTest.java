@@ -101,4 +101,18 @@ class BoardServiceTest {
         //then
         Assertions.assertEquals(1, boardAuths.size());
     }
+
+
+    @Test
+    void getItemUsedBoards() {
+        //given
+        String boardType = "POST";
+
+        //when
+        List<BoardDto>  getUsedBoardsResult  = boardService.getItemUsedBoards(boardType);
+        System.out.println("result = " + getUsedBoardsResult);
+
+        //then
+        Assertions.assertEquals(1, getUsedBoardsResult.size());
+    }
 }

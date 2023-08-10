@@ -1,0 +1,7 @@
+# name   : /api/item/code/{codeGrpVal}
+# method : GET
+# descript : 코드그룹값에 해당하는 목록을 가져온다. 콤보박스 사용
+# param  : id - 코드그룹 값 / 필수
+
+GET http://localhost:8080/api/item/code/USE_YN
+Content-Type: application/json

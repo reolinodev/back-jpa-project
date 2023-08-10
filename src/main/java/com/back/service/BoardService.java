@@ -93,4 +93,8 @@ public class BoardService {
         return boardAuthCustomRepository.findAllByBoardId(id);
     }
 
+    public List<BoardDto> getItemUsedBoards(String boardType) {
+        return boardCustomRepository.findUsedBoards(boardType);
+    }
+
 }

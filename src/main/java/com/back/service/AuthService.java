@@ -5,6 +5,7 @@ import com.back.domain.dto.AuthDto;
 import com.back.domain.params.AuthParam;
 import com.back.repository.AuthCustomRepository;
 import com.back.repository.AuthRepository;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -67,5 +68,20 @@ public class AuthService {
         auth.useYn = "N";
         auth.updatedId = updatedId;
         return authRepository.save(auth);
+    }
+
+
+    /**
+     * 사용가능한 권한의 리스트를 조회한다
+     */
+    public List<AuthDto> getUsedAuths() {
+        return authCustomRepository.findAuthByUseYn();
+    }
+
+    /**
+     * 권한 구분별로 사용가능한 권한을 조회한다
+     */
+    public List<AuthDto> getItemAuthRoles(String authRole) {
+        return authCustomRepository.findAuthByAuthRole(authRole);
     }
 }

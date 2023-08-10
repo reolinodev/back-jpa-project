@@ -20,6 +20,8 @@ public class UserAuthParam extends Page {
 
     public long authId;
 
+    public long userId;
+
     public String authRole;
 
     public String authCd;
