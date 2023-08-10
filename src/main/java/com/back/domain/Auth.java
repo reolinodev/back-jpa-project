@@ -47,6 +47,9 @@ public class Auth extends BaseEntity {
     //비고
     public String memo;
 
+    //권한별 메인페이지
+    public String mainUrl;
+
     @OneToMany(mappedBy = "auth", cascade = CascadeType.ALL)
     @ToString.Exclude
     public List<UserAuth> userAuths = new ArrayList<>();
@@ -65,6 +68,7 @@ public class Auth extends BaseEntity {
         this.authRole = authParam.authRole;
         this.ord = authParam.ord;
         this.memo = authParam.memo;
+        this.mainUrl = authParam.mainUrl;
         this.createdId = authParam.createdId;
         this.useYn = "Y";
     }
@@ -87,6 +91,10 @@ public class Auth extends BaseEntity {
 
         if(authParam.useYn != null){
             this.useYn = authParam.useYn;
+        }
+
+        if(authParam.mainUrl != null){
+            this.mainUrl = authParam.mainUrl;
         }
     }
 }

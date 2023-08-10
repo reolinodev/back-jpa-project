@@ -92,5 +92,13 @@ public class User extends BaseEntity {
         if(userParam.useYn != null){
             this.useYn = userParam.useYn;
         }
+
+        if(userParam.useYn != null){
+            this.useYn = userParam.useYn;
+        }
+
+        if(userParam.pwInitYn != null){
+            this.pwInitYn = userParam.pwInitYn;
+        }
     }
 }
