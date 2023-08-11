@@ -4,6 +4,7 @@ import com.back.domain.Auth;
 import com.back.domain.Code;
 import com.back.domain.CodeGrp;
 import com.back.domain.Menu;
+import com.back.domain.MenuAuth;
 import com.back.domain.User;
 import com.back.domain.UserAuth;
 import com.back.domain.params.UserParam;
@@ -14,6 +15,7 @@ import com.back.repository.MenuAuthRepository;
 import com.back.repository.MenuRepository;
 import com.back.repository.UserAuthRepository;
 import com.back.repository.UserRepository;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -88,7 +90,12 @@ class InitServiceTest {
         auth3.ord = "3";
         auth3.createdId = 1L;
 
-        authRepository.saveAll(List.of(auth, auth2, auth3));
+        List<Auth> arr = new ArrayList<>();
+        arr.add(auth);
+        arr.add(auth2);
+        arr.add(auth3);
+
+        authRepository.saveAll(arr);
     }
 
 
@@ -115,7 +122,12 @@ class InitServiceTest {
         userAuth3.useYn ="Y";
         userAuth3.createdId = 1L;
 
-        userAuthRepository.saveAll(List.of(userAuth, userAuth2, userAuth3));
+        List<UserAuth> arr = new ArrayList<>();
+        arr.add(userAuth);
+        arr.add(userAuth2);
+        arr.add(userAuth3);
+
+        userAuthRepository.saveAll(arr);
     }
 
     @Test
@@ -126,6 +138,8 @@ class InitServiceTest {
 //      --4.게시판유형	BOARD_TYPE
 //      --5.공개여부	HIDDEN_YN
 //      --6.응답여부	RESPONSE_YN
+//      --7.URL유형	URL_TYPE
+
 
         CodeGrp codeGrp = new CodeGrp();
         codeGrp.codeGrpNm = "권한구분";
@@ -163,8 +177,22 @@ class InitServiceTest {
         codeGrp6.useYn = "Y";
         codeGrp6.createdId = 1L;
 
-        codeGrpRepository.saveAll(List.of(codeGrp, codeGrp2, codeGrp3, codeGrp4, codeGrp5, codeGrp6));
+        CodeGrp codeGrp7 = new CodeGrp();
+        codeGrp6.codeGrpNm = "URL유형";
+        codeGrp6.codeGrpVal = "URL_TYPE";
+        codeGrp6.useYn = "Y";
+        codeGrp6.createdId = 1L;
 
+        List<CodeGrp> arr = new ArrayList<>();
+        arr.add(codeGrp);
+        arr.add(codeGrp2);
+        arr.add(codeGrp3);
+        arr.add(codeGrp4);
+        arr.add(codeGrp5);
+        arr.add(codeGrp6);
+        arr.add(codeGrp7);
+
+        codeGrpRepository.saveAll(arr);
     }
 
     @Test
@@ -175,6 +203,7 @@ class InitServiceTest {
 //      --4.게시판유형	BOARD_TYPE
 //      --5.공개여부	HIDDEN_YN
 //      --6.응답여부	RESPONSE_YN
+//      --7.URL유형	URL_TYPE
 
         Code code = new Code();
         code.codeGrp = codeGrpRepository.findById(1L).orElseThrow(RuntimeException::new);
@@ -183,7 +212,6 @@ class InitServiceTest {
         code.useYn = "Y";
         code.createdId = 1L;
         code.ord = "1";
-
 
 
         Code code2 = new Code();
@@ -289,7 +317,50 @@ class InitServiceTest {
         code13.createdId = 1L;
         code13.ord = "2";
 
-        codeRepository.saveAll(List.of(code, code2, code3, code4, code5, code6, code7, code8, code9, code10, code11, code12, code13));
+        Code code14 = new Code();
+        code14.codeGrp = codeGrpRepository.findById(7L).orElseThrow(RuntimeException::new);
+        code14.codeNm = "도메인";
+        code14.codeVal = "DOMAIN";
+        code14.useYn = "Y";
+        code14.createdId = 1L;
+        code14.ord = "1";
+
+        Code code15 = new Code();
+        code15.codeGrp = codeGrpRepository.findById(7L).orElseThrow(RuntimeException::new);
+        code15.codeNm = "게시판";
+        code15.codeVal = "BOARD";
+        code15.useYn = "Y";
+        code15.createdId = 1L;
+        code15.ord = "2";
+
+        Code code16 = new Code();
+        code16.codeGrp = codeGrpRepository.findById(7L).orElseThrow(RuntimeException::new);
+        code16.codeNm = "사용안함";
+        code16.codeVal = "NONE";
+        code16.useYn = "Y";
+        code16.createdId = 1L;
+        code16.ord = "3";
+
+
+        List<Code> arr = new ArrayList<>();
+        arr.add(code);
+        arr.add(code2);
+        arr.add(code3);
+        arr.add(code4);
+        arr.add(code5);
+        arr.add(code6);
+        arr.add(code7);
+        arr.add(code8);
+        arr.add(code9);
+        arr.add(code10);
+        arr.add(code11);
+        arr.add(code12);
+        arr.add(code13);
+        arr.add(code14);
+        arr.add(code15);
+        arr.add(code16);
+
+        codeRepository.saveAll(arr);
     }
 
 
@@ -335,7 +406,14 @@ class InitServiceTest {
         menu4.ord = 4;
         menu4.createdId = 1L;
 
-        menuRepository.saveAll(List.of(menu, menu2, menu3, menu4));
+        List<Menu> arr = new ArrayList<>();
+        arr.add(menu);
+        arr.add(menu2);
+        arr.add(menu3);
+        arr.add(menu4);
+
+        menuRepository.saveAll(arr);
+
     }
 
 
@@ -458,7 +536,125 @@ class InitServiceTest {
         menu10.prnMenuId = 4L;
         menu10.createdId = 1L;
 
-        menuRepository.saveAll(List.of(menu, menu2, menu3, menu4, menu5, menu6, menu7, menu8, menu9, menu10));
+        List<Menu> arr = new ArrayList<>();
+        arr.add(menu);
+        arr.add(menu2);
+        arr.add(menu3);
+        arr.add(menu4);
+        arr.add(menu5);
+        arr.add(menu6);
+        arr.add(menu7);
+        arr.add(menu8);
+        arr.add(menu9);
+        arr.add(menu10);
+
+        menuRepository.saveAll(arr);
+    }
+
+    @Test
+    void createMenuAuth()  {
+        Auth auth =  authRepository.findById(1L).orElseThrow(RuntimeException::new);
+
+        MenuAuth menuAuth = new MenuAuth();
+        menuAuth.auth = auth;
+        menuAuth.menu = menuRepository.findById(1L).orElseThrow(RuntimeException::new);
+        menuAuth.createdId = 1L;
+        menuAuth.useYn = "Y";
+
+        MenuAuth menuAuth2 = new MenuAuth();
+        menuAuth2.auth = auth;
+        menuAuth2.menu = menuRepository.findById(2L).orElseThrow(RuntimeException::new);
+        menuAuth2.createdId = 1L;
+        menuAuth2.useYn = "Y";
+
+        MenuAuth menuAuth3 = new MenuAuth();
+        menuAuth3.auth = auth;
+        menuAuth3.menu = menuRepository.findById(3L).orElseThrow(RuntimeException::new);
+        menuAuth3.createdId = 1L;
+        menuAuth3.useYn = "Y";
+
+        MenuAuth menuAuth4 = new MenuAuth();
+        menuAuth4.auth = auth;
+        menuAuth4.menu = menuRepository.findById(4L).orElseThrow(RuntimeException::new);
+        menuAuth4.createdId = 1L;
+        menuAuth4.useYn = "Y";
+
+        MenuAuth menuAuth5 = new MenuAuth();
+        menuAuth5.auth = auth;
+        menuAuth5.menu = menuRepository.findById(5L).orElseThrow(RuntimeException::new);
+        menuAuth5.createdId = 1L;
+        menuAuth5.useYn = "Y";
+
+        MenuAuth menuAuth6 = new MenuAuth();
+        menuAuth6.auth = auth;
+        menuAuth6.menu = menuRepository.findById(6L).orElseThrow(RuntimeException::new);
+        menuAuth6.createdId = 1L;
+        menuAuth6.useYn = "Y";
+
+        MenuAuth menuAuth7 = new MenuAuth();
+        menuAuth7.auth = auth;
+        menuAuth7.menu = menuRepository.findById(7L).orElseThrow(RuntimeException::new);
+        menuAuth7.createdId = 1L;
+        menuAuth7.useYn = "Y";
+
+        MenuAuth menuAuth8 = new MenuAuth();
+        menuAuth8.auth = auth;
+        menuAuth8.menu = menuRepository.findById(8L).orElseThrow(RuntimeException::new);
+        menuAuth8.createdId = 1L;
+        menuAuth8.useYn = "Y";
+
+        MenuAuth menuAuth9 = new MenuAuth();
+        menuAuth9.auth = auth;
+        menuAuth9.menu = menuRepository.findById(9L).orElseThrow(RuntimeException::new);
+        menuAuth9.createdId = 1L;
+        menuAuth9.useYn = "Y";
+
+        MenuAuth menuAuth10 = new MenuAuth();
+        menuAuth10.auth = auth;
+        menuAuth10.menu = menuRepository.findById(10L).orElseThrow(RuntimeException::new);
+        menuAuth10.createdId = 1L;
+        menuAuth10.useYn = "Y";
+
+        MenuAuth menuAuth11 = new MenuAuth();
+        menuAuth11.auth = auth;
+        menuAuth11.menu = menuRepository.findById(11L).orElseThrow(RuntimeException::new);
+        menuAuth11.createdId = 1L;
+        menuAuth11.useYn = "Y";
+
+        MenuAuth menuAuth12 = new MenuAuth();
+        menuAuth12.auth = auth;
+        menuAuth12.menu = menuRepository.findById(12L).orElseThrow(RuntimeException::new);
+        menuAuth12.createdId = 1L;
+        menuAuth12.useYn = "Y";
+
+        MenuAuth menuAuth13 = new MenuAuth();
+        menuAuth13.auth = auth;
+        menuAuth13.menu = menuRepository.findById(13L).orElseThrow(RuntimeException::new);
+        menuAuth13.createdId = 1L;
+        menuAuth13.useYn = "Y";
+
+        MenuAuth menuAuth14 = new MenuAuth();
+        menuAuth14.auth = auth;
+        menuAuth14.menu = menuRepository.findById(14L).orElseThrow(RuntimeException::new);
+        menuAuth14.createdId = 1L;
+        menuAuth14.useYn = "Y";
+
+        List<MenuAuth> arr = new ArrayList<>();
+        arr.add(menuAuth);
+        arr.add(menuAuth2);
+        arr.add(menuAuth3);
+        arr.add(menuAuth4);
+        arr.add(menuAuth5);
+        arr.add(menuAuth6);
+        arr.add(menuAuth7);
+        arr.add(menuAuth8);
+        arr.add(menuAuth9);
+        arr.add(menuAuth10);
+        arr.add(menuAuth11);
+        arr.add(menuAuth12);
+        arr.add(menuAuth13);
+
+        menuAuthRepository.saveAll(arr);
     }
 
 

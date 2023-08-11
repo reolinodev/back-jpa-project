@@ -1,7 +1,9 @@
 package com.back.service;
 
 import com.back.domain.Code;
+import com.back.domain.dto.CodeDto;
 import com.back.domain.params.CodeParam;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -69,7 +71,7 @@ class CodeServiceTest {
     @Test
     public void  getCodeList() {
         Long codeGrpId = 2L;
-        var result = codeService.getCodes(codeGrpId);
+        List<CodeDto> result = codeService.getCodes(codeGrpId);
         System.out.println("<<"+result);
 
     }

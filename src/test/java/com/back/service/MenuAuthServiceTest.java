@@ -1,7 +1,9 @@
 package com.back.service;
 
+import com.back.domain.dto.MenuAuthDto;
 import com.back.domain.params.MenuAuthParam;
 import com.back.domain.params.MenuAuthRow;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -50,7 +52,7 @@ class MenuAuthServiceTest {
         Long menuId = 4L;
 
         //when
-        var result = menuAuthService.getMenuAuths(menuId);
+        List<MenuAuthDto> result = menuAuthService.getMenuAuths(menuId);
 
         System.out.println("<<"+result);
 

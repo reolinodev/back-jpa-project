@@ -7,7 +7,7 @@ spring:
   jpa:
     database-platform: com.back.config.PostgreSQLConfig
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: false
 
 
