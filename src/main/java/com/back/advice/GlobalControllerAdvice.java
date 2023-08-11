@@ -24,7 +24,9 @@ public class GlobalControllerAdvice {
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<?> exception(Exception e, HttpServletRequest httpServletRequest) {
 
-        LOGGER.debug(e.getClass().getName());
+        LOGGER.error("Called URL: "+httpServletRequest.getRequestURI());
+        LOGGER.error("Exception: "+e.getClass().getName());
+
         LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.message = e.getCause().getMessage();
@@ -39,6 +41,7 @@ public class GlobalControllerAdvice {
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseEntity<?> methodArgumentNotValidException(MethodArgumentNotValidException e,
         HttpServletRequest httpServletRequest) {
+
         List<ErrorMessage> errorList = new ArrayList<>();
 
         BindingResult bindingResult = e.getBindingResult();

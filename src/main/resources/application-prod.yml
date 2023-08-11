@@ -12,7 +12,12 @@ spring:
 
 jwt:
   secret: reolino
-  validLongYn: N
+  validLongYn: Y
   accessTokenValidTime: 28800000
   refreshTokenValidTime: 86400000
 
+logging:
+  level:
+    root: error
+  file:
+    name: c:/logs/app.log

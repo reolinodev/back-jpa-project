@@ -126,24 +126,31 @@ public class LoginController {
         HttpStatus status = HttpStatus.OK;
 
         LoginDto loginInfo = loginService.getLoginUser(loginParam.loginId);
-        String pwInitYn = loginInfo.pwInitYn;
 
-        //초기화를 안했을때
-        if("N".equals(pwInitYn)) {
-            message = "비밀번호 초기화가 필요합니다. 비밀번호 변경 화면으로 이동합니다.";
-            code = "pwchange";
-        }
-        if("N".equals(pwInitYn)) {
-            message = "비밀번호 초기화가 필요합니다. 비밀번호 변경 화면으로 이동합니다.";
-            code = "pwchange";
-        }
-        else{
-            User result = loginService.updateLastLoginDt(loginInfo.userId);
+        if(loginInfo == null){
+            message = "로그인에 실패하였습니다.";
+            code = "unauthorized";
+            status = HttpStatus.UNAUTHORIZED;
+        }else{
+            String pwInitYn = loginInfo.pwInitYn;
 
-            if(!Objects.equals(result.id, loginInfo.userId)){
-                message = "로그인에 실패하였습니다.";
-                code = "unauthorized";
-                status = HttpStatus.UNAUTHORIZED;
+            //초기화를 안했을때
+            if("N".equals(pwInitYn)) {
+                message = "비밀번호 초기화가 필요합니다. 비밀번호 변경 화면으로 이동합니다.";
+                code = "pwchange";
+            }
+            if("N".equals(pwInitYn)) {
+                message = "비밀번호 초기화가 필요합니다. 비밀번호 변경 화면으로 이동합니다.";
+                code = "pwchange";
+            }
+            else{
+                User result = loginService.updateLastLoginDt(loginInfo.userId);
+
+                if(!Objects.equals(result.id, loginInfo.userId)){
+                    message = "로그인에 실패하였습니다.";
+                    code = "unauthorized";
+                    status = HttpStatus.UNAUTHORIZED;
+                }
             }
         }
 
