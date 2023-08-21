@@ -183,6 +183,12 @@ class InitServiceTest {
         codeGrp7.useYn = "Y";
         codeGrp7.createdId = 1L;
 
+        CodeGrp codeGrp8 = new CodeGrp();
+        codeGrp8.codeGrpNm = "메뉴레벨";
+        codeGrp8.codeGrpVal = "MENU_LV";
+        codeGrp8.useYn = "Y";
+        codeGrp8.createdId = 1L;
+
         List<CodeGrp> arr = new ArrayList<>();
         arr.add(codeGrp);
         arr.add(codeGrp2);
@@ -191,6 +197,7 @@ class InitServiceTest {
         arr.add(codeGrp5);
         arr.add(codeGrp6);
         arr.add(codeGrp7);
+        arr.add(codeGrp8);
 
         codeGrpRepository.saveAll(arr);
     }
@@ -333,13 +340,22 @@ class InitServiceTest {
         code15.createdId = 1L;
         code15.ord = "2";
 
+
         Code code16 = new Code();
-        code16.codeGrp = codeGrpRepository.findById(7L).orElseThrow(RuntimeException::new);
-        code16.codeNm = "사용안함";
-        code16.codeVal = "NONE";
+        code16.codeGrp = codeGrpRepository.findById(8L).orElseThrow(RuntimeException::new);
+        code16.codeNm = "상위메뉴";
+        code16.codeVal = "1";
         code16.useYn = "Y";
         code16.createdId = 1L;
-        code16.ord = "3";
+        code16.ord = "2";
+
+        Code code17 = new Code();
+        code17.codeGrp = codeGrpRepository.findById(8L).orElseThrow(RuntimeException::new);
+        code17.codeNm = "하위메뉴";
+        code17.codeVal = "2";
+        code17.useYn = "Y";
+        code17.createdId = 1L;
+        code17.ord = "3";
 
 
         List<Code> arr = new ArrayList<>();
@@ -359,6 +375,7 @@ class InitServiceTest {
         arr.add(code14);
         arr.add(code15);
         arr.add(code16);
+        arr.add(code17);
 
         codeRepository.saveAll(arr);
     }
@@ -431,7 +448,7 @@ class InitServiceTest {
         menu.menuNm = "사용자정보";
         menu.menuLv = 2;
         menu.menuType ="DOMAIN";
-        menu.url ="";
+        menu.url ="/page/user/user";
         menu.useYn = "Y";
         menu.authRole = "WEB";
         menu.ord = 1;
@@ -442,7 +459,7 @@ class InitServiceTest {
         menu2.menuNm = "권한정보";
         menu2.menuLv = 2;
         menu2.menuType ="DOMAIN";
-        menu2.url ="";
+        menu2.url ="/page/user/auth";
         menu2.useYn = "Y";
         menu2.authRole = "WEB";
         menu2.ord = 2;
@@ -453,7 +470,7 @@ class InitServiceTest {
         menu3.menuNm = "사용자권한정보";
         menu3.menuLv = 2;
         menu3.menuType ="DOMAIN";
-        menu3.url ="";
+        menu3.url ="/page/user/userAuth";
         menu3.useYn = "Y";
         menu3.authRole = "WEB";
         menu3.ord = 3;
@@ -466,7 +483,7 @@ class InitServiceTest {
         menu4.menuNm = "메뉴정보";
         menu4.menuLv = 2;
         menu4.menuType ="DOMAIN";
-        menu4.url ="";
+        menu4.url ="/page/menu/menu";
         menu4.useYn = "Y";
         menu4.authRole = "WEB";
         menu4.ord = 1;
@@ -477,7 +494,7 @@ class InitServiceTest {
         menu5.menuNm = "메뉴권한정보";
         menu5.menuLv = 2;
         menu5.menuType ="DOMAIN";
-        menu5.url ="";
+        menu5.url ="/page/menu/menuAuth";
         menu5.useYn = "Y";
         menu5.authRole = "WEB";
         menu5.ord = 2;
@@ -489,7 +506,7 @@ class InitServiceTest {
         menu6.menuNm = "코드정보";
         menu6.menuLv = 2;
         menu6.menuType ="DOMAIN";
-        menu6.url ="";
+        menu6.url ="/page/mng/code";
         menu6.useYn = "Y";
         menu6.authRole = "WEB";
         menu6.ord = 1;
@@ -500,7 +517,7 @@ class InitServiceTest {
         menu7.menuNm = "게시판정보";
         menu7.menuLv = 2;
         menu7.menuType ="DOMAIN";
-        menu7.url ="";
+        menu7.url ="/page/board/board";
         menu7.useYn = "Y";
         menu7.authRole = "WEB";
         menu7.ord = 1;
@@ -511,7 +528,7 @@ class InitServiceTest {
         menu8.menuNm = "게시글정보";
         menu8.menuLv = 2;
         menu8.menuType ="DOMAIN";
-        menu8.url ="";
+        menu8.url ="/page/board/post/list/init";
         menu8.useYn = "Y";
         menu8.authRole = "WEB";
         menu8.ord = 2;
@@ -522,7 +539,7 @@ class InitServiceTest {
         menu9.menuNm = "FAQ정보";
         menu9.menuLv = 2;
         menu9.menuType ="DOMAIN";
-        menu9.url ="";
+        menu9.url ="/page/board/faq/list/init";
         menu9.useYn = "Y";
         menu9.authRole = "WEB";
         menu9.ord = 3;
@@ -533,7 +550,7 @@ class InitServiceTest {
         menu10.menuNm = "QNA정보";
         menu10.menuLv = 2;
         menu10.menuType ="DOMAIN";
-        menu10.url ="";
+        menu10.url ="/page/board/qna/list/init";
         menu10.useYn = "Y";
         menu10.authRole = "WEB";
         menu10.ord = 4;
@@ -657,6 +674,7 @@ class InitServiceTest {
         arr.add(menuAuth11);
         arr.add(menuAuth12);
         arr.add(menuAuth13);
+        arr.add(menuAuth14);
 
         menuAuthRepository.saveAll(arr);
     }
