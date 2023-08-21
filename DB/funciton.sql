@@ -33,3 +33,17 @@ END;
 $function$
 ;
 
+CREATE OR REPLACE FUNCTION ws.fn_get_menu_nm(p_menu_id bigint)
+ RETURNS character varying
+ LANGUAGE plpgsql
+AS $function$
+    declare v_menu_nm varchar := '';
+BEGIN
+select menu_nm into v_menu_nm
+from ws.tb_menu a
+where a.id = p_menu_id;
+
+return v_menu_nm;
+END;
+$function$
+;

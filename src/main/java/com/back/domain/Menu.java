@@ -17,6 +17,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 
 @Data
 @Builder
@@ -59,6 +60,10 @@ public class Menu extends BaseEntity {
     //게시판유형
     public String boardType;
 
+    //네비게이션 구성여부
+    @ColumnDefault("'Y'")
+    public String navYn;
+
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     @ToString.Exclude
     public List<MenuAuth> menuAuths = new ArrayList<>();
@@ -88,6 +93,8 @@ public class Menu extends BaseEntity {
             this.boardType = menuParam.boardType;
         }
 
+        this.navYn = menuParam.navYn;
+
         this.createdId = menuParam.createdId;
     }
 
@@ -115,6 +122,10 @@ public class Menu extends BaseEntity {
 
         if(menuParam.useYn != null){
             this.useYn = menuParam.useYn;
+        }
+
+        if(menuParam.navYn != null){
+            this.navYn = menuParam.navYn;
         }
 
         if("BOARD".equals(menuType)) {

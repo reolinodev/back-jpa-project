@@ -15,6 +15,8 @@ public class BoardAuthDto {
 
     public Long authId;
 
+    public String authNm;
+
     public String useYn;
 
     public String useYnLabel;

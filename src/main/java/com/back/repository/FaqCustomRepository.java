@@ -105,21 +105,21 @@ public class FaqCustomRepository {
 
     /************************* 조건절 ***************************/
     private BooleanExpression useYnEq(String useYn){
-        if(useYn == null){
+        if(useYn == null||"".equals(useYn)){
             return null;
         }
         return faq.useYn.eq(useYn);
     }
 
     private BooleanExpression boardIdEq(Long boardId){
-        if(boardId == null){
+        if(boardId == null||boardId==0){
             return null;
         }
         return faq.board.id.eq(boardId);
     }
 
     private BooleanExpression faqTitleLike(String faqTitle){
-        if(faqTitle == null){
+        if(faqTitle == null||"".equals(faqTitle)){
             return null;
         }
         return faq.faqTitle.toUpperCase().contains(faqTitle.toUpperCase());

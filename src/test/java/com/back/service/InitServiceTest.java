@@ -178,10 +178,10 @@ class InitServiceTest {
         codeGrp6.createdId = 1L;
 
         CodeGrp codeGrp7 = new CodeGrp();
-        codeGrp6.codeGrpNm = "URL유형";
-        codeGrp6.codeGrpVal = "URL_TYPE";
-        codeGrp6.useYn = "Y";
-        codeGrp6.createdId = 1L;
+        codeGrp7.codeGrpNm = "URL유형";
+        codeGrp7.codeGrpVal = "URL_TYPE";
+        codeGrp7.useYn = "Y";
+        codeGrp7.createdId = 1L;
 
         List<CodeGrp> arr = new ArrayList<>();
         arr.add(codeGrp);
@@ -372,6 +372,7 @@ class InitServiceTest {
         menu.menuType ="NONE";
         menu.url ="";
         menu.useYn = "Y";
+        menu.navYn = "Y";
         menu.authRole = "WEB";
         menu.ord = 1;
         menu.createdId = 1L;
@@ -382,6 +383,7 @@ class InitServiceTest {
         menu2.menuType ="NONE";
         menu2.url ="";
         menu2.useYn = "Y";
+        menu2.navYn = "Y";
         menu2.authRole = "WEB";
         menu2.ord = 2;
         menu2.createdId = 1L;
@@ -392,6 +394,7 @@ class InitServiceTest {
         menu3.menuType ="NONE";
         menu3.url ="";
         menu3.useYn = "Y";
+        menu3.navYn = "Y";
         menu3.authRole = "WEB";
         menu3.ord = 3;
         menu3.createdId = 1L;
@@ -402,6 +405,7 @@ class InitServiceTest {
         menu4.menuType ="NONE";
         menu4.url ="";
         menu4.useYn = "Y";
+        menu4.navYn = "Y";
         menu4.authRole = "WEB";
         menu4.ord = 4;
         menu4.createdId = 1L;

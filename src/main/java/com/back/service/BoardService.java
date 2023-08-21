@@ -89,12 +89,22 @@ public class BoardService {
         return saveResult;
     }
 
-    public List<BoardAuthDto> getBoardAuths(Long id) {
-        return boardAuthCustomRepository.findAllByBoardId(id);
+    public List<BoardAuthDto> getBoardAuths(Long id, String authRole) {
+        return boardAuthCustomRepository.findBoardAuths(id, authRole);
     }
 
     public List<BoardDto> getItemUsedBoards(String boardType) {
         return boardCustomRepository.findUsedBoards(boardType);
     }
+
+
+    public Long checkBoardAuth(Long boardId, Long authId) {
+        return boardAuthCustomRepository.countByBoardIdAndAuthId(boardId, authId);
+    }
+
+
+
+
+
 
 }

@@ -35,7 +35,7 @@ CREATE TABLE ws.tb_auth (
     auth_val varchar(20) NULL,
     memo varchar(100) NULL,
     ord varchar(10) NULL,
-    mainUrl varchar(255) NULL,
+    main_url varchar(255) NULL,
     created_at timestamp NOT NULL,
     created_id int8 NULL,
     updated_at timestamp NOT NULL,
@@ -75,6 +75,7 @@ CREATE TABLE ws.tb_menu (
     updated_at timestamp NOT NULL,
     updated_id int8 NULL,
     use_yn varchar(1) NULL DEFAULT 'Y'::character varying,
+    nav_yn varchar(1) NULL DEFAULT 'Y'::character varying,
     CONSTRAINT tb_menu_pkey PRIMARY KEY (id)
 );
 

@@ -79,7 +79,7 @@ public class MenuAuthService {
 
                 MenuAuth menuAuth = menuAuthCustomRepository.findByMenuIdAndAuthId(menu.id, updatedRow.authId);
 
-                if(menuAuth.id == null){
+                if(menuAuth == null || menuAuth.id == null){
                     menuAuth = new MenuAuth();
                     menuAuth.auth = authRepository.findById(updatedRow.authId).orElseThrow(RuntimeException::new);
                     menuAuth.menu = menu;

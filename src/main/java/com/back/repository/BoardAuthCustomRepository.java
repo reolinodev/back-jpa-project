@@ -1,6 +1,8 @@
 package com.back.repository;
 
+import static com.back.domain.QAuth.auth;
 import static com.back.domain.QBoardAuth.boardAuth;
+import static com.back.domain.QUser.user;
 
 import com.back.domain.BoardAuth;
 import com.back.domain.dto.BoardAuthDto;
@@ -87,6 +89,36 @@ public class BoardAuthCustomRepository {
             .fetchOne();
     }
 
+
+    /* 메소드명 : findAllAuthByMenu
+     * 기능 : 메뉴별 권한 목록 조회
+     * 파라미터 : id
+     */
+    public List<BoardAuthDto> findBoardAuths(Long boardId, String authRole) {
+        return queryFactory
+            .select(
+                Projections.bean(BoardAuthDto.class,
+                    auth.id.as("authId"),
+                    auth.authNm,
+                    boardAuth.useYn,
+                    boardAuth.useYn.coalesce("N").as("useYn"),
+                    boardAuth.createdId,
+                    ConvertUtils.getParseUserNm(boardAuth.createdId).as("createdIdLabel"),
+                    boardAuth.updatedId,
+                    ConvertUtils.getParseUserNm(boardAuth.updatedId).as("updatedIdLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(boardAuth.createdAt).as("createdAtLabel"),
+                    ConvertUtils.getParseLocalDateTimeToString(boardAuth.updatedAt).as("updatedAtLabel")
+                )
+            )
+            .from(auth)
+            .leftJoin(auth.boardAuths, boardAuth).on(boardAuth.board.id.eq(boardId),auth.authRole.eq(authRole))
+            .where(
+                auth.useYn.eq("Y")
+            )
+            .orderBy(auth.ord.when("").then("99")
+                .otherwise(auth.ord).castToNum(Integer.class).asc(), auth.createdAt.asc())
+            .fetch();
+    }
 
     /************************* 조건절 ***************************/
 }

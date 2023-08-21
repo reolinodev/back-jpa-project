@@ -5,7 +5,7 @@
 #        : loginDevice - 접속장비 / 선택
 #        : deviceBrowser - 브라우저 / 선택
 
-POST http://localhost:8080/api/certification
+POST http://localhost:9080/api/certification
 Content-Type: application/json
 
 {

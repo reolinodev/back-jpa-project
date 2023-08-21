@@ -3,6 +3,7 @@ package com.back.repository;
 import static com.back.domain.QAuth.auth;
 
 import com.back.domain.dto.AuthDto;
+import com.back.domain.dto.AuthUrlDto;
 import com.back.domain.params.AuthParam;
 import com.back.support.ConvertUtils;
 import com.querydsl.core.types.Projections;
@@ -93,7 +94,8 @@ public class AuthCustomRepository {
                     auth.createdId,
                     ConvertUtils.getParseUserNm(auth.createdId).as("createdIdLabel"),
                     auth.updatedId,
-                    ConvertUtils.getParseUserNm(auth.updatedId).as("updatedIdLabel")
+                    ConvertUtils.getParseUserNm(auth.updatedId).as("updatedIdLabel"),
+                    auth.mainUrl
                 )
             )
             .from(auth)
@@ -161,7 +163,8 @@ public class AuthCustomRepository {
                     auth.createdId,
                     ConvertUtils.getParseUserNm(auth.createdId).as("createdIdLabel"),
                     auth.updatedId,
-                    ConvertUtils.getParseUserNm(auth.updatedId).as("updatedIdLabel")
+                    ConvertUtils.getParseUserNm(auth.updatedId).as("updatedIdLabel"),
+                    auth.mainUrl
                 )
             )
             .from(auth)
@@ -174,31 +177,32 @@ public class AuthCustomRepository {
             .fetch();
     }
 
+
     /************************* 조건절 ***************************/
 
     private BooleanExpression authRoleEq(String authRole){
-        if(authRole == null){
+        if(authRole == null||"".equals(authRole)){
             return null;
         }
         return auth.authRole.eq(authRole);
     }
 
     private BooleanExpression useYnEq(String useYn){
-        if(useYn == null){
+        if(useYn == null||"".equals(useYn)){
             return null;
         }
         return auth.useYn.eq(useYn);
     }
 
     private BooleanExpression authNmLike(String authNm){
-        if(authNm == null){
+        if(authNm == null||"".equals(authNm)){
             return null;
         }
         return auth.authNm.toUpperCase().contains(authNm.toUpperCase());
     }
 
     private BooleanExpression authValLike(String authCd){
-        if(authCd == null){
+        if(authCd == null||"".equals(authCd)){
             return null;
         }
         return auth.authVal.toUpperCase().contains(authCd.toUpperCase());

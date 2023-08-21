@@ -7,15 +7,12 @@
 #        : loginId - 로그인아이디 / 선택
 
 
-POST http://localhost:8080/api/userAuth
+POST http://localhost:9080/api/userAuth
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLqtIDrpqzsnpAiLCJsb2dpbklkIjoiYWRtaW5AZ21haWwuY29tIiwiZXhwIjoyMDA3NTExNjYzLCJpYXQiOjE2OTIxNTE2NjMsInVzZXJJZCI6MSwiYXV0aElkIjoxfQ.MWxIkaDNnzjYO9HC7tuMGb-nWgJtGakDKCBTL8izu08
 
 {
-  "authRole": "WEB",
-  "authId": 1,
-  "userNm": "테스터8",
-  "loginId": "test"
+
 }
 
 

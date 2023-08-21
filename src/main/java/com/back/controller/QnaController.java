@@ -99,28 +99,34 @@ public class QnaController {
     }
 
     //QNA글이 비밀글일 경우 패스워드를 체크한다.
-    @PostMapping("/qna-pw/{id}")
-    public ResponseEntity<Map<String,Object>> getQna(@PathVariable Long id,
-        @RequestBody QnaParam qnaParam, HttpServletRequest httpServletRequest) throws Exception {
+    @GetMapping("/init-qna-pw/{id}")
+    public ResponseEntity<Map<String,Object>> initQnaPw(@PathVariable Long id, HttpServletRequest httpServletRequest) throws Exception {
         LinkedHashMap <String,Object> responseMap = new LinkedHashMap<>();
 
-        qnaParam.createdId = jwtUtils.getTokenUserId(jwtUtils.resolveToken(httpServletRequest));
+        QnaParam qnaParam = new QnaParam();
+        qnaParam.updatedId = jwtUtils.getTokenUserId(jwtUtils.resolveToken(httpServletRequest));
 
-        boolean checkQnaPwResult = qnaService.checkQnaPw(id, qnaParam);
+        Qna initQnaPwResult = qnaService.initQnaPw(id, qnaParam);
 
-        String message = "정상적으로 조회되었습니다.";
+        String message = "패스워드가 변경되었습니다.";
         String code = "ok";
+        HttpStatus status = HttpStatus.OK;
+
+        if(!initQnaPwResult.id.equals(id)){
+            message ="패스워드 변경이 실패되었습니다.";
+            code = "fail";
+            status = HttpStatus.BAD_REQUEST;
+        }
 
         responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));
-        responseMap.put("data", checkQnaPwResult);
 
-        return new ResponseEntity<> (responseMap,  HttpStatus.OK);
+        return new ResponseEntity<> (responseMap,  status);
     }
 
     //QNA글을 수정한다.(사용자가 자신의 글을 수정할 경우)
     @PutMapping("/user/{id}")
     public ResponseEntity<Map<String,Object>> updateUserQna(@PathVariable Long id,
-        @Validated(ValidationGroups.QnaUserUpdateGroup.class) @RequestBody QnaParam qnaParam, HttpServletRequest httpServletRequest) throws Exception {
+        @Validated(ValidationGroups.QnaUserUpdateGroup.class) @RequestBody QnaParam qnaParam, HttpServletRequest httpServletRequest) {
         LinkedHashMap <String,Object> responseMap = new LinkedHashMap<>();
 
         qnaParam.updatedId = jwtUtils.getTokenUserId(jwtUtils.resolveToken(httpServletRequest));

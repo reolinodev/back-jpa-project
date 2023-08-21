@@ -4,6 +4,7 @@ import com.back.domain.Post;
 import com.back.domain.common.ValidationGroups;
 import com.back.domain.dto.PostDto;
 import com.back.domain.params.PostParam;
+import com.back.service.BoardService;
 import com.back.service.PostService;
 import com.back.support.ResponseUtils;
 import com.back.token.JwtUtils;
@@ -30,6 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostController {
 
     private final PostService postService;
+    private final BoardService boardService;
+
     private final JwtUtils jwtUtils;
 
     //게시글을 전체조회한다
@@ -99,7 +102,6 @@ public class PostController {
         responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));
         responseMap.put("data", getPostResult);
         //수정권한이 있는지 체크해준다.
-        responseMap.put("modifyAuth", postService.checkPostAuth(id, jwtUtils.getTokenAuthId(jwtUtils.resolveToken(httpServletRequest))));
         responseMap.put("myPost", myPost);
 
         return new ResponseEntity<> (responseMap, HttpStatus.OK);
@@ -128,6 +130,25 @@ public class PostController {
 
         responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));
 
+
+        return new ResponseEntity<>(responseMap, status);
+    }
+
+    // 등록, 수정권한이 있는 게시판인지 확인한다.
+    @PostMapping("/auth")
+    public ResponseEntity<Map<String,Object>> checkBoardAuth(
+        @RequestBody PostParam postParam, HttpServletRequest httpServletRequest) {
+
+        LinkedHashMap <String,Object> responseMap = new LinkedHashMap<>();
+
+        Long checkBoardAuthResult = boardService.checkBoardAuth(postParam.boardId, postParam.authId);
+
+        String message = checkBoardAuthResult+"건이 조회되었습니다.";
+        String code = "ok";
+        HttpStatus status = HttpStatus.OK;
+
+        responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));
+        responseMap.put("data", checkBoardAuthResult);
 
         return new ResponseEntity<>(responseMap, status);
     }

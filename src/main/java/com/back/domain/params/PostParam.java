@@ -49,5 +49,8 @@ public class PostParam extends Page {
 
     //등록자명
     public String createdNm;
+
+    public Long authId;
+
 }
 

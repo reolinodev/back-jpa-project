@@ -59,4 +59,10 @@ public class MenuParam {
 
     //수정아이디
     public Long updatedId;
+
+    //네비게이션 구성여부
+    public String navYn;
+
+    //권한아이디
+    public Long authId;
 }

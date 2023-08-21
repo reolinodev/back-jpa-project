@@ -92,10 +92,10 @@ class BoardServiceTest {
     @Test
     void getBoardAuths() {
         //given
-        Long id = 2L;
+        Long id = 1L;
 
         //when
-        List<BoardAuthDto> boardAuths  = boardService.getBoardAuths(id);
+        List<BoardAuthDto> boardAuths  = boardService.getBoardAuths(id, "WEB");
         System.out.println("result = " + boardAuths);
 
         //then

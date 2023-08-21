@@ -172,28 +172,28 @@ public class UserAuthCustomRepository {
 
 
     private BooleanExpression AuthRoleEq(String authRole){
-        if(authRole == null){
+        if(authRole == null||"".equals(authRole)){
             return null;
         }
         return auth.authRole.eq(authRole);
     }
 
     private BooleanExpression AuthIdEq(Long authId){
-        if(authId == null){
+        if(authId == null||authId == 0){
             return null;
         }
         return auth.id.eq(authId);
     }
 
     private BooleanExpression loginIdLike(String loginId){
-        if(loginId == null){
+        if(loginId == null||"".equals(loginId)){
             return null;
         }
         return user.loginId.toUpperCase().contains(loginId.toUpperCase());
     }
 
     private BooleanExpression userNmLike(String userNm){
-        if(userNm == null){
+        if(userNm == null||"".equals(userNm)){
             return null;
         }
         return user.userNm.toUpperCase().contains(userNm.toUpperCase());

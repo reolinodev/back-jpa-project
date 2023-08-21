@@ -44,4 +44,6 @@ public class BoardDto {
     public Long updatedId;
 
     public String updatedIdLabel;
+
+    public String boardVal;
 }

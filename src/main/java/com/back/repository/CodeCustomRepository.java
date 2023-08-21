@@ -23,7 +23,7 @@ public class CodeCustomRepository {
         return queryFactory
             .select(
                 Projections.bean(CodeDto.class,
-                    code.id.as("codeId"),
+                    code.id,
                     code.codeNm,
                     code.codeVal,
                     code.ord,
@@ -53,7 +53,7 @@ public class CodeCustomRepository {
         return queryFactory
             .select(
                 Projections.bean(CodeDto.class,
-                    code.id.as("codeId"),
+                    code.id,
                     code.codeNm,
                     code.codeVal,
                     code.ord,

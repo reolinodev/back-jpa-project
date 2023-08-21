@@ -57,5 +57,6 @@ public class QnaParam extends Page {
     //등록자명
     public String createdNm;
 
+    public String responseYn;
 }
 

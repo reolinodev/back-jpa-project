@@ -18,6 +18,8 @@ public class PostDto {
 
     public String boardTitle;
 
+    public String mainText;
+
     public int viewCnt;
 
     public String boardType;

@@ -1,6 +1,7 @@
 package com.back.service;
 
 import com.back.domain.Menu;
+import com.back.domain.dto.MainMenuIF;
 import com.back.domain.dto.MenuDto;
 import com.back.domain.dto.MenuTreeIF;
 import com.back.domain.params.MenuParam;
@@ -96,6 +97,37 @@ class MenuServiceTest {
 
         //then
         Assertions.assertEquals(4, getPrnMenuListResult.size());
+    }
+
+
+    @Test
+    void getMainMenu() {
+        //given
+        Long authId = 1L;
+
+        //when
+        MainMenuIF result  = menuService.getMainMenu(authId);
+        System.out.println("result = " + result);
+
+        //then
+//        Assertions.assertEquals(12, MainMenuIF.);
+    }
+
+    @Test
+    void getMenusByAuth() {
+        //given
+        MenuParam menuParam = new MenuParam();
+        menuParam.authId = 1L;
+        menuParam.useYn = "Y";
+        menuParam.menuLv = 1;
+        menuParam.authRole = "WEB";
+
+        //when
+        List<MenuDto> getMenusByAuthResult  = menuService.getMenusByAuth(menuParam);
+        System.out.println("result = " + getMenusByAuthResult);
+
+        //then
+//        Assertions.assertEquals(12, MainMenuIF.);
     }
 
 }

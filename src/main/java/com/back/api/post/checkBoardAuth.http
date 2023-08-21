@@ -1,20 +1,16 @@
-# name   : /api/post
+# name   : /api/post/auth
 # method : POST
 # descript : 게시글 정보를 목록형으로 가져온다. 사이즈나 페이지는 입력하지 않으면 10개, 1페이지가 기본으로 조회된다.
-# param  : boardId - 게시판 아이디 / 선택
-#        : useYn - 사용여부 / 선택
-#        : postTitle - 게시글명 / 선택
-#        : startDate - 게시글작성일(시작) / 선택
-#        : endDate - 게시글작성일(종료) / 선택
-#        : createdNm - 작성자명 / 선택
-#        : size - 페이지당 개수/ 선택
-#        : page - 현재페이지 / 선택
+# param  : boardId - 게시판 아이디 / 필수
+#        : authId - 권한아이디 / 필수
 
-POST http://localhost:9080/api/post
+
+POST http://localhost:9080/api/post/auth
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLqtIDrpqzsnpAiLCJsb2dpbklkIjoiYWRtaW5AZ21haWwuY29tIiwiZXhwIjoyMDA3NTExNjYzLCJpYXQiOjE2OTIxNTE2NjMsInVzZXJJZCI6MSwiYXV0aElkIjoxfQ.MWxIkaDNnzjYO9HC7tuMGb-nWgJtGakDKCBTL8izu08
 
 {
-
+  "authId": 3,
+  "boardId": 1
 }
 

@@ -11,7 +11,7 @@ import lombok.ToString;
 @EqualsAndHashCode()
 public class CodeDto {
 
-    public Long codeId;
+    public Long id;
 
     public String codeNm;
 

@@ -91,17 +91,14 @@ class QnaServiceTest {
 
 
     @Test
-    void checkQnaPw() throws Exception {
+    void initQnaPw()  {
         //given
         QnaParam qnaParam = new QnaParam();
-        qnaParam.createdId = 4L;
-        qnaParam.qnaPw = "1111";
+        qnaParam.updatedId = 1L;
 
         //when
-        boolean checkQnaPwResult  = qnaService.checkQnaPw(2L, qnaParam);
-        System.out.println("result = " + checkQnaPwResult);
+        Qna initQnaPwResult  = qnaService.initQnaPw(3L, qnaParam);
+        System.out.println("result = " + initQnaPwResult);
 
-        //then
-        Assertions.assertTrue(checkQnaPwResult);
     }
 }

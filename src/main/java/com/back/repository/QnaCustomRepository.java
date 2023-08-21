@@ -4,6 +4,7 @@ import static com.back.domain.QQna.qna;
 import com.back.domain.dto.QnaDto;
 import com.back.domain.params.QnaParam;
 import com.back.support.ConvertUtils;
+import com.back.support.CryptUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -38,7 +39,7 @@ public class QnaCustomRepository {
                     qna.hiddenYn,
                     ConvertUtils.getParseCodeNm("HIDDEN_YN", qna.hiddenYn).as("hiddenYnLabel"),
                     qna.responseYn,
-                    ConvertUtils.getParseCodeNm("RESPONSE_YN", qna.responseYn).as("responseLabel"),
+                    ConvertUtils.getParseCodeNm("RESPONSE_YN", qna.responseYn.coalesce("N")).as("responseLabel"),
                     ConvertUtils.getParseLocalDateTimeToStringYYYYMMDD(qna.createdAt).as("createdAtLabel"),
                     ConvertUtils.getParseLocalDateTimeToStringYYYYMMDD(qna.updatedAt).as("updatedAtLabel"),
                     ConvertUtils.getParseLocalDateTimeToStringYYYYMMDD(qna.responseAt).as("responseAtLabel"),
@@ -48,7 +49,8 @@ public class QnaCustomRepository {
                     ConvertUtils.getParseUserNm(qna.updatedId).as("updatedIdLabel"),
                     qna.responseId,
                     ConvertUtils.getParseUserNm(qna.responseId).as("responseIdLabel"),
-                    qna.viewCnt
+                    qna.viewCnt,
+                    qna.qnaPw
                 )
             )
             .from(qna)
@@ -57,6 +59,7 @@ public class QnaCustomRepository {
                 boardIdEq(qnaParam.boardId),
                 qnaTitleLike(qnaParam.qnaTitle),
                 createdNm(qnaParam.createdNm),
+                responseYnEq(qnaParam.responseYn),
                 createdAtBetween(qnaParam.startDate, qnaParam.endDate)
             )
             .orderBy(qna.createdAt.desc())
@@ -100,7 +103,7 @@ public class QnaCustomRepository {
                     qna.hiddenYn,
                     ConvertUtils.getParseCodeNm("HIDDEN_YN", qna.hiddenYn).as("hiddenYnLabel"),
                     qna.responseYn,
-                    ConvertUtils.getParseCodeNm("RESPONSE_YN", qna.responseYn).as("responseLabel"),
+                    ConvertUtils.getParseCodeNm("RESPONSE_YN", qna.responseYn.coalesce("N")).as("responseLabel"),
                     ConvertUtils.getParseLocalDateTimeToStringYYYYMMDD(qna.createdAt).as("createdAtLabel"),
                     ConvertUtils.getParseLocalDateTimeToStringYYYYMMDD(qna.updatedAt).as("updatedAtLabel"),
                     ConvertUtils.getParseLocalDateTimeToStringYYYYMMDD(qna.responseAt).as("responseAtLabel"),
@@ -110,7 +113,8 @@ public class QnaCustomRepository {
                     ConvertUtils.getParseUserNm(qna.updatedId).as("updatedIdLabel"),
                     qna.responseId,
                     ConvertUtils.getParseUserNm(qna.responseId).as("responseIdLabel"),
-                    qna.viewCnt
+                    qna.viewCnt,
+                    qna.qnaPw
                 )
             )
             .from(qna)
@@ -123,38 +127,47 @@ public class QnaCustomRepository {
 
     /************************* 조건절 ***************************/
     private BooleanExpression useYnEq(String useYn){
-        if(useYn == null){
+        if(useYn == null||"".equals(useYn)){
             return null;
         }
         return qna.useYn.eq(useYn);
     }
 
     private BooleanExpression boardIdEq(Long boardId){
-        if(boardId == null){
+        if(boardId == null||boardId == 0){
             return null;
         }
         return qna.board.id.eq(boardId);
     }
 
     private BooleanExpression qnaTitleLike(String qnaTitle){
-        if(qnaTitle == null){
+        if(qnaTitle == null||"".equals(qnaTitle)){
             return null;
         }
         return qna.qnaTitle.toUpperCase().contains(qnaTitle.toUpperCase());
     }
 
     private BooleanExpression createdAtBetween(String startDate, String endDate){
-        if(startDate == null){
+        if(startDate == null||"".equals(startDate)){
             return null;
         }
         return  ConvertUtils.getParseLocalDateTimeToStringYYYYMMDD(qna.createdAt).between(startDate, endDate);
     }
 
     private BooleanExpression createdNm(String createdNm){
-        if(createdNm == null){
+        if(createdNm == null||"".equals(createdNm)){
             return null;
         }
         return ConvertUtils.getParseUserNm(qna.createdId).toUpperCase().contains(createdNm.toUpperCase());
     }
+
+    private BooleanExpression responseYnEq(String responseYn){
+        if(responseYn == null||"".equals(responseYn)){
+            return null;
+        }
+        return qna.responseYn.coalesce("N").eq(responseYn);
+    }
+
+
 
 }

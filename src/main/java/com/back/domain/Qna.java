@@ -3,7 +3,6 @@ package com.back.domain;
 import com.back.domain.common.BaseEntity;
 import com.back.domain.params.QnaParam;
 import com.back.support.CryptUtils;
-import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -61,20 +60,20 @@ public class Qna extends BaseEntity {
     @ToString.Exclude
     public Board board;
 
-    public void setCreateParam(QnaParam qnaParam) throws NoSuchAlgorithmException {
+    public void setCreateParam(QnaParam qnaParam) {
         this.qnaTitle = qnaParam.qnaTitle;
         this.questions = qnaParam.questions;
         this.hiddenYn = qnaParam.hiddenYn;
 
         if("Y".equals(qnaParam.hiddenYn)&& qnaParam.qnaPw != null){
-            this.qnaPw = CryptUtils.encryptSha256(qnaParam.qnaPw);
+            this.qnaPw = CryptUtils.encrypt(qnaParam.qnaPw);
         }
 
         this.useYn = "Y";
         this.createdId = qnaParam.createdId;
     }
 
-    public void setUpdateParam(QnaParam qnaParam) throws NoSuchAlgorithmException {
+    public void setUpdateParam(QnaParam qnaParam) {
 
         this.updatedId = qnaParam.updatedId;
 
@@ -98,7 +97,7 @@ public class Qna extends BaseEntity {
             this.hiddenYn = qnaParam.hiddenYn;
 
             if("Y".equals(qnaParam.hiddenYn) && qnaParam.qnaPw != null){
-                this.qnaPw = CryptUtils.encryptSha256(qnaParam.qnaPw);
+                this.qnaPw = CryptUtils.encrypt(qnaParam.qnaPw);
             }else{
                 this.qnaPw = null;
             }

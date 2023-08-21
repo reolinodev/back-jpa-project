@@ -88,7 +88,7 @@ public class BoardController {
         String message = count+"건이 조회되었습니다.";
         String code = "ok";
 
-        List<BoardAuthDto> getBoardAuthsResult = boardService.getBoardAuths(id);
+        List<BoardAuthDto> getBoardAuthsResult = boardService.getBoardAuths(id, "WEB");
 
         responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));
         responseMap.put("data", getBoardResult);

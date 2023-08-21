@@ -99,21 +99,21 @@ public class CodeGrpCustomRepository {
 
 
     private BooleanExpression useYnEq(String useYn){
-        if(useYn == null){
+        if(useYn == null||"".equals(useYn)){
             return null;
         }
         return codeGrp.useYn.eq(useYn);
     }
 
     private BooleanExpression codeGrpNmLike(String codeGrpNm){
-        if(codeGrpNm == null){
+        if(codeGrpNm == null||"".equals(codeGrpNm)){
             return null;
         }
         return codeGrp.codeGrpNm.toUpperCase().contains(codeGrpNm.toUpperCase());
     }
 
     private BooleanExpression codeGrpValLike(String codeGrpVal){
-        if(codeGrpVal == null){
+        if(codeGrpVal == null||"".equals(codeGrpVal)){
             return null;
         }
         return codeGrp.codeGrpVal.toUpperCase().contains(codeGrpVal.toUpperCase());

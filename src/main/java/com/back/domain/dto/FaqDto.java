@@ -18,6 +18,8 @@ public class FaqDto {
 
     public String boardTitle;
 
+    public String mainText;
+
     public int viewCnt;
 
     public String boardType;

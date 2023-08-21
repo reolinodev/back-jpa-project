@@ -66,15 +66,11 @@ public class UserAuthService {
     public List<UserAuth> deleteUserAuth(UserAuthParam userAuthParam) {
         List<UserAuth> list = new ArrayList<>();
 
-        Long[] userArr = userAuthParam.userArr;
-        for (Long userId : userArr) {
-            UserAuth userAuth = userAuthRepository.findByUserIdAndAuthId(userId, userAuthParam.authId);
-
-            if(userAuth != null){
-                userAuth.useYn = "N";
-                userAuth.updatedId = userAuthParam.updatedId;
-            }
-
+        Long[] userAuthArr = userAuthParam.userAuthArr;
+        for (Long userAuthId : userAuthArr) {
+            UserAuth userAuth = userAuthRepository.findById(userAuthId).orElseThrow(RuntimeException::new);
+            userAuth.useYn = "N";
+            userAuth.updatedId = userAuthParam.updatedId;
             list.add(userAuth);
         }
 

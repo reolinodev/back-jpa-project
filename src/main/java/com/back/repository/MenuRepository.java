@@ -1,6 +1,7 @@
 package com.back.repository;
 
 import com.back.domain.Menu;
+import com.back.domain.dto.MainMenuIF;
 import com.back.domain.dto.MenuTreeIF;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -55,5 +56,32 @@ public interface MenuRepository extends JpaRepository <Menu, Long> {
 
     List<Menu> findByMenuLvAndPrnMenuId(int menuLv, Long prnMenuId);
 
+    String getMainMenuSql =
+        "    SELECT ID as menuId \n"
+        +"      , MENU_NM as menuNm\n"
+        + "     , MENU_LV as menuLv\n"
+        + "     , PRN_MENU_ID as prnMenuId\n"
+        + "     , URL\n"
+        + "     , (SELECT MENU_NM FROM ws.TB_MENU C WHERE c.id = A.PRN_MENU_ID) AS prnMenuNm\n"
+        + "  FROM WS.TB_MENU A\n"
+        + "  WHERE URL = (SELECT MAIN_URL \n"
+        + "               FROM WS.TB_AUTH \n"
+        + "               WHERE ID = :authId\n"
+        + "               )\n"
+        + "       AND PRN_MENU_ID IS NOT NULL\n"
+        + "  UNION ALL \n"
+        + "  SELECT  ID as menuId\n"
+        + "          , MENU_NM as menuNm\n"
+        + "          , MENU_LV as menuLv\n"
+        + "          , PRN_MENU_ID as prnMenuId\n"
+        + "          , URL\n"
+        + "          ,  (SELECT MENU_NM FROM ws.TB_MENU C WHERE c.id = A.PRN_MENU_ID) AS prnMenuNm\n"
+        + "  FROM WS.TB_MENU A   \n"
+        + "  WHERE MENU_LV = 2\n"
+        + "  AND USE_YN = 'Y'\n"
+        + "  LIMIT 1";
+
+    @Query(value = getMainMenuSql, nativeQuery = true)
+    MainMenuIF getMainMenu(@Param("authId") Long authId);
 }
 

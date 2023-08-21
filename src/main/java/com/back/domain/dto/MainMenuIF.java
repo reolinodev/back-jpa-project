@@ -1,13 +1,10 @@
 package com.back.domain.dto;
 
-public interface MenuTreeIF {
+public interface MainMenuIF {
      Long getMenuId();
      String getMenuNm();
+     int getMenuLv();
      Long getPrnMenuId();
      String getUrl();
-     int getOrd();
-     int getMenuLv();
-     String getMenuType();
-     String getUseYn();
      String getPrnMenuNm();
 }

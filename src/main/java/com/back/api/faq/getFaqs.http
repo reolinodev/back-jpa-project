@@ -7,15 +7,11 @@
 #        : size - 페이지당 개수/ 선택
 #        : page - 현재페이지 / 선택
 
-POST http://localhost:8080/api/faq
+POST http://localhost:9080/api/faq
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAzMyIsImxvZ2luSWQiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyUHciOiIwZmZlMWFiZDFhMDgyMTUzNTNjMjMzZDZlMDA5NjEzZTk1ZWVjNDI1MzgzMmE3NjFhZjI4ZmYzN2FjNWExNTBjIiwiZXhwIjoyMDA2NzU0NTMyLCJpYXQiOjE2OTEzOTQ1MzIsInVzZXJJZCI6NCwiYXV0aElkIjoxfQ.Tc4s3Cioyj6IzpTuo0fsrcXL84PrI_DFjcTG-sO1V_8
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLqtIDrpqzsnpAiLCJsb2dpbklkIjoiYWRtaW5AZ21haWwuY29tIiwiZXhwIjoyMDA3NTExNjYzLCJpYXQiOjE2OTIxNTE2NjMsInVzZXJJZCI6MSwiYXV0aElkIjoxfQ.MWxIkaDNnzjYO9HC7tuMGb-nWgJtGakDKCBTL8izu08
 
 {
-  "boardId": 2,
-  "useYn": "Y",
-  "faqTitle": "faq",
-  "size": 10,
-  "page": 1
+
 }
 

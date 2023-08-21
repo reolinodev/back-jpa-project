@@ -109,7 +109,7 @@ public class UserAuthController {
         String code = "ok";
         HttpStatus status = HttpStatus.OK;
 
-        if(deleteUserAuthResult.size() != userAuthParam.userArr.length){
+        if(deleteUserAuthResult.size() != userAuthParam.userAuthArr.length){
             message ="사용자 권한 삭제에 실패하였습니다.";
             code = "fail";
             status = HttpStatus.BAD_REQUEST;

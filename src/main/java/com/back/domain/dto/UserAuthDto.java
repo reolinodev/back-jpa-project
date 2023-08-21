@@ -10,6 +10,8 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode()
 public class UserAuthDto {
+    public Long userAuthId;
+
     public Long userId;
 
     public Long authId;

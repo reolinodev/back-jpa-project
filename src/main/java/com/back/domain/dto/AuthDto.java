@@ -39,4 +39,7 @@ public class AuthDto {
     public Long updatedId;
 
     public String updatedIdLabel;
+
+    public String mainUrl;
+
 }

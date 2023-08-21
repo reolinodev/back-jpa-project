@@ -169,21 +169,21 @@ public class UserCustomRepository {
     /************************* 조건절 ***************************/
 
     private BooleanExpression loginIdLike(String loginId){
-        if(loginId == null){
+        if(loginId == null||loginId.equals("")){
             return null;
         }
         return user.loginId.toUpperCase().contains(loginId.toUpperCase());
     }
 
     private BooleanExpression useYnEq(String useYn){
-        if(useYn == null){
+        if(useYn == null||useYn.equals("")){
             return null;
         }
         return user.useYn.eq(useYn);
     }
 
     private BooleanExpression userNmLike(String userNm){
-        if(userNm == null){
+        if(userNm == null||userNm.equals("")){
             return null;
         }
         return user.userNm.toUpperCase().contains(userNm.toUpperCase());

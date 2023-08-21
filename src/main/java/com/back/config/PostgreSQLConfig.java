@@ -10,5 +10,6 @@ public class PostgreSQLConfig extends PostgreSQL10Dialect {
         super();
         this.registerFunction("ws.fn_get_code_nm", new StandardSQLFunction("ws.fn_get_code_nm", new StringType()));
         this.registerFunction("ws.fn_get_user_nm", new StandardSQLFunction("ws.fn_get_user_nm", new StringType()));
+        this.registerFunction("ws.fn_get_menu_nm", new StandardSQLFunction("ws.fn_get_menu_nm", new StringType()));
     }
 }

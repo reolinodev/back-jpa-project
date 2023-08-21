@@ -30,4 +30,12 @@ public class ConvertUtils {
         return Expressions.stringTemplate("ws.fn_get_user_nm({0})", userId);
     }
 
+    public static StringTemplate getParseMenuNm(NumberPath menuId) {
+        return Expressions.stringTemplate("ws.fn_get_menu_nm({0})", menuId);
+    }
+
+    public static String getDecryptValue(StringPath params) {
+        return CryptUtils.decrypt(params.toString());
+    }
+
 }

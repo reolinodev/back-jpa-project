@@ -7,14 +7,11 @@
 #        : size - 페이지당 개수/ 선택
 #        : page - 현재페이지 / 선택
 
-POST http://localhost:8080/api/board
+POST http://localhost:9080/api/board
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0MkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLthYzsiqTthLAyIiwibG9naW5JZCI6InRlc3QyQGdtYWlsLmNvbSIsInVzZXJQdyI6IjBmZmUxYWJkMWEwODIxNTM1M2MyMzNkNmUwMDk2MTNlOTVlZWM0MjUzODMyYTc2MWFmMjhmZjM3YWM1YTE1MGMiLCJleHAiOjIwMDU2MDg2MDcsImlhdCI6MTY5MDI0ODYwNywidXNlcklkIjo0fQ.dCbqTLt_sYgNWyskxKTVQTFBuciXp9YCWiZ5CpGk5Ts
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLqtIDrpqzsnpAiLCJsb2dpbklkIjoiYWRtaW5AZ21haWwuY29tIiwiZXhwIjoyMDA3NTExNjYzLCJpYXQiOjE2OTIxNTE2NjMsInVzZXJJZCI6MSwiYXV0aElkIjoxfQ.MWxIkaDNnzjYO9HC7tuMGb-nWgJtGakDKCBTL8izu08
 
 {
-  "boardType": "QNA",
-  "useYn": "Y",
-  "boardTitle": "QNA",
   "size": 10,
   "page": 1
 }

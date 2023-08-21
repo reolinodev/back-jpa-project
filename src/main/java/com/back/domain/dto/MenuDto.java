@@ -46,6 +46,9 @@ public class MenuDto {
     //사용여부
     public String useYn;
 
+    //네비게이션 구성여부
+    public String navYn;
+
     //사용여부-라벨
     public String useYnLabel;
 

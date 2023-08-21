@@ -4,5 +4,5 @@
 # param  : authRole - 권한 구분 / 필수
 
 
-GET http://localhost:8080/api/item/auth/auth-roles/WEB
+POST http://localhost:9080/api/item/auth/auth-roles/WEB
 Content-Type: application/json

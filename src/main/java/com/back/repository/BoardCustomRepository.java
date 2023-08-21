@@ -115,6 +115,7 @@ public class BoardCustomRepository {
                     board.id.as("boardId"),
                     board.boardTitle,
                     board.boardType,
+                    board.id.stringValue().concat("/").concat(board.boardType).as("boardVal"),
                     ConvertUtils.getParseCodeNm("BOARD_TYPE", board.boardType).as("boardTypeLabel"),
                     board.memo,
                     board.attachYn,
@@ -134,7 +135,7 @@ public class BoardCustomRepository {
             .from(board)
             .where(
                 board.useYn.eq("Y"),
-                board.boardType.eq(boardType)
+                boardTypeEq(boardType)
             )
             .fetch();
     }
@@ -143,21 +144,21 @@ public class BoardCustomRepository {
     /************************* 조건절 ***************************/
 
     private BooleanExpression useYnEq(String useYn){
-        if(useYn == null){
+        if(useYn == null||"".equals(useYn)){
             return null;
         }
         return board.useYn.eq(useYn);
     }
 
     private BooleanExpression boardTypeEq(String boardType){
-        if(boardType == null){
+        if(boardType == null||"".equals(boardType)||"ALL".equals(boardType)){
             return null;
         }
         return board.boardType.eq(boardType);
     }
 
     private BooleanExpression boardTitleLike(String boardTitle){
-        if(boardTitle == null){
+        if(boardTitle == null||"".equals(boardTitle)){
             return null;
         }
         return board.boardTitle.toUpperCase().contains(boardTitle.toUpperCase());

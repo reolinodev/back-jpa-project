@@ -1,15 +1,7 @@
-# name   : /api/certification
-# method : POST
-# param  : loginId - 로그인 아이디 / 필수
-#        : userPw - 비밀번호 / 필수
+# name   : /api/menu/{user}
+# method : GET
+# descript : 사용자의 정보를 조회한다. 토큰 사용
 
-
-POST http://localhost:9080/api/login
+GET http://localhost:9080/api/main/user
 Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLqtIDrpqzsnpAiLCJsb2dpbklkIjoiYWRtaW5AZ21haWwuY29tIiwiZXhwIjoyMDA3NTExNjYzLCJpYXQiOjE2OTIxNTE2NjMsInVzZXJJZCI6MSwiYXV0aElkIjoxfQ.MWxIkaDNnzjYO9HC7tuMGb-nWgJtGakDKCBTL8izu08
-
-{
-  "loginId":"admin@gmail.com",
-  "userPw": "1234"
-}
-

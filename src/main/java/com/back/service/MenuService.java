@@ -1,6 +1,7 @@
 package com.back.service;
 
 import com.back.domain.Menu;
+import com.back.domain.dto.MainMenuIF;
 import com.back.domain.dto.MenuDto;
 import com.back.domain.dto.MenuTreeIF;
 import com.back.domain.params.MenuParam;
@@ -47,13 +48,22 @@ public class MenuService {
     }
 
     public List<MenuDto> getItemPrnMenus(String authRole) {
-        return menuCustomRepository.findPrnMenuBy(authRole);
+        return menuCustomRepository.findMenuByAuthRoleAndMenuLv(authRole, 1);
     }
 
-//    public MenuEntity getUrlData(MenuEntity menuEntity) {
-//        return menuRepository.findUrlByAuthId(menuEntity);
-//    }
-//
+    public List<MenuDto> getItemChildMenus(String authRole) {
+        return menuCustomRepository.findMenuByAuthRoleAndMenuLv(authRole, 2);
+    }
+
+
+    public List<MenuDto> getMenusByAuth(MenuParam menuParam) {
+        return menuCustomRepository.getMenusByAuth(menuParam);
+    }
+
+    public MainMenuIF getMainMenu(Long authId) {
+        return menuRepository.getMainMenu(authId);
+    }
+
 
 
 }

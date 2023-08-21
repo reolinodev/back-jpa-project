@@ -109,35 +109,35 @@ public class PostCustomRepository {
 
     /************************* 조건절 ***************************/
     private BooleanExpression useYnEq(String useYn){
-        if(useYn == null){
+        if(useYn == null||"".equals(useYn)){
             return null;
         }
         return post.useYn.eq(useYn);
     }
 
     private BooleanExpression boardIdEq(Long boardId){
-        if(boardId == null){
+        if(boardId == null||boardId == 0){
             return null;
         }
         return post.board.id.eq(boardId);
     }
 
     private BooleanExpression postTitleLike(String postTitle){
-        if(postTitle == null){
+        if(postTitle == null||"".equals(postTitle)){
             return null;
         }
         return post.postTitle.toUpperCase().contains(postTitle.toUpperCase());
     }
 
     private BooleanExpression createdAtBetween(String startDate, String endDate){
-        if(startDate == null){
+        if(startDate == null||"".equals(startDate)){
             return null;
         }
         return  ConvertUtils.getParseLocalDateTimeToStringYYYYMMDD(post.createdAt).between(startDate, endDate);
     }
 
     private BooleanExpression createdNm(String createdNm){
-        if(createdNm == null){
+        if(createdNm == null||"".equals(createdNm)){
             return null;
         }
         return ConvertUtils.getParseUserNm(post.createdId).toUpperCase().contains(createdNm.toUpperCase());

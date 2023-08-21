@@ -18,6 +18,8 @@ public class UserAuthParam extends Page {
 
     public Long[] userArr;
 
+    public Long[] userAuthArr;
+
     public long authId;
 
     public long userId;

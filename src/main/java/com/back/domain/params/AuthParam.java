@@ -53,5 +53,4 @@ public class AuthParam extends Page {
 
     //수정아이디
     public Long updatedId;
-
 }

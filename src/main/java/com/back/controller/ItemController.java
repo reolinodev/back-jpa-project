@@ -1,6 +1,5 @@
 package com.back.controller;
 
-import com.back.domain.Menu;
 import com.back.domain.dto.AuthDto;
 import com.back.domain.dto.BoardDto;
 import com.back.domain.dto.CodeDto;
@@ -37,7 +36,6 @@ public class ItemController {
     private final UserAuthService userAuthService;
     private final MenuService menuService;
     private final BoardService boardService;
-    private final JwtUtils jwtUtils;
 
     //코드그룹값에 해당하는 항목을 조회한다.
     @GetMapping("/code/{codeGrpVal}")
@@ -72,7 +70,7 @@ public class ItemController {
     }
 
     //사용가능한 권한구분별 권한을 조회한다.
-    @GetMapping("/auth/auth-roles/{authRole}")
+    @PostMapping("/auth/auth-roles/{authRole}")
     public ResponseEntity <Map<String,Object>> getItemAuthRoles(@PathVariable String authRole, HttpServletRequest httpServletRequest) {
 
         LinkedHashMap <String,Object> responseMap = new LinkedHashMap<>();
@@ -89,12 +87,12 @@ public class ItemController {
     }
 
     //내가 가진 권한을 가져온다.
-    @GetMapping("/auth/mine")
-    public ResponseEntity <Map<String,Object>> getItemMyAuths(HttpServletRequest httpServletRequest) {
+    @PostMapping("/auth/mine/{userId}")
+    public ResponseEntity <Map<String,Object>> getItemMyAuths(@PathVariable Long userId,HttpServletRequest httpServletRequest) {
         LinkedHashMap <String,Object> responseMap = new LinkedHashMap<>();
         UserAuthParam userAuthParam = new UserAuthParam();
         userAuthParam.authRole = "WEB";
-        userAuthParam.userId = jwtUtils.getTokenUserId(jwtUtils.resolveToken(httpServletRequest));
+        userAuthParam.userId = userId;
 
         List<MyAuthDto> getItemMyAuthsResult = userAuthService.getItemMyAuths(userAuthParam);
 
@@ -109,7 +107,7 @@ public class ItemController {
 
 
     //상위의 메뉴들을 조회한다.
-    @GetMapping("/menu/prn-menu/{authRole}")
+    @PostMapping("/menu/prn-menu/{authRole}")
     public ResponseEntity<Map<String,Object>> getItemPrnMenus(@PathVariable String authRole, HttpServletRequest httpServletRequest) {
         LinkedHashMap <String,Object> responseMap = new LinkedHashMap<>();
 
@@ -127,7 +125,7 @@ public class ItemController {
 
 
     //사용가능한 게시판의 목록을 가져온다.
-    @GetMapping("/board/{boardType}")
+    @PostMapping("/board/{boardType}")
     public ResponseEntity <Map<String,Object>> getItemUsedBoards(@PathVariable String boardType, HttpServletRequest httpServletRequest) {
 
         LinkedHashMap <String,Object> responseMap = new LinkedHashMap<>();
@@ -139,7 +137,6 @@ public class ItemController {
 
         responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));
         responseMap.put("data", getItemUsedBoardsResult);
-
 
 
         return new ResponseEntity<> (responseMap, HttpStatus.OK);

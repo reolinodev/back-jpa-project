@@ -1,5 +1,6 @@
 package com.back.domain.dto;
 
+import com.back.support.CryptUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -57,4 +58,10 @@ public class QnaDto {
     public String responseIdLabel;
 
     public int viewCnt;
+
+    public String qnaPw;
+
+    public void setQnaPw(String qnaPw) {
+        this.qnaPw = CryptUtils.decrypt(qnaPw);
+    }
 }
