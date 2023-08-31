@@ -34,10 +34,9 @@ public class LoginParam {
     //사용자 아이디
     public long userId;
 
-    //권한식별키
-//    public String auth_id;
+    //권한구분
+    public String authRole;
 
-    //데이터유형
-//    public String data_type;
+
 
 }

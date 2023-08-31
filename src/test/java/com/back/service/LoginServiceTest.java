@@ -46,10 +46,11 @@ class LoginServiceTest {
     void getLoginUser() {
         //given
         LoginParam loginParam = new LoginParam();
-        loginParam.loginId = "test2@gmail.com";
+        loginParam.loginId = "admin@gmail.com";
+        loginParam.authRole = "WEB";
 
         //when
-        LoginDto result  = loginService.getLoginUser(loginParam.loginId);
+        LoginDto result  = loginService.getLoginUser(loginParam.loginId, loginParam.authRole);
         System.out.println("result = " + result);
         //then
         Assertions.assertEquals("테스터2", result.userNm);

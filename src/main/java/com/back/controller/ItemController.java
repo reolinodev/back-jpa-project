@@ -23,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -87,12 +88,10 @@ public class ItemController {
     }
 
     //내가 가진 권한을 가져온다.
-    @PostMapping("/auth/mine/{userId}")
-    public ResponseEntity <Map<String,Object>> getItemMyAuths(@PathVariable Long userId,HttpServletRequest httpServletRequest) {
+    @PostMapping("/auth/mine")
+    public ResponseEntity <Map<String,Object>> getItemMyAuths(
+        @RequestBody UserAuthParam userAuthParam, HttpServletRequest httpServletRequest) {
         LinkedHashMap <String,Object> responseMap = new LinkedHashMap<>();
-        UserAuthParam userAuthParam = new UserAuthParam();
-        userAuthParam.authRole = "WEB";
-        userAuthParam.userId = userId;
 
         List<MyAuthDto> getItemMyAuthsResult = userAuthService.getItemMyAuths(userAuthParam);
 

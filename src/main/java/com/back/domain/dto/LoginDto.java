@@ -18,6 +18,8 @@ public class LoginDto {
 
     public String authNm;
 
+    public String authRole;
+
     public String userNm;
 
     public String telNo;

@@ -1,5 +1,7 @@
 package com.back.repository;
 
+import static com.back.domain.QAuth.auth;
+import static com.back.domain.QBoardAuth.boardAuth;
 import static com.back.domain.QUser.user;
 import static com.back.domain.QUserAuth.userAuth;
 
@@ -140,7 +142,7 @@ public class UserCustomRepository {
      * 기능 : 로그인아이디로 사용자 정보 조회
      * 파라미터 : id
      */
-    public LoginDto findLoginUser(String loginId) {
+    public LoginDto findLoginUser(String loginId, String authRole) {
         return queryFactory
             .select(
                 Projections.bean(LoginDto.class,
@@ -153,11 +155,12 @@ public class UserCustomRepository {
                     user.pwInitYn,
                     user.loginFailCnt,
                     userAuth.auth.id.as("authId"),
-                    userAuth.auth.authNm.as("authNm")
-                )
+                    userAuth.auth.authNm.as("authNm"),
+                    userAuth.auth.authRole.as("authRole")
+                    )
             )
             .from(user)
-            .leftJoin(user.userAuths, userAuth)
+            .leftJoin(user.userAuths, userAuth).on(userAuth.auth.authRole.eq(authRole))
             .where(
                 user.loginId.eq(loginId)
             )

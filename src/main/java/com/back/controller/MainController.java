@@ -42,6 +42,7 @@ public class MainController {
         mainUserDto.authId = jwtUtils.getTokenAuthId(jwtUtils.resolveToken(httpServletRequest));
         mainUserDto.loginId = jwtUtils.getTokenInfo(jwtUtils.resolveToken(httpServletRequest),"loginId");
         mainUserDto.userNm = jwtUtils.getTokenInfo(jwtUtils.resolveToken(httpServletRequest),"userNm");
+        mainUserDto.authRole = jwtUtils.getTokenInfo(jwtUtils.resolveToken(httpServletRequest),"authRole");
 
         responseMap.put("header", ResponseUtils.setHeader(message, code, httpServletRequest));
         responseMap.put("data", mainUserDto);
@@ -65,7 +66,7 @@ public class MainController {
         menuParam.authId = authId;
         menuParam.useYn = "Y";
         menuParam.menuLv = 1;
-        menuParam.authRole = "WEB";
+        menuParam.authRole = jwtUtils.getTokenInfo(jwtUtils.resolveToken(httpServletRequest),"authRole");
 
         List<MenuDto> menuLv1List = menuService.getMenusByAuth(menuParam);
 

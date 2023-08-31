@@ -4,6 +4,8 @@
 #        : userPw - 비밀번호 / 필수
 #        : loginDevice - 접속장비 / 선택
 #        : deviceBrowser - 브라우저 / 선택
+#        : authRole - 권한구분 / 필수
+
 
 POST http://localhost:9080/api/certification
 Content-Type: application/json
@@ -12,5 +14,6 @@ Content-Type: application/json
   "loginId":"admin@gmail.com",
   "userPw": "1234",
   "loginDevice":"WEB",
-  "deviceBrowser": "Chrome"
+  "deviceBrowser": "Chrome",
+  "authRole": "WEB"
 }

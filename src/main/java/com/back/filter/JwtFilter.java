@@ -78,6 +78,7 @@ public class JwtFilter extends OncePerRequestFilter {
                 response.setContentType(MediaType.APPLICATION_JSON_VALUE);
                 response.setCharacterEncoding("UTF-8");
 
+                //리프레시 토큰 발급 안하게 처리함
                 if("Y".equals(validLongYn)){
                     response.setStatus(HttpStatus.FORBIDDEN.value());
 
@@ -92,10 +93,11 @@ public class JwtFilter extends OncePerRequestFilter {
                         refreshToken = loginHistory.refreshToken;
                     }
 
+                    //todo 리프레시 토큰 테스트 필요(로직이 의심됨)
                     if(!"".equals(refreshToken)){
                         if (jwtUtils.validateToken(refreshToken)) {
                             response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                            LoginDto loginDto = loginService.getLoginUser(loginParam.loginId);
+                            LoginDto loginDto = loginService.getLoginUser(loginParam.loginId, loginParam.authRole);
                             String accessToken = jwtUtils.generateToken(loginDto);
                             loginHistory.accessToken = accessToken;
                             loginService.updateToken(loginHistory);

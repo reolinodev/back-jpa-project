@@ -30,11 +30,11 @@ public class MenuAuthController {
     private final JwtUtils jwtUtils;
 
     //메뉴별 권한의 리스트를 조회한다.
-    @GetMapping("/{menuId}")
-    public ResponseEntity<Map<String,Object>> getMenuAuths(@PathVariable Long menuId, HttpServletRequest httpServletRequest) {
+    @GetMapping("/{authRole}/{menuId}")
+    public ResponseEntity<Map<String,Object>> getMenuAuths(@PathVariable String authRole,@PathVariable Long menuId,HttpServletRequest httpServletRequest) {
         LinkedHashMap<String,Object> responseMap = new LinkedHashMap<>();
 
-        List<MenuAuthDto> getMenuAuthsResult = menuAuthService.getMenuAuths(menuId);
+        List<MenuAuthDto> getMenuAuthsResult = menuAuthService.getMenuAuths(menuId,authRole);
 
         String message = getMenuAuthsResult.size()+" 개가 조회되었습니다.";
         String code = "ok";

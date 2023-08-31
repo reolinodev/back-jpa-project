@@ -25,7 +25,7 @@ public class MenuAuthCustomRepository {
      * 기능 : 메뉴별 권한 목록 조회
      * 파라미터 : id
      */
-    public List<MenuAuthDto> findAllMenuAuth(Long menuId) {
+    public List<MenuAuthDto> findAllMenuAuth(Long menuId, String authRole) {
         return queryFactory
             .select(
                 Projections.bean(MenuAuthDto.class,
@@ -44,7 +44,8 @@ public class MenuAuthCustomRepository {
             .from(auth)
             .leftJoin(auth.menuAuths, menuAuth).on(menuAuth.menu.id.eq(menuId))
             .where(
-                auth.useYn.eq("Y")
+                auth.useYn.eq("Y"),
+                auth.authRole.eq(authRole)
             )
             .orderBy(auth.ord.when("").then("99")
                 .otherwise(auth.ord).castToNum(Integer.class).asc(), auth.createdAt.asc())

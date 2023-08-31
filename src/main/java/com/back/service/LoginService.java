@@ -31,8 +31,8 @@ public class LoginService {
         return userRepository.countByLoginIdAndUserPw(loginParam.loginId, CryptUtils.encryptSha256(loginParam.userPw));
     }
 
-    public LoginDto getLoginUser(String loginId) {
-        return userCustomRepository.findLoginUser(loginId);
+    public LoginDto getLoginUser(String loginId, String authRole) {
+        return userCustomRepository.findLoginUser(loginId, authRole);
     }
 
     public User updateLastLoginDt(Long id) {

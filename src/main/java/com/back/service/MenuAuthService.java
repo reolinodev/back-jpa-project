@@ -24,8 +24,8 @@ public class MenuAuthService {
     private final AuthRepository authRepository;
 
 
-    public List<MenuAuthDto> getMenuAuths(Long menuId) {
-        return menuAuthCustomRepository.findAllMenuAuth(menuId);
+    public List<MenuAuthDto> getMenuAuths(Long menuId, String authRole) {
+        return menuAuthCustomRepository.findAllMenuAuth(menuId, authRole);
     }
 
     public void saveMenuAuths(MenuAuthParam menuAuthParam) {

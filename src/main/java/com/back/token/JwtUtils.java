@@ -58,6 +58,7 @@ public class JwtUtils {
             .claim("loginId", loginDto.loginId)
             .claim("authId", loginDto.authId)
             .claim("userNm", loginDto.userNm)
+            .claim("authRole", loginDto.authRole)
             .signWith(SignatureAlgorithm.HS256, secretKey).compact();
     }
 
@@ -71,6 +72,7 @@ public class JwtUtils {
             .claim("loginId", loginDto.loginId)
             .claim("authId", loginDto.authId)
             .claim("userNm", loginDto.userNm)
+            .claim("authRole", loginDto.authRole)
             .signWith(SignatureAlgorithm.HS256, secretKey).compact();
     }
 

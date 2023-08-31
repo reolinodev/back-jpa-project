@@ -17,4 +17,6 @@ public class MainUserDto {
     public Long authId;
 
     public String userNm;
+
+    public String authRole;
 }

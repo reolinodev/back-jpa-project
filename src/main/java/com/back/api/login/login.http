@@ -1,4 +1,4 @@
-# name   : /api/certification
+# name   : /api/login
 # method : POST
 # param  : loginId - 로그인 아이디 / 필수
 #        : userPw - 비밀번호 / 필수
@@ -6,10 +6,11 @@
 
 POST http://localhost:9080/api/login
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLqtIDrpqzsnpAiLCJsb2dpbklkIjoiYWRtaW5AZ21haWwuY29tIiwiZXhwIjoyMDA3NTExNjYzLCJpYXQiOjE2OTIxNTE2NjMsInVzZXJJZCI6MSwiYXV0aElkIjoxfQ.MWxIkaDNnzjYO9HC7tuMGb-nWgJtGakDKCBTL8izu08
+Authorization: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJ1c2VyTm0iOiLqtIDrpqzsnpAiLCJsb2dpbklkIjoiYWRtaW5AZ21haWwuY29tIiwiZXhwIjoyMDA4ODAzNzMzLCJpYXQiOjE2OTM0NDM3MzMsInVzZXJJZCI6MSwiYXV0aElkIjoxfQ.1zh_P7vTv-o4wpD3kpiHee-SwL3Rriz72jOt4cxlG60
 
 {
   "loginId":"admin@gmail.com",
-  "userPw": "1234"
+  "userPw": "1234",
+  "authRole": "WEB"
 }
 

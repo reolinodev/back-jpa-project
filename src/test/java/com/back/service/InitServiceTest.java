@@ -454,6 +454,8 @@ class InitServiceTest {
         menu.ord = 1;
         menu.prnMenuId = 1L;
         menu.createdId = 1L;
+        menu.navYn = "Y";
+
 
         Menu menu2 = new Menu();
         menu2.menuNm = "권한정보";
@@ -465,6 +467,8 @@ class InitServiceTest {
         menu2.ord = 2;
         menu2.prnMenuId = 1L;
         menu2.createdId = 1L;
+        menu2.navYn = "Y";
+
 
         Menu menu3 = new Menu();
         menu3.menuNm = "사용자권한정보";
@@ -476,6 +480,7 @@ class InitServiceTest {
         menu3.ord = 3;
         menu3.prnMenuId = 1L;
         menu3.createdId = 1L;
+        menu3.navYn = "Y";
 
 
 
@@ -489,6 +494,8 @@ class InitServiceTest {
         menu4.ord = 1;
         menu4.prnMenuId = 2L;
         menu4.createdId = 1L;
+        menu4.navYn = "Y";
+
 
         Menu menu5 = new Menu();
         menu5.menuNm = "메뉴권한정보";
@@ -500,6 +507,8 @@ class InitServiceTest {
         menu5.ord = 2;
         menu5.prnMenuId = 2L;
         menu5.createdId = 1L;
+        menu5.navYn = "Y";
+
 
 
         Menu menu6 = new Menu();
@@ -512,6 +521,8 @@ class InitServiceTest {
         menu6.ord = 1;
         menu6.prnMenuId = 3L;
         menu6.createdId = 1L;
+        menu6.navYn = "Y";
+
 
         Menu menu7 = new Menu();
         menu7.menuNm = "게시판정보";
@@ -523,6 +534,8 @@ class InitServiceTest {
         menu7.ord = 1;
         menu7.prnMenuId = 4L;
         menu7.createdId = 1L;
+        menu7.navYn = "Y";
+
 
         Menu menu8 = new Menu();
         menu8.menuNm = "게시글정보";
@@ -534,6 +547,8 @@ class InitServiceTest {
         menu8.ord = 2;
         menu8.prnMenuId = 4L;
         menu8.createdId = 1L;
+        menu8.navYn = "Y";
+
 
         Menu menu9 = new Menu();
         menu9.menuNm = "FAQ정보";
@@ -545,6 +560,8 @@ class InitServiceTest {
         menu9.ord = 3;
         menu9.prnMenuId = 4L;
         menu9.createdId = 1L;
+        menu9.navYn = "Y";
+
 
         Menu menu10 = new Menu();
         menu10.menuNm = "QNA정보";
@@ -556,6 +573,8 @@ class InitServiceTest {
         menu10.ord = 4;
         menu10.prnMenuId = 4L;
         menu10.createdId = 1L;
+        menu10.navYn = "Y";
+
 
         List<Menu> arr = new ArrayList<>();
         arr.add(menu);

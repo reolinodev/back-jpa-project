@@ -69,7 +69,7 @@ public class LoginController {
             return new ResponseEntity<>(responseMap, status);
         }
 
-        LoginDto loginDto = loginService.getLoginUser(loginParam.loginId);
+        LoginDto loginDto = loginService.getLoginUser(loginParam.loginId, loginParam.authRole);
 
         if(loginDto.authId == null){
             message = "사용자의 권한이 존재하지 않습니다. 관리자에게 문의 바랍니다.";
@@ -125,7 +125,7 @@ public class LoginController {
         String code = "ok";
         HttpStatus status = HttpStatus.OK;
 
-        LoginDto loginInfo = loginService.getLoginUser(loginParam.loginId);
+        LoginDto loginInfo = loginService.getLoginUser(loginParam.loginId, loginParam.authRole);
 
         if(loginInfo == null){
             message = "로그인에 실패하였습니다.";

@@ -1,6 +1,12 @@
-# name   : /api/item/auth/use-yn
-# method : GET
-# descript : 내 권한의 목록을 표시한다. 콤보박스 사용 (토큰 값을 넣어줘야 한다.)
+# name   : api/item/auth/mine
+# method : POST
+# descript : 내 권한의 목록을 표시한다. 콤보박스 사용
 
-GET http://localhost:9080/api/item/auth/mine/1
+POST http://localhost:9080/api/item/auth/mine
 Content-Type: application/json
+
+{
+  "userId": 1,
+  "authRole": "WEB"
+}
+
